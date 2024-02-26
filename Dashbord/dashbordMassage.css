@@ -1,0 +1,115 @@
+.messages{
+    overflow-y: scroll;
+    height: 520px;
+    padding-left: 50px;
+    padding-right: 46px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.message{
+    display: flex;
+    padding: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: solid 1px ;
+    border-radius: 12px;
+    gap: 70px;
+    position: relative;
+}
+.newMassage{
+    position: absolute;
+    top: -14px;
+    left: -14px;
+
+}
+.fDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sDetails{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+.imgDelete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name{
+    font-family: Work Sans,Arial, Helvetica, sans-serif;
+    font-weight: 650;
+    font-size: 18px;
+}
+.telNum{
+    font-family: Work Sans,Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+.email{
+    font-family: Work Sans,Arial, Helvetica, sans-serif;
+    font-weight: 550;
+    font-size: 16px;
+}
+.mText{
+    font-family: Work Sans,Arial, Helvetica, sans-serif;
+    font-weight: 530;
+    font-size: 20px; 
+    margin-bottom: 6px;
+    color: #131313;
+}
+.delImage{
+    width: 70%;
+}
+@media(max-width: 950px){
+    .delImage{
+        width: 90%;
+    }
+    .imgDelete{
+        width: 35px;
+    }
+}
+@media(max-width: 800px){
+    .message{
+        gap: 35px;
+    }
+    .sDetails{
+        width: 100%;
+    }
+}
+
+@media(max-width: 720px){
+    .message{
+        gap: 20px;
+    }
+}
+@media(max-width: 680px){
+    .fDetails{
+        display: none;
+    }
+    .imgDelete{
+        width: 25px;
+    }
+    .messages{
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+    .message{
+        width: 90%;
+    }
+    .sDetails{
+        width: 80%;
+    }
+    .mText{
+        width: 100%;
+    }
+}
+@media(max-width: 530px){
+    .sDetails{
+        width: 300px;
+        background-color: #f3ede7;
+    }
+}
