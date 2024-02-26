@@ -33,7 +33,7 @@
 .valiator{
     height: 440px; 
 }
-.allBlogs{
+.allProjects{
     overflow-y: scroll;
     height: 440px;
     padding-left: 50px;
@@ -43,7 +43,7 @@
     flex-direction: column;
     gap: 20px;
 }
-.oneBlog{
+.oneProject{
     display: flex;
     padding: 12px;
     align-items: center;
@@ -52,7 +52,7 @@
     gap: 40px;
     box-shadow: 2px 4px 10px rgba(43, 1, 1, 0.5);
 }
-.blogImage{
+.projImage{
     width: 80%;
     border-radius: 8px;
 }
@@ -190,22 +190,22 @@
 
 
 @media(max-width: 1050px){
-    .blogImage{
+    .projImage{
         width: 100%;
     }
 }
 @media(max-width: 1050px){
-    .blogImage{
+    .projImage{
         width: 100%;
     }
-    .allBlogs{
+    .allProjects{
         display: grid;
         grid-template-columns: 50% 50%;
         column-gap: 20px;
         row-gap: 20px;
         
     }
-    .oneBlog{
+    .oneProject{
         flex-direction: column;
     }
     .editBlog{
@@ -233,7 +233,7 @@
 }
 @media(max-width: 550px){
 
-    .allBlogs{
+    .allProjects{
         display: grid;
         grid-template-columns: 90%;
         column-gap: 20px;

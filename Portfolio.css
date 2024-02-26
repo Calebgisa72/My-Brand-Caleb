@@ -409,7 +409,7 @@ h3{
 .blTitle{
     font-family: Inter,Arial, Helvetica, sans-serif; 
     font-size: 22px;
-    font-family: 750;
+    font-weight: 700;
     width: 75%;
 }
 .blDesc{
@@ -445,6 +445,12 @@ h3{
     align-items: center;
     gap: 40px;
     padding-top: 10px;
+    margin-top: 90px;
+}
+.topCancel{
+    position: fixed;
+    z-index: 676;
+    right: 10%;
 }
 .canelBut{
     background-color: #D0D0D0;
@@ -769,6 +775,29 @@ h3{
         width: 150px;
     }
 }
+@media(max-width: 1000px){
+    .viewBlog{
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+    .blogLeft{
+        width: 95%;
+    }
+    .blogRight{
+        background-color: #3D0346;
+        width: 95%;
+    }
+    .oneCom{
+        align-self: center;
+    }
+    .writer{
+        padding-left: 6%;
+        padding-top: 20px;
+    }
+    .write{
+        width: 82%;
+    }
+}
 @media(max-width: 930px){
     .links{
         display: none;
@@ -842,6 +871,12 @@ h3{
         font-size: 17px;
         font-weight: 500
     }
+    .topDesc{
+        gap: 10px;
+    }
+    .blImage{
+        width: 50%;
+    }
 }
 @media(max-width: 550px){
     .visiForm{
@@ -852,5 +887,20 @@ h3{
     }
     .messageText{
         width: 220px;
+    }
+    .topDesc{
+        flex-direction: column;
+    }
+    .topCancel{
+        right: 20%;
+    }
+    .blImage{
+        width: 80%;
+    }
+    .blTitle{
+        width: 100%;
+    }
+    .blDesc{
+        width: 100%;
     }
 }

@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dasboard</title>
     <link rel="stylesheet" href="General.css">
-    <link rel="stylesheet" href="dashbordHome.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="addProj.css">
 </head>
 <body>
     <div class="leftSide">
@@ -35,30 +36,48 @@
     </div>
     <div class="rightSide">
         <div style="display: flex; gap: 0px;">
-            <div class="top">
-                <a class="activeOne" href="dashbordHome.html">Home</a>
-                <a href="dashbordPort.html">Portfolio</a>
-                <a href="dashbordBlog.html">Blog</a>
-            </div>
-            <button class="hamburger-btn" id="hamburgerBtn">&#9776;</button>
-            </div>
-    
-            <div class="mobile-navbar" id="mobileNavbar">
-                <button class="close-btn" id="closeBtn">&times;</button>
-                <div class="mobile-navbar-links">
-                    <a class="activeOne" href="dashbordHome.html">Home</a>
-                    <a href="dashbordPort.html">Portfolio</a>
-                    <a href="dashbordBlog.html">Blog</a>
-                </div>
-              </div>
-
-        <div class="home">
-            <div class="column1">Total Skills : 6</div>
-            <div class="column2">Total Progects : 10</div>
-            <div class="column1">Total Blogs : 12</div>
+        <div class="top">
+            <a href="dashbordHome.html">Home</a>
+            <a class="activeOne" href="dashbordPort.html">Portfolio</a>
+            <a href="dashbordBlog.html">Blog</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">&#9776;</button>
         </div>
 
-    </div>
-    <script src="dashbord.js"></script>
+        <div class="mobile-navbar" id="mobileNavbar">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <div class="mobile-navbar-links">
+                <a href="dashbordHome.html">Home</a>
+                <a class="activeOne" href="dashbordPort.html">Portfolio</a>
+                <a href="dashbordBlog.html">Blog</a>
+            </div>
+          </div>
+
+        <form action="">
+        <div class="add">
+            <div class="addBlog">
+                <div class="blogForm">Add a New Poject Form</div>
+                <div class="bForm">
+                    <div class="tte">Project Image :</div>
+                    <div><input required type="file"></div>
+                    <div class="tte">Project Title :</div>
+                    <div><input required class="textInput" type="text"></div>
+                    <div class="tte">Project Short Description :</div>
+                    <div><input required class="textInput" type="text"></div>
+                    <div class="tte">Technologies Used :</div>
+                    <div><input required class="textInput" type="text"></div>
+                    <div class="t">Project Description :</div>
+                    <div><textarea required
+                         class="messageText" name="" id="" cols="52" rows="9"></textarea></div>
+                </div>
+                <div class="blogForm">
+                    <button class="addButton">Add</button>
+            </div>
+        </div>
+
+        </div>
+        </form>
+
+        <script src="dashbord.js"></script>
 </body>
 </html>
