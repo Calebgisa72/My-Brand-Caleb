@@ -371,10 +371,17 @@ h3{
 }
 .change{
     display: flex;
+    gap: 20px;
 }
 .cha{
-    width: 140%;
+    width: 100%;
     margin-top: 5rem;
+}
+.change-but{
+    border: none;
+    height: 200px;
+    width: 8%;
+    background-color: transparent;
 }
 .viewBlog{
     position: fixed;
@@ -526,7 +533,7 @@ h3{
     grid-template-columns: 29% 29% 29% ;
     column-gap: 3.3rem;
     margin-top: 0px;
-    padding-left: 2rem;
+    justify-content: center;
     padding-top: 0.5rem;
 }
 .blogImage{
@@ -560,7 +567,7 @@ h3{
     flex-wrap: wrap;
     width: 93%;
     color: #696F75;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-bottom: 0.8rem;
     line-height: 1rem;
     height: 20%;
@@ -581,7 +588,7 @@ h3{
 }
 .blogFeedback{
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     margin-bottom: 1.2rem;
 }
 .contact{
@@ -727,8 +734,12 @@ h3{
     gap: 0.4rem;
     margin-top: 30px;
 }
+.like-but{
+    width: 14%;
+    border: none;
+}
 .thumb{
-    width: 8%;
+    width: 100%;
 }
 .footter{
     display: flex;
@@ -754,7 +765,6 @@ h3{
     .blogg-On{
         width: 90%;
         padding: 20px;
-        padding-left: 36px;
     }
     .myBlogs{
         display: block;
@@ -877,6 +887,9 @@ h3{
     .blImage{
         width: 50%;
     }
+    .change-but{
+        width: 12%;
+    }
 }
 @media(max-width: 550px){
     .visiForm{
@@ -902,5 +915,25 @@ h3{
     }
     .blDesc{
         width: 100%;
+    }
+    .change-but{
+        width: 15%;
+    }
+}
+@media(max-width: 390px){
+    .change-but{
+        width: 20%;
+    }
+    .change{
+        gap: 2px;
+    }
+    .about-image{
+        width: 60%;
+    }
+    .engage, .cv{
+        width: 60%;
+    }
+    .lin{
+        width: 25px;
     }
 }
