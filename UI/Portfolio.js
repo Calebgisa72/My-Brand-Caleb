@@ -27,6 +27,21 @@ document.querySelectorAll('.menu-link').forEach(anchor => {
     });
 });
 
+document.querySelectorAll('.engageBut').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+          targetSection.scrollIntoView({
+              behavior: 'smooth'
+          });
+      }
+  });
+});
+
 const navbarLinks = document.getElementById('navbarLinks');
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileNavbar = document.getElementById('mobileNavbar');
