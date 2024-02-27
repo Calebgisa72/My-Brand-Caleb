@@ -47,6 +47,10 @@ button{
     height: 370px;
     gap: 1rem;
 }
+.log{
+    display: flex;
+    justify-content: center;
+}
 a{
     color: #ffffff;
     font-size: 17px;

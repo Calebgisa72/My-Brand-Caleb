@@ -40,3 +40,13 @@
         grid-template-columns: 90%;
     }
 }
+@media(max-width:400px){
+    .column1{
+        margin-left: -20%;
+        width: 200px;
+    }
+    .column2{
+        margin-left: -20%;
+        width: 200px;
+    }
+}

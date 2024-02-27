@@ -40,8 +40,8 @@ button{
     position: fixed;
     top: 2%;
     right: 6%;
-    width: 20%;
-    height: 40%;
+    width: 30%;
+    height: 50%;
     background-color: #c27f1b;
     z-index: 1000;
   }
@@ -97,7 +97,7 @@ a:hover{
 }
 .home{
     display: flex;
-    background-color: #E7F4D8;
+    background-color: #ebf3e2;
     padding-left: 7%;
     padding-right: 7%;
     padding-top: 4vh;
@@ -231,7 +231,7 @@ h3{
     font-family: Inter,sans-serif;
     display: flex;
     flex-direction: column;
-    background-color: #E7F4D8;
+    background-color: #ebf3e2;
     padding-top: 2.5rem;
     padding-left: 7%;
     padding-right: 7%;
@@ -360,7 +360,7 @@ h3{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #E7F4D8;
+    background-color: #ebf3e2;
     border-radius: 20px;
     padding-top: 12vh;
     padding-bottom: 3rem;
