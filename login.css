@@ -99,6 +99,7 @@ a:hover{
     font-size: 16px;
     background-color: #CCF8DB;
     font-weight: 600;
+    align-self: center;
 }
 .loginLink{
     align-self: center;

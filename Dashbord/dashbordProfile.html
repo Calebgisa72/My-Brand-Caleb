@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasboard</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="General.css">
-    <link rel="stylesheet" href="dashbordHome.css">
+    <link rel="stylesheet" href="dashbordProfile.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="dashbordMassage.css">
 </head>
 <body>
     <div class="leftSide">
@@ -36,7 +38,7 @@
     <div class="rightSide">
         <div style="display: flex; gap: 0px;">
             <div class="top">
-                <a class="activeOne" href="dashbordHome.html">Home</a>
+                <a href="dashbordHome.html">Home</a>
                 <a href="dashbordPort.html">Portfolio</a>
                 <a href="dashbordBlog.html">Blog</a>
             </div>
@@ -46,19 +48,40 @@
             <div class="mobile-navbar" id="mobileNavbar">
                 <button class="close-btn" id="closeBtn">&times;</button>
                 <div class="mobile-navbar-links">
-                    <a class="activeOne" href="dashbordHome.html">Home</a>
+                    <a href="dashbordHome.html">Home</a>
                     <a href="dashbordPort.html">Portfolio</a>
                     <a href="dashbordBlog.html">Blog</a>
                 </div>
               </div>
 
-        <div class="home">
-            <div class="column1">Total Skills : 6</div>
-            <div class="column2">Total Progects : 10</div>
-            <div class="column1">Total Blogs : 12</div>
-        </div>
+              <div class="profile">
+                <div class="inpuut">1. Change Profile Picture<input class="fiileInput" type="file"></div>
+                <div class="inpuut">2. Change Username/Password 
+                    <button class="change-but">Change</button>
+                </div>
+              </div>
 
-    </div>
+              <div class="change-form">
+                <div class="topCancel">
+                    <button class="canelBut">x</button>
+                </div>
+                    <div class="editBlogForm">Change Username / Password</div>
+                        <div class="editBForm">
+                            <div class="tte">Change Username :</div>
+                            <div><input required class="textInput" type="text"></div>
+                            <div class="tte">Chnage Password :</div>
+                            <div><input required class="textInput" type="text"></div>
+                        </div>
+
+                <div class="ChangeButton">
+                    <button class="addButton">Change</button>
+                </div>
+
+         </div>
+
+
     <script src="dashbord.js"></script>
+    <script src="dashbordProfile.js"></script>
+
 </body>
 </html>

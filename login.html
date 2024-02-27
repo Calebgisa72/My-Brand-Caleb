@@ -22,22 +22,25 @@
             <img class="logo-name" src="Images/Caleb’s Brand.svg" alt="">
         </div>
         <div class="loginDetails">
-            
-            <div class="loginTab">
-                <div><a href="index.html">Back to Home</a></div>
-                <div class="question">Already signed up?</div>
-
-                <div class="credential">
-                    <div class="credentialTitle">Username:</div>
-                    <input required class="credentialInput" type="text" placeholder="Enter Your Username">
+            <form id="loginForm" action="">
+                <div class="loginTab">
+                    <div><a href="index.html">Back to Home</a></div>
+                    <div class="question">Already signed up?</div>
+                    
+                    <div class="credential">
+                        <div class="credentialTitle">Username:</div>
+                        <input id="username" required class="credentialInput" type="text" placeholder="Enter Your Username">
+                    </div>
+                    <div class="credential">
+                        <div class="credentialTitle">Password:</div>
+                        <input id="password" required class="credentialInput" type="password" placeholder="Enter Your Password">
+                    </div>
+                    <button type="submit" class="loginBut">Login</button>
                 </div>
-                <div class="credential">
-                    <div class="credentialTitle">Password:</div>
-                    <input required class="credentialInput" type="password" placeholder="Enter Your Password">
-                </div>
-                <a class="loginLink" href="Dashbord/dashbordHome.html"><button class="loginBut">Login</button></a>
-                </div>
+            </form>
         </div>
     </div>
+
+    <script src="login.js"></script>
 </body>
 </html>
