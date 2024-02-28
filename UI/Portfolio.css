@@ -757,6 +757,67 @@ h3{
     gap: 3rem;
     padding-top: 10vh;
 }
+.em-ail{
+    position: relative;
+}
+.badEmail{
+    position: absolute;
+    color: red;
+    font-size: 15px;
+    display: none;
+    
+}
+.noName{
+    position: absolute;
+    color: red;
+    font-size: 15px;
+    display: inline-block;
+    display: none;
+}
+.badMessage{
+    position: absolute;
+    color: red;
+    font-size: 15px;
+    display: none;
+}
+.messageSent{
+    position: fixed;
+    top: 30px;
+    left: 30%;
+    z-index: 10004;
+    width: 320px;
+    height: 80px;
+    background-color: #dbff87;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(39, 39, 39, 0.6);
+    border: 3px solid rgb(32, 19, 18);
+    color: #081702;
+    font-size: 22px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
+    justify-content: center;
+    
+}
+.check-img{
+    width: 10%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media(max-width: 1032px){
     .info{
         flex-wrap: wrap;
@@ -925,6 +986,24 @@ h3{
     .change-but{
         width: 15%;
     }
+    .messageSent{
+        position: fixed;
+        top: 30px;
+        left: 20%;
+    }
+    
+}
+@media(max-width: 470px){
+    .check-img{
+        width: 6%;
+    }
+    .messageSent {
+        font-size: 16px;
+        width: 250px;
+        height: 60px;
+        left: 5%;
+        padding-left: 0px;
+    }
 }
 @media(max-width: 390px){
     .change-but{
@@ -941,5 +1020,12 @@ h3{
     }
     .lin{
         width: 25px;
+    }
+}
+@media(max-width: 360px){
+    .descri{
+        font-size: 11px;
+        width: 80%;
+        padding-left: 10%;
     }
 }

@@ -416,21 +416,29 @@
 
             <div class="visitorInfo">
                 <div class="visiTitle">Your Information & Message</div>
-                <form action="">
+                <form id="form" action="">
                 <div class="visiForm">
                     <div class="tte">Named<span
                         style="color: red;">*</span> :</div>
-                    <div><input class="textInput" type="text" required></div>
+                    <div><input class="textInput js-sender-name" type="text" required>
+                    <div class="noName">Failed. Enter Your Name.</div>
+                    </div>
+    
                     <div class="tte">Email<span
                         style="color: red;">*</span> :</div>
-                    <div><input class="textInput" type="text" required></div>
+                    <div><input class="textInput em-ail js-sender-email" type="text" required>
+                        <div class="badEmail">Failed. Put a Valid Email</div>
+                    </div>
+
                     <div class="tte">Location :</div>
-                    <div><input class="textInput" type="text"></div>
+                    <div><input class="textInput js-sender-location" type="text"></div>
                     <div >Message<span
                         style="color: red;">*</span> :</div>
-                    <div><textarea class="messageText" name="" id="" cols="35" rows="7.5" required></textarea></div>
+                    <div><textarea class="messageText em-ail js-sender-message" name="" id="" cols="35" rows="7.5" required></textarea>
+                        <div class="badMessage">Failed. Write more than 10 words</div>
+                    </div>
                 </div>
-                <div class="visiTitle"><button class="submitBut">
+                <div class="visiTitle"><button type="submit" class="submitBut">
                     Submit <img style="width: 23%;" src="Images/Paper Plane.svg" alt=""></button>
                 </div>
                 </form>
@@ -438,6 +446,10 @@
                 </div>
         </div>
     </div>
+
+        <div class="messageSent">
+            <img src="Images/Checked.svg" class="check-img" alt=""> <div>Message Sent Succefully !</div>
+        </div>
 
 
     <div class="footter">
@@ -458,5 +470,6 @@
     </div>
     
     <script src="Portfolio.js"></script>
+    <script src="messageValidation.js"></script>
 </body>
 </html>

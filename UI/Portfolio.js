@@ -55,16 +55,8 @@ closeBtn.addEventListener('click', function() {
   mobileNavbar.style.display = 'none';
 });
 
-window.addEventListener('resize', function() {
-  if (window.innerWidth > 450) {
-    navbarLinks.style.display = 'flex';
-    hamburgerBtn.style.display = 'none';
-  } else {
-    navbarLinks.style.display = 'none';
-    hamburgerBtn.style.display = 'block';
-  }
-});
 
-window.dispatchEvent(new Event('resize'));
+
+
 
 

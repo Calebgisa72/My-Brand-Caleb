@@ -59,6 +59,30 @@
     border: none;
     align-self: center;
 }
+.messageSent{
+    position: fixed;
+    font-family: 'Times New Roman', Times, serif;
+    top: 30px;
+    left: 30%;
+    z-index: 10004;
+    width: 320px;
+    height: 80px;
+    background-color: #dbff87;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(39, 39, 39, 0.6);
+    border: 3px solid rgb(32, 19, 18);
+    color: #081702;
+    font-size: 22px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
+    justify-content: center;
+    
+}
+.check-img{
+    width: 10%;
+}
 
 @media(max-width: 1110px){
     .add{
@@ -80,5 +104,17 @@
     .bForm{
         grid-template-columns: 90%;
         row-gap: 18px;
+    }
+}
+@media(max-width: 470px){
+    .check-img{
+        width: 6%;
+    }
+    .messageSent {
+        font-size: 16px;
+        width: 250px;
+        height: 60px;
+        left: 5%;
+        padding-left: 0px;
     }
 }
