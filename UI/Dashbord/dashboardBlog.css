@@ -47,22 +47,23 @@
     display: flex;
     padding: 12px;
     align-items: center;
-    justify-content: space-between;
     border: solid 1px ;
     border-radius: 12px;
     gap: 40px;
     box-shadow: 2px 4px 10px rgba(43, 1, 1, 0.5);
 }
 .imgDiv{
-    max-width: 300px;
+    max-width: 25%;
 }
+
 .blogImage{
-    width: 80%;
-    border-radius: 8px;
+    width: 100%;
+    border-radius: 12px;
 }
 .details{
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -208,6 +209,10 @@
         column-gap: 20px;
         row-gap: 20px;
         
+    }
+    .imgDiv{
+        background-color: red;
+        max-width: 95%;
     }
     .oneBlog{
         flex-direction: column;

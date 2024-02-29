@@ -631,7 +631,7 @@ h3{
     font-size: 0.8rem;
     margin-bottom: 0.8rem;
     line-height: 1rem;
-    height: 20%;
+    height: 15%;
 }
 .blogBut{
     display: flex;
@@ -894,14 +894,8 @@ h3{
         display: block;
         padding: 0px;
     }
-    .bloggTitle{
-       text-align: center;
-    }
     .blogDesc{
         align-self: center;
-    }
-    .blogFeedback{
-       justify-content: center;
     }
     .blogBut{
         align-self: center;

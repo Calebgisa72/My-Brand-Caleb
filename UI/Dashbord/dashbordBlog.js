@@ -42,6 +42,7 @@ let allBlogs = JSON.parse(localStorage.getItem('allTheBlogs')) || [];
         <button class="deleteBut" onclick="deleteBlog(${index})">Delete</button>
     </div>
   </div>`
+  
   });
 
   document.querySelector('.js-all-blogs').innerHTML = `<div class="allBlogs">
@@ -63,15 +64,51 @@ let allBlogs = JSON.parse(localStorage.getItem('allTheBlogs')) || [];
   function editBlog(index) {
     let blogToEdit = allBlogs[index];
     
-    const editBlogImage = document.querySelector('.js-edit-image');
-    const editBlogTitle = document.querySelector('.js-edit-title');
-    const editBlogShortDesc = document.querySelector('.js-edit-shortDesc');
-    const editBlogLongDesc = document.querySelector('.js-edit-longDesc');
+    const editBlogImageInput = document.querySelector('.js-edit-image');
+    const editBlogTitleInput = document.querySelector('.js-edit-title');
+    const editBlogShortDescInput = document.querySelector('.js-edit-shortDesc');
+    const editBlogLongDescInput = document.querySelector('.js-edit-longDesc');
+    const saveEditsButton = document.querySelector('.js-save-edits');
+  
+    editBlogTitleInput.value = blogToEdit.bTitle;
+    editBlogShortDescInput.value = blogToEdit.bShortDesc;
+    editBlogLongDescInput.value = blogToEdit.bLongDesc;
+  
+    saveEditsButton.onclick = function() {
 
-    editBlogImage.src = blogToEdit.bImage;
-    editBlogTitle.value = blogToEdit.bTitle;
-    editBlogShortDesc.value = blogToEdit.bShortDesc;
-    editBlogLongDesc.value = blogToEdit.bLongDesc;
+        blogToEdit.bTitle = editBlogTitleInput.value;
+        blogToEdit.bShortDesc = editBlogShortDescInput.value;
+        blogToEdit.bLongDesc = editBlogLongDescInput.value;
+  
+        if (editBlogImageInput.files.length > 0) {
+            const newBlogImageFile = editBlogImageInput.files[0];
+            const reader = new FileReader();
+  
+            reader.onload = function(e) {
 
+                blogToEdit.bImage = e.target.result;
+  
+                updateBlogDisplay();
+  
+                editBlogs.style.display = 'none';
+                rightElement.style.filter = 'grayscale(0%)';
+                leftElement.style.filter = 'grayscale(0%)';
+
+                localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
+            };
+  
+            reader.readAsDataURL(newBlogImageFile);
+        } else {
+
+            updateBlogDisplay();
+
+            editBlogs.style.display = 'none';
+            rightElement.style.filter = 'grayscale(0%)';
+            leftElement.style.filter = 'grayscale(0%)';
+
+            localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
+        }
+    };
   }
+
 
