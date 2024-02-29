@@ -19,6 +19,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
     <link rel="stylesheet" href="Portfolio.css">
     <title>My Portfolio</title>
 </head>
@@ -316,12 +321,10 @@
                 </div>
             </div>
 
-        <div class="change">
-
-        <button class="change-but"><img class="cha" src="Images/Back.svg" alt=""></button>
-
-        <div class="myBlogs">
-                <div class="blogg-On">
+        <div class="slide-container swiper">
+        <div class="slide-content">
+        <div class="card-wrapper swiper-wrapper">
+                <div class="blogg-On swiper-slide">
                     <div class="blogImage"><img class="blogImg" src="Images/unsplash_9anj7QWy-2f.svg" alt=""></div>
                     <div class="blogDate">13 FEB 2024</div>
                     <div class="bloggTitle">Cristiano Ronaldo Wins Ballon d'Or</div>
@@ -336,7 +339,7 @@
                     <button class="blogBut js-blog-but">View More <img src="Images/rightt arrow.svg" alt=""></button>
                 </div>
 
-                <div class="blogg">
+                <div class="blogg-On swiper-slide">
                     <div class="blogImage"><img class="blogImg" src="Images/unsplash_C5DLhUkEWfMm.svg" alt=""></div>
                     <div class="blogDate">13 FEB 2024</div>
                     <div class="bloggTitle">Cristiano Ronaldo Wins Ballon d'Or</div>
@@ -351,7 +354,37 @@
                     <button class="blogBut js-blog-but">View More <img src="Images/rightt arrow.svg" alt=""></button>
                 </div>
 
-                <div class="blogg">
+                <div class="blogg-On swiper-slide">
+                    <div class="blogImage"><img class="blogImg" src="Images/unsplash_9anj7QWy-2gg.svg" alt=""></div>
+                    <div class="blogDate">13 FEB 2024</div>
+                    <div class="bloggTitle">Cristiano Ronaldo Wins Ballon d'Or</div>
+                    <div class="blogDesc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
+                         reaffirming his legendary status in the sport.
+                    </div>
+                    <div class="blogFeedback">
+                        <button class="like-but js-like-but"><img class="thumb" src="Images/Like.svg" alt=""></button>
+                        <button class="like-but js-dislike-but"><img class="thumb" src="Images/Thumb down.svg" alt=""></button>
+                        <button class="like-but js-comment-but"><img class="thumb" src="Images/Comment.svg" alt=""></button>
+                    </div>
+                    <button class="blogBut">View More <img src="Images/rightt arrow.svg" alt=""></button>
+                </div>
+
+                <div class="blogg-On swiper-slide">
+                    <div class="blogImage"><img class="blogImg" src="Images/unsplash_C5DLhUkEWfMm.svg" alt=""></div>
+                    <div class="blogDate">13 FEB 2024</div>
+                    <div class="bloggTitle">Cristiano Ronaldo Wins Ballon d'Or</div>
+                    <div class="blogDesc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
+                         reaffirming his legendary status in the sport.
+                    </div>
+                    <div class="blogFeedback">
+                        <button class="like-but js-like-but"><img class="thumb" src="Images/Like.svg" alt=""></button>
+                        <button class="like-but js-dislike-but"><img class="thumb" src="Images/Thumb down.svg" alt=""></button>
+                        <button class="like-but js-comment-but"><img class="thumb" src="Images/Comment.svg" alt=""></button>
+                    </div>
+                    <button class="blogBut js-blog-but">View More <img src="Images/rightt arrow.svg" alt=""></button>
+                </div>
+
+                <div class="blogg-On swiper-slide">
                     <div class="blogImage"><img class="blogImg" src="Images/unsplash_9anj7QWy-2gg.svg" alt=""></div>
                     <div class="blogDate">13 FEB 2024</div>
                     <div class="bloggTitle">Cristiano Ronaldo Wins Ballon d'Or</div>
@@ -367,10 +400,13 @@
                 </div>
                 
         </div>
+        </div>
+                <div class="next-but swiper-button-next"></div>
+                <div class="prev-but swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+        </div>
 
-        <button class="change-but"><img class="cha" src="Images/Next.svg" alt=""></button>
-        
-    </div>
+
 </div> 
 
     <div class="contact" id="contact">
@@ -418,7 +454,7 @@
                 <div class="visiTitle">Your Information & Message</div>
                 <form id="form" action="">
                 <div class="visiForm">
-                    <div class="tte">Named<span
+                    <div class="tte">Name<span
                         style="color: red;">*</span> :</div>
                     <div><input class="textInput js-sender-name" type="text" required>
                     <div class="noName">Failed. Enter Your Name.</div>
@@ -469,6 +505,7 @@
         </div>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="Portfolio.js"></script>
     <script src="messageValidation.js"></script>
 </body>

@@ -59,93 +59,8 @@
                 <a href="addBlog.html"><button class="addBlogButton">Add New Blog</button></a>
             </div>
 
-            <div class="valiator">
-            <div class="allBlogs">
-                <div class="oneBlog">
-                    <div style="display: inline-block;">
-                        <img class="blogImage" src="../Images/unsplash_9anj7QWy-2f.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <div class="titl">Cristiano Ronaldo Wins Ballon d'Or</div>
-                        <div class="desc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
-                             reaffirming his legendary status in the sport.</div>
-                    </div>
-                    <div class="buttons">
-                        <button class="editBut">Edit</button>
-                        <button class="deleteBut">Delete</button>
-                    </div>
-                </div>
-                <div class="oneBlog">
-                    <div style="display: inline-block;">
-                        <img class="blogImage" src="../Images/unsplash_9anj7QWy-2f.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <div class="titl">Cristiano Ronaldo Wins Ballon d'Or</div>
-                        <div class="desc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
-                             reaffirming his legendary status in the sport.</div>
-                    </div>
-                    <div class="buttons">
-                        <button class="editBut">Edit</button>
-                        <button class="deleteBut">Delete</button>
-                    </div>
-                </div>
-                <div class="oneBlog">
-                    <div style="display: inline-block;">
-                        <img class="blogImage" src="../Images/unsplash_9anj7QWy-2f.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <div class="titl">Cristiano Ronaldo Wins Ballon d'Or</div>
-                        <div class="desc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
-                             reaffirming his legendary status in the sport.</div>
-                    </div>
-                    <div class="buttons">
-                        <button class="editBut">Edit</button>
-                        <button class="deleteBut">Delete</button>
-                    </div>
-                </div>
-                <div class="oneBlog">
-                    <div style="display: inline-block;">
-                        <img class="blogImage" src="../Images/unsplash_9anj7QWy-2f.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <div class="titl">Cristiano Ronaldo Wins Ballon d'Or</div>
-                        <div class="desc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
-                             reaffirming his legendary status in the sport.</div>
-                    </div>
-                    <div class="buttons">
-                        <button class="editBut">Edit</button>
-                        <button class="deleteBut">Delete</button>
-                    </div>
-                </div>
-                <div class="oneBlog">
-                    <div style="display: inline-block;">
-                        <img class="blogImage" src="../Images/unsplash_9anj7QWy-2f.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <div class="titl">Cristiano Ronaldo Wins Ballon d'Or</div>
-                        <div class="desc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
-                             reaffirming his legendary status in the sport.</div>
-                    </div>
-                    <div class="buttons">
-                        <button class="editBut">Edit</button>
-                        <button class="deleteBut">Delete</button>
-                    </div>
-                </div>
-                <div class="oneBlog">
-                    <div style="display: inline-block;">
-                        <img class="blogImage" src="../Images/unsplash_9anj7QWy-2f.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <div class="titl">Cristiano Ronaldo Wins Ballon d'Or</div>
-                        <div class="desc">Football icon Cristiano Ronaldo secures another Ballon d'Or,
-                             reaffirming his legendary status in the sport.</div>
-                    </div>
-                    <div class="buttons">
-                        <button class="editBut">Edit</button>
-                        <button class="deleteBut">Delete</button>
-                    </div>
-                </div>
-            </div>
+            <div class="valiator js-all-blogs">
+            
             </div>
 
         </div>
@@ -158,22 +73,29 @@
         </div>
             <div class="editBlogForm">Edit a Blog Form</div>
                 <div class="editBForm">
+
                     <div class="tte">Change Image :</div>
-                    <div><input required type="file"></div>
+                    <div><input type="file" class="js-edit-image"><img class="js-blog-image" src="" alt=""></div>
+
                     <div class="tte">Edit Title :</div>
-                    <div><input required class="textInput" type="text"></div>
+                    <div><input class="textInput js-edit-title" type="text"></div>
+
                     <div class="tte">Edit Short Description :</div>
-                    <div><input required class="textInput" type="text"></div>
+                    <div><input class="textInput js-edit-shortDesc" type="text"></div>
+
                     <div class="t">Edit Description :</div>
-                    <div><textarea required
-                         class="messageText" name="" id="" cols="39" rows="12"></textarea></div>
+                    <div><textarea
+                         class="messageText js-edit-longDesc" name="" id="" cols="39" rows="12"></textarea></div>
+
                 </div>
                 <div class="blogForm">
-                    <button class="addButton">Save</button>
+                    <button class="addButton" onclick="">Save</button>
             </div>
     </div>
 
-    <script src="dashbord.js"></script>
     <script src="dashbordBlog.js"></script>
+    <script src="addBlog.js"></script>
+    <script src="dashbord.js"></script>
+    
 </body>
 </html>

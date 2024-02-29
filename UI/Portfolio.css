@@ -8,6 +8,34 @@ button{
 :root{
     gap: 20px;
 }
+:root {
+    --swiper-navigation-size: 20px;
+}
+element.style {
+    width: 0px;
+}
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: var(--swiper-navigation-sides-offset, 10px);
+    right: 0;
+    z-index: 5000;
+    top: 120px;
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+    right: var(--swiper-navigation-sides-offset, 10px);
+    left: auto;
+    top: 120px;
+}
+.swiper-wrapper{
+    height: 500px;
+}
+.swiper-pagination-fraction {
+    bottom: 0px;
+}
+.slide-container{
+    max-width: 1120px;
+    width: 100%;
+    background-color: #ebf3e2;
+}
 
 .header{
     display: flex;
@@ -24,7 +52,7 @@ button{
     background-color: #d2f7de;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    z-index: 1;
+    z-index: 1008;
 }
 .hamburger-btn {
     display: none;
@@ -72,6 +100,34 @@ button{
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.next-but{
+    background-color: #cfe4ed;
+    color: #ba500a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #191919;
+    font-size: 11px;
+}
+.prev-but{
+    background-color: #cfe4ed;
+    color: #ba500a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #191919;
+    font-size: 11px;
+}
+.next-but img{
+    width: 100%;
 }
 a{
     text-decoration: none;
@@ -393,7 +449,7 @@ h3{
     top: 0px;
     left: 5px;
     background-color: #ffffff;
-    z-index: 1001;
+    z-index: 1010;
     padding: 20px;
     display: none;
     gap: 20px;
@@ -441,6 +497,7 @@ h3{
 .blLike{
     width: 4%;
     border: none;
+    background-color: transparent;
 }
 .botDesc{
     overflow-y: scroll;
@@ -553,6 +610,7 @@ h3{
 .blogg-On{
     display: flex;
     flex-direction: column;
+    height: 400px;
 }
 .blogDate{
     color: #8C8C8C;
@@ -738,11 +796,13 @@ h3{
     margin-top: 30px;
 }
 .like-but{
-    width: 14%;
+    width: 10%;
     border: none;
+    background-color: transparent;
 }
 .thumb{
     width: 100%;
+    background-color: transparent;
 }
 .footter{
     display: flex;
@@ -871,6 +931,11 @@ h3{
     .write{
         width: 82%;
     }
+    .swiper-button-next, .swiper-rtl .swiper-button-prev {
+        right: 0;
+        left: auto;
+        top: 120px;
+    }
 }
 @media(max-width: 930px){
     .links{
@@ -886,6 +951,9 @@ h3{
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+    .like-but{
+        width: 14%;
     }
 }
 @media(max-width: 800px){
@@ -905,6 +973,7 @@ h3{
         width: 80px;
         height: 50px;
     }
+    
 
 }
 @media(max-width: 750px){
@@ -958,6 +1027,7 @@ h3{
         width: 12%;
     }
 }
+
 @media(max-width: 550px){
     .visiForm{
         grid-template-columns: 200px;
@@ -991,6 +1061,10 @@ h3{
         top: 30px;
         left: 20%;
     }
+
+    .blogBut {
+        width: 120px;
+    }
     
 }
 @media(max-width: 470px){
@@ -1004,6 +1078,7 @@ h3{
         left: 5%;
         padding-left: 0px;
     }
+
 }
 @media(max-width: 390px){
     .change-but{
@@ -1021,6 +1096,7 @@ h3{
     .lin{
         width: 25px;
     }
+
 }
 @media(max-width: 360px){
     .descri{
@@ -1028,4 +1104,5 @@ h3{
         width: 80%;
         padding-left: 10%;
     }
+
 }

@@ -47,10 +47,14 @@
     display: flex;
     padding: 12px;
     align-items: center;
+    justify-content: space-between;
     border: solid 1px ;
     border-radius: 12px;
     gap: 40px;
     box-shadow: 2px 4px 10px rgba(43, 1, 1, 0.5);
+}
+.imgDiv{
+    max-width: 300px;
 }
 .blogImage{
     width: 80%;
