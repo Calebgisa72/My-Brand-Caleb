@@ -1027,10 +1027,10 @@ h3{
         grid-template-columns: 200px;
     }
     .textInput{
-        width: 220px;
+        width: 230px;
     }
     .messageText{
-        width: 220px;
+        width: 230px;
     }
     .topDesc{
         flex-direction: column;
@@ -1087,9 +1087,7 @@ h3{
     .engage, .cv{
         width: 60%;
     }
-    .lin{
-        width: 25px;
-    }
+    
 
 }
 @media(max-width: 360px){
@@ -1099,4 +1097,9 @@ h3{
         padding-left: 10%;
     }
 
+}
+@media(max-width: 295px){
+    .lin{
+        width: 40px;
+    }
 }
