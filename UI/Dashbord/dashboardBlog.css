@@ -211,7 +211,6 @@
         
     }
     .imgDiv{
-        background-color: red;
         max-width: 95%;
     }
     .oneBlog{
@@ -240,6 +239,12 @@
         column-gap: 5px;
     }
 }
+@media(max-width: 665px){
+    .allBlogs{
+        padding-left: 10px;
+        padding-right: 40px;
+    }
+}
 @media(max-width: 550px){
 
     .allBlogs{
@@ -247,7 +252,8 @@
         grid-template-columns: 90%;
         column-gap: 20px;
         row-gap: 20px;
-        
+        padding-left: 8%;
+        padding-right: 0px;
     }
     .hed{
         flex-direction: column;
@@ -271,6 +277,9 @@
     .blogForm{
         margin-left: -230px;
     }
+
+}
+@media(max-width: 470px){
 
 }
 

@@ -82,7 +82,7 @@ button{
   .mobile-navbar {
     display: none;
     position: fixed;
-    top: 2%;
+    top: 7%;
     right: 6%;
     width: 40%;
     height: 50%;
@@ -164,13 +164,38 @@ a{
         height: 10px;
         padding-left: 4px;
     }
+    body{
+        display: flex;
+        font-family: Inter,sans-serif;
+        flex-direction: column;
+        padding: 0px;
+        margin: 0px;
+    }
+    .leftSide{
+       display: flex;
+       height: 50px;
+       width: 100%;
+       padding: 0px;
+       align-items: center;
+       justify-content: space-around;
+    }
+    .image{
+        width: 10%;
+        padding: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .rightSide{
+        width: 100%;
+        height: 615px;
+    }
+    
 }
 @media(max-width: 650px){
-    .rightSide{
-        width: 800px;
-    }
 }
 @media(max-width: 470px){
+   
     .top{
         display: none;
     }
@@ -178,5 +203,10 @@ a{
         display: block;
         align-self: end;
     }
+    
 }
-
+@media(max-width: 250px){
+    .image{
+        width: 15%;
+    }
+}
