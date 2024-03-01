@@ -24,7 +24,7 @@ document.getElementById("addBlogForm").addEventListener("submit", function(event
                 bLongDesc: blogLongDesc,
             };
 
-            allBlogs.push(aNewBlog);
+            allBlogs.unshift(aNewBlog);
             localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
 
             blogAdded.style.display = 'flex';
@@ -37,7 +37,12 @@ document.getElementById("addBlogForm").addEventListener("submit", function(event
             document.querySelector('.js-blog-shortDesc').value = "";
             document.querySelector('.js-blog-longDesc').value = "";
             
+            setTimeout(() => {
+                window.location.href = "dashbordBlog.html";
+            }, 3000);
+
             updateBlogDisplay();
+
         };
         reader.readAsDataURL(blogImageFile);
     } else {
