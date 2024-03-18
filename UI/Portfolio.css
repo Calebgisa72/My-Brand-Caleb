@@ -14,6 +14,10 @@ button{
 element.style {
     width: 0px;
 }
+.swiper-slide{
+    display: flex;
+    flex-direction: column;
+}
 .swiper-button-prev, .swiper-rtl .swiper-button-next {
     left: var(--swiper-navigation-sides-offset, 10px);
     right: 0;
@@ -71,7 +75,7 @@ element.style {
     width: 30%;
     height: 50%;
     background-color: #c27f1b;
-    z-index: 1000;
+    z-index: 1009;
   }
   
   .mobile-navbar-links {
@@ -466,6 +470,8 @@ h3{
 }
 .blImage{
     width: 30%;
+    max-height: 200px;
+    border-radius: 6px;
 }
 .bllDesc{
     display: flex;
@@ -496,6 +502,10 @@ h3{
 }
 .blLike{
     width: 4%;
+    border: none;
+    background-color: transparent;
+}
+.bllLike{
     border: none;
     background-color: transparent;
 }
@@ -542,8 +552,12 @@ h3{
     flex-direction: column;
     gap: 10px;
 }
+.likeIcon{
+    width: 25px;
+}
 .comments{
     display: flex;
+    font-family: Inter,Arial, Helvetica, sans-serif; 
     flex-direction: column;
     overflow-y: scroll;
     height: 400px;
@@ -602,6 +616,8 @@ h3{
 }
 .blogImg{
     width: 100%;
+    max-height: 205px;
+    object-fit: cover;
 }
 .blogg{
     display: flex;
@@ -863,6 +879,21 @@ h3{
 .check-img{
     width: 10%;
 }
+.numOfLiks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px;
+    margin-right: 10px;
+}
+.blComment{
+    display: none;
+}
+.thumbs{
+    width: 25px;
+    margin-left: -10px;
+    margin-top: 5px;
+}
 
 
 
@@ -894,14 +925,6 @@ h3{
         display: block;
         padding: 0px;
     }
-    .blogDesc{
-        align-self: center;
-    }
-    .blogBut{
-        align-self: center;
-        margin-top: 10px;
-        width: 150px;
-    }
 }
 @media(max-width: 1000px){
     .viewBlog{
@@ -929,6 +952,16 @@ h3{
         right: 0;
         left: auto;
         top: 120px;
+    }
+    .swiper-button-prev, .swiper-rtl .swiper-button-next {
+        right: auto;
+        left: 0;
+        top: 120px;
+    }
+    .blComment{
+        display: block;
+        background-color: transparent;
+        border: none;
     }
 }
 @media(max-width: 930px){
@@ -1028,8 +1061,10 @@ h3{
     }
     .textInput{
         width: 230px;
+        width: 230px;
     }
     .messageText{
+        width: 230px;
         width: 230px;
     }
     .topDesc{
@@ -1037,6 +1072,18 @@ h3{
     }
     .topCancel{
         right: 20%;
+    }
+    .bloggTitle{
+        text-align: center;
+    }
+    .blogDesc{
+        text-align: center;
+    }
+    .blogFeedback{
+        justify-content: center;
+    }
+    .blogBut{
+        align-self: center;
     }
     .blImage{
         width: 80%;
@@ -1097,6 +1144,11 @@ h3{
         padding-left: 10%;
     }
 
+}
+@media(max-width: 295px){
+    .lin{
+        width: 40px;
+    }
 }
 @media(max-width: 295px){
     .lin{

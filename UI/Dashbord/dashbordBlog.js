@@ -16,30 +16,38 @@ let allBlogs = JSON.parse(localStorage.getItem('allTheBlogs')) || [];
       });
   });
   }
-
-  cancleBut.addEventListener('click', function() {
+  
+  function cancleViewBlog(){
     editBlogs.style.display = 'none';
     rightElement.style.filter = 'grayscale(0%)';
     leftElement.style.filter = 'grayscale(0%)';
-  });
+}
+ 
 
   function updateBlogDisplay(){
 
     let blogs = '';
     
   allBlogs.forEach((blog,index) =>{
-    console.log(blog.bTitle);
     blogs += `<div class="oneBlog">
-    <div class="imgDiv" style="display: inline-block;">
+    <div class="imgDiv">
         <img class="blogImage" src="${blog.bImage}">
+        <div class="blogDate blDate">${blog.bDate}</div>
     </div>
     <div class="details">
         <div class="titl">${blog.bTitle}</div>
         <div class="desc">${blog.bShortDesc}</div>
+        
     </div>
     <div class="buttons">
         <button class="editBut edit-button" onclick="editBlog(${index})">Edit</button>
         <button class="deleteBut" onclick="deleteBlog(${index})">Delete</button>
+        <div class="feedBlogs">
+                <div class="like-but js-like-but"><img class="thumb" src="../Images/Like.svg" alt=""></div>
+                <div class="numOfLiks">${blog.bNumOfLike}</div>
+                <button class="like-but js-comment-but" onclick="seeComments(${index})">
+                <img class="thumbs" src="../Images/Comment.svg" alt=""></button>
+            </div>
     </div>
   </div>`
   
@@ -54,7 +62,36 @@ let allBlogs = JSON.parse(localStorage.getItem('allTheBlogs')) || [];
   }
 
   updateBlogDisplay();
+  
+  function seeComments(index){
+    let blogSeeComments = allBlogs[index];
+    let allComs = '';
+    blogComms = blogSeeComments.bComments;
+    console.log(blogComms);
+    blogComms.forEach((comment, commentIndex) => {
+      allComs += `<div class="oneComment">
+      <div class="comWord">${comment}</div>
+      <button class="delComBut js-del-com" onclick="deleteComment(${index}, ${commentIndex})">
 
+          <img class="delImg" src="dImage/Bin.svg" alt="">
+      </button>
+  </div>`
+
+    })
+
+    document.querySelector('.coms').innerHTML= `${allComs}`
+  }
+
+  function deleteComment(blogIndex, commentIndex) {
+    let blogToUpdate = allBlogs[blogIndex];
+    
+    blogToUpdate.bComments.splice(commentIndex, 1);
+    
+    localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
+    seeComments(blogIndex);
+}
+
+  
   function deleteBlog(index) {
     allBlogs.splice(index, 1);
     updateBlogDisplay();
@@ -111,4 +148,23 @@ let allBlogs = JSON.parse(localStorage.getItem('allTheBlogs')) || [];
     };
   }
 
+  const viewCommentButton = document.querySelectorAll('.js-comment-but');
+
+  const adminCommentView = document.querySelector('.commentView');
+  viewCommentButton.forEach(viewCom =>{
+    viewCom.addEventListener('click', ()=>{
+      adminCommentView.style.display = 'flex'
+    })
+  })
+  function cancleBlogComment(){
+    adminCommentView.style.display = 'none'
+  }
+
+  const deleteCommentButton = document.querySelectorAll('.js-del-com');
+
+  deleteCommentButton.forEach(delComBut =>{
+    delComBut.addEventListener('click', ()=>{
+
+    })
+  })
 
