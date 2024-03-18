@@ -1061,8 +1061,10 @@ h3{
     }
     .textInput{
         width: 230px;
+        width: 230px;
     }
     .messageText{
+        width: 230px;
         width: 230px;
     }
     .topDesc{
@@ -1076,6 +1078,7 @@ h3{
     }
     .blogDesc{
         text-align: center;
+        justify-content: center;
     }
     .blogFeedback{
         justify-content: center;
@@ -1132,6 +1135,7 @@ h3{
     .engage, .cv{
         width: 60%;
     }
+    
 
 }
 @media(max-width: 360px){
@@ -1141,6 +1145,11 @@ h3{
         padding-left: 10%;
     }
 
+}
+@media(max-width: 295px){
+    .lin{
+        width: 40px;
+    }
 }
 @media(max-width: 295px){
     .lin{
