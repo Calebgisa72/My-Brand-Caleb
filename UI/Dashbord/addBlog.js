@@ -6,6 +6,18 @@ document.getElementById("addBlogForm").addEventListener("submit", function(event
     const blogShortDesc = document.querySelector('.js-blog-shortDesc').value;
     const blogLongDesc = document.querySelector('.js-blog-longDesc').value;
     const blogAdded = document.querySelector('.messageSent');
+    function formatDate(date) {
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = months[date.getMonth()];
+        const year = date.getFullYear().toString();
+        return `${day} ${month} ${year}`;
+    }
+
+    const today = new Date();
+    
+    const formattedDate = formatDate(today);
+    
 
 
     if (blogImageInput.files.length > 0) {
@@ -22,9 +34,13 @@ document.getElementById("addBlogForm").addEventListener("submit", function(event
                 bTitle: blogTitle,
                 bShortDesc: blogShortDesc,
                 bLongDesc: blogLongDesc,
+                bDate: formattedDate,
+                bLike: "unliked",
+                bNumOfLike: 0,
+                bComments: []
             };
 
-            allBlogs.unshift(aNewBlog);
+            allBlogs.push(aNewBlog);
             localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
 
             blogAdded.style.display = 'flex';

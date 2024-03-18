@@ -30,6 +30,9 @@
     font-size: 16px;
     border: none;
 }
+.blog{
+    position: relative;
+}
 .valiator{
     height: 440px; 
 }
@@ -46,19 +49,82 @@
 .oneBlog{
     display: flex;
     padding: 12px;
-    align-items: center;
     border: solid 1px ;
     border-radius: 12px;
     gap: 40px;
     box-shadow: 2px 4px 10px rgba(43, 1, 1, 0.5);
 }
+.commentView{
+    display: none;
+    padding: 20px;
+    flex-direction: column;
+    overflow-y: scroll;
+    background-color: #ecd6d6;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 8%;
+    left: 30%;
+}
+.canclePart{
+    position: relative;
+}
+.topCancell{
+    display: flex;
+    justify-content: end;
+    padding-right: 30px;
+    margin-top: 10px;
+}
+.coms{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 370px;
+    margin-top: 30px;
+}
+.oneComment{
+    border: 1px dotted rgb(0, 0, 0);
+    background-color: #debe66;
+    border-radius: 10px;
+    width: 92%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.comWord{
+    flex: 1;
+}
+.delComBut{
+    background-color: #e7ba3d;
+    border: none;
+    width: 40px;
+    height: 100%;
+}
+.delComBut:hover{
+    background-color: #ebbc90;
+}
+.delImg{
+    width: 20px;
+}
 .imgDiv{
     max-width: 25%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
 }
 
 .blogImage{
     width: 100%;
     border-radius: 12px;
+    max-height: 125px;
 }
 .details{
     display: flex;
@@ -78,10 +144,34 @@
     font-family: Work Sans,Arial, Helvetica, sans-serif;
     font-size: 15px;
 }
+.feedBlogs{
+    display: flex;
+    gap: 14px;
+}
+.like-but{
+    width: 30%;
+    border: none;
+    background-color: transparent;
+}
+.numOfLiks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -6px;
+    margin-left: -12px;
+}
+.blDate{
+    font-family: Work Sans,Arial, Helvetica, sans-serif; 
+    font-size: 14px;
+    color: #797979;
+}
 .buttons{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 130px;
+    justify-content: center;
+    align-items: center;
 }
 .editBut{
     font-family: Work Sans,Arial, Helvetica, sans-serif;
@@ -137,6 +227,20 @@
     margin-bottom: -65px;
 }
 .canelBut:hover{
+    background-color: #e46868;
+}
+.canellBut{
+    background-color: #ffffff;
+    height: 30px;
+    width: 30px;
+    border: none;
+    font-size: 25px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 90%;
+}
+.canellBut:hover{
     background-color: #e46868;
 }
 .editBlogForm{
@@ -215,6 +319,8 @@
     }
     .oneBlog{
         flex-direction: column;
+        text-align: center;
+        align-items: center;
     }
     .editBlog{
         left: 20px;
@@ -276,6 +382,9 @@
     }
     .blogForm{
         margin-left: -230px;
+    }
+    .blogImage{
+        max-height: 225px;
     }
 
 }

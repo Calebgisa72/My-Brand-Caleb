@@ -470,6 +470,8 @@ h3{
 }
 .blImage{
     width: 30%;
+    max-height: 200px;
+    border-radius: 6px;
 }
 .bllDesc{
     display: flex;
@@ -500,6 +502,10 @@ h3{
 }
 .blLike{
     width: 4%;
+    border: none;
+    background-color: transparent;
+}
+.bllLike{
     border: none;
     background-color: transparent;
 }
@@ -546,8 +552,12 @@ h3{
     flex-direction: column;
     gap: 10px;
 }
+.likeIcon{
+    width: 25px;
+}
 .comments{
     display: flex;
+    font-family: Inter,Arial, Helvetica, sans-serif; 
     flex-direction: column;
     overflow-y: scroll;
     height: 400px;
@@ -606,6 +616,8 @@ h3{
 }
 .blogImg{
     width: 100%;
+    max-height: 205px;
+    object-fit: cover;
 }
 .blogg{
     display: flex;
@@ -867,6 +879,21 @@ h3{
 .check-img{
     width: 10%;
 }
+.numOfLiks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px;
+    margin-right: 10px;
+}
+.blComment{
+    display: none;
+}
+.thumbs{
+    width: 25px;
+    margin-left: -10px;
+    margin-top: 5px;
+}
 
 
 
@@ -930,6 +957,11 @@ h3{
         right: auto;
         left: 0;
         top: 120px;
+    }
+    .blComment{
+        display: block;
+        background-color: transparent;
+        border: none;
     }
 }
 @media(max-width: 930px){
