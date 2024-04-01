@@ -1,67 +1,75 @@
-document.getElementById("addBlogForm").addEventListener("submit", function(event) {
+document.getElementById("addBlogForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const blogImageInput = document.querySelector('.js-blog-img');
-    const blogTitle = document.querySelector('.js-blog-title').value;
-    const blogShortDesc = document.querySelector('.js-blog-shortDesc').value;
-    const blogLongDesc = document.querySelector('.js-blog-longDesc').value;
-    const blogAdded = document.querySelector('.messageSent');
-    function formatDate(date) {
-        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = months[date.getMonth()];
-        const year = date.getFullYear().toString();
-        return `${day} ${month} ${year}`;
-    }
+    try {
+        const blogImageInput = document.querySelector('.js-blog-img');
+        const blogTitle = document.querySelector('.js-blog-title').value;
+        const blogShortDesc = document.querySelector('.js-blog-shortDesc').value;
+        const blogLongDesc = document.querySelector('.js-blog-longDesc').value;
+        const blogAdded = document.querySelector('.messageSent');
 
-    const today = new Date();
-    
-    const formattedDate = formatDate(today);
-    
+        if (blogImageInput.files.length > 0) {
+            const blogImageFile = blogImageInput.files[0];
+            const reader = new FileReader();
 
+            reader.onload = async function(e) {
+                const blogImageBase = e.target.result;
 
-    if (blogImageInput.files.length > 0) {
-        const blogImageFile = blogImageInput.files[0];
+                let aNewBlog = {
+                    bImage: blogImageBase,
+                    bTitle: blogTitle,
+                    bShortDesc: blogShortDesc,
+                    bLongDesc: blogLongDesc
+                };
 
-        const reader = new FileReader();
+                const formData = new FormData();
 
-        reader.onload = function(e) {
+                formData.append("bTitle", blogTitle);
+                formData.append("bShortDesc", blogShortDesc);
+                formData.append("bLongDesc", blogLongDesc);
+                formData.append("bImage", blogImageInput.files[0]);
 
-            const blogImageBase = e.target.result;
-            
-            let aNewBlog = {
-                bImage: blogImageBase,
-                bTitle: blogTitle,
-                bShortDesc: blogShortDesc,
-                bLongDesc: blogLongDesc,
-                bDate: formattedDate,
-                bLike: "unliked",
-                bNumOfLike: 0,
-                bComments: []
+                const token = localStorage.getItem("token");
+                
+                try {
+                    const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: formData
+                    });
+                    const data = await response.json();
+                    console.log(data.message);
+
+                    if(data.message === "Created blog Successfully"){
+                        blogAdded.style.display = 'flex';
+                        setTimeout(() => {
+                            blogAdded.style.display = 'none';
+                        }, 2000);
+
+                        blogImageInput.value = "";
+                        document.querySelector('.js-blog-title').value = "";
+                        document.querySelector('.js-blog-shortDesc').value = "";
+                        document.querySelector('.js-blog-longDesc').value = "";
+                        
+                        setTimeout(() => {
+                            window.location.href = "dashbordBlog.html";
+                        }, 3000);
+                }
+
+                
+
+                    updateBlogDisplay();
+                } catch (error) {
+                    console.error('Error:', error);
+                }
             };
-
-            allBlogs.push(aNewBlog);
-            localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
-
-            blogAdded.style.display = 'flex';
-            setTimeout(() => {
-                blogAdded.style.display = 'none';
-            }, 2000);
-
-            blogImageInput.value = "";
-            document.querySelector('.js-blog-title').value = "";
-            document.querySelector('.js-blog-shortDesc').value = "";
-            document.querySelector('.js-blog-longDesc').value = "";
-            
-            setTimeout(() => {
-                window.location.href = "dashbordBlog.html";
-            }, 3000);
-
-            updateBlogDisplay();
-
-        };
-        reader.readAsDataURL(blogImageFile);
-    } else {
-        alert("Please select an image.");
+            reader.readAsDataURL(blogImageFile);
+        } else {
+            alert("Please select an image.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
     }
 });
