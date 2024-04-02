@@ -13,6 +13,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="dashbordMassage.css">
+
+<link rel="stylesheet" href="../General/CSS.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <body>
     <div class="leftSide">
@@ -35,6 +40,11 @@
 
     </div>
     <div class="rightSide">
+
+        <div class="loaderContainer">
+            <span class="loader"></span>
+        </div>
+
         <div style="display: flex; gap: 0px;">
             <div class="top">
                 <a href="dashbordHome.html">Home</a>
@@ -53,74 +63,16 @@
                 </div>
               </div>
 
-        <div class="messages">
-            <div class="message">
-                <img class="newMassage read" src="dImage/New.svg" alt="">
-                <div class="fDetails">
-                    <div class="name">Benjamin</div>
-                    <div class="telNum">+250780654456</div>
-                </div>
-
-                <div class="sDetails">
-                    <div class="email">benjamin@gmail.com</div>
-                    <div class="mText">I need Your Sevices ...</div>
-                </div>
-
-                <div class="imgDelete">
-                    <img class="delImage" src="dImage/Bin.svg" alt="">
-                </div>
-            </div>
-
-            <div class="message">
-                <div class="fDetails">
-                    <div class="name">Benjamin</div>
-                    <div class="telNum">+250780654456</div>
-                </div>
-
-                <div class="sDetails">
-                    <div class="email">benjamin@gmail.com</div>
-                    <div class="mText">I need Your Sevices ...</div>
-                </div>
-
-                <div class="imgDelete">
-                    <img class="delImage" src="dImage/Bin.svg" alt="">
-                </div>
-            </div>
-            <div class="message">
-                <div class="fDetails">
-                    <div class="name">Benjamin</div>
-                    <div class="telNum">+250780654456</div>
-                </div>
-
-                <div class="sDetails">
-                    <div class="email">benjamin@gmail.com</div>
-                    <div class="mText">I need Your Sevices ...</div>
-                </div>
-
-                <div class="imgDelete">
-                    <img class="delImage" src="dImage/Bin.svg" alt="">
-                </div>
-            </div>
-            <div class="message">
-                <div class="fDetails">
-                    <div class="name">Benjamin</div>
-                    <div class="telNum">+250780654456</div>
-                </div>
-
-                <div class="sDetails">
-                    <div class="email">benjamin@gmail.com</div>
-                    <div class="mText">I need Your Sevices ...</div>
-                </div>
-
-                <div class="imgDelete">
-                    <img class="delImage" src="dImage/Bin.svg" alt="">
-                </div>
-            </div>
-        </div>
+              <div class="valiator js-all-messages">
+            
+              </div>
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="dashbord.js"></script>
+    <script src="dashbordMessage.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,15 @@
 let authToken;
+
+let loader = document.querySelector('.loaderContainer');
+
+function showLoader(){
+    loader.style.display = "flex";
+}
+
+function hideLoader(){
+    loader.style.display = "none";
+}
+
 document.getElementById("loginForm").addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -12,6 +23,8 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         password: userpassword
     };
 
+    showLoader();
+
     fetch("https://my-brand-backend-iyxk.onrender.com/api/auth/signin",{
         method: "POST",
         headers: {
@@ -21,6 +34,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     })
     .then(async (res) =>{
         const data = await res.json();
+        hideLoader();
         if(data.message === "Signed in successfully"){
             authToken = data.token;
             localStorage.setItem('token', authToken);

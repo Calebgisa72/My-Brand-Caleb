@@ -1,3 +1,1 @@
-
-
-console.log("check");
+document.getElementById('numOfBlogs').innerHTML=4;

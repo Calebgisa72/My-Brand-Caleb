@@ -4,6 +4,7 @@ body{
 }
 button{
     cursor: pointer;
+    background-color: transparent;
 }
 :root{
     gap: 20px;
@@ -477,6 +478,7 @@ h3{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 60%;
 }
 .blTitle{
     font-family: Inter,Arial, Helvetica, sans-serif; 
@@ -498,7 +500,7 @@ h3{
 }
 .blIcon{
     display: flex;
-    gap: 30px;
+    gap: 10px;
 }
 .blLike{
     width: 4%;
@@ -541,6 +543,15 @@ h3{
 .canelBut:hover{
     background-color: #E3ADAD;
 }
+.comDetails{
+    display: flex;
+    flex-direction: column;
+}
+.comSender{
+    font-size: 9px;
+    color: #051240;
+    font-weight: 200;
+}
 .botComment{
     background-color: #F9E9DB;
     height: 500px;
@@ -561,6 +572,7 @@ h3{
     flex-direction: column;
     overflow-y: scroll;
     height: 400px;
+    font-weight: 450;
 }
 .oneCom{
     display: flex;
@@ -578,6 +590,18 @@ h3{
 .writer{
     display: flex;
     gap: 10px;
+    position: relative;
+}
+.write-name{
+    position: absolute;
+    display: none;
+    top: -50px;
+    background-color: #ccf9dc;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: solid 2px rgb(0, 0, 0);
+    padding-left: 10px;
 }
 .comHead{
     font-size: 17px;
@@ -895,6 +919,9 @@ h3{
     width: 25px;
     margin-left: -10px;
     margin-top: 5px;
+}
+.com-but{
+    width: 22px;
 }
 
 
