@@ -1,6 +1,16 @@
 let allBlogs;
 let totalBlogs = 0;
 
+let loader = document.querySelector('.loaderContainer');
+
+function showLoader(){
+  loader.style.display = "flex";
+}
+
+function hideLoader(){
+  loader.style.display = "none";
+}
+
   const editBlogs = document.querySelector('.editBlog');
   const rightElement = document.querySelector('.rightSide');
   const leftElement = document.querySelector('.leftSide');
@@ -34,18 +44,18 @@ function formatDate(date) {
 
 async function updateBlogDisplay() {
   try {
+      showLoader();
       const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
           method: "GET",
       });
       const data = await response.json();
+      hideLoader();
       allBlogs = data;
 
       
     for(let i=0; i<allBlogs.length; i++){
      totalBlogs +=1;
     }
-  
-    
 
       let blogs = '';
       allBlogs.forEach((blog, index) => {
@@ -76,14 +86,10 @@ async function updateBlogDisplay() {
                   </div>
               </div>
           </div>`;
-
-          console.log(totalBlogs);
       });
 
       document.querySelector('.js-all-blogs').innerHTML = `<div class="allBlogs">${blogs}</div>`;
       attachEditButtonListeners();
-
-      
 
   } catch (error) {
       console.error('Error:', error);
@@ -97,7 +103,6 @@ updateBlogDisplay();
     let blogSeeComments = allBlogs[index];
     let allComs = '';
     blogComms = blogSeeComments.bComments;
-    console.log(blogComms);
     blogComms.forEach((comment, commentIndex) => {
       allComs += `<div class="oneComment">
       <div class="commentData">
@@ -132,6 +137,7 @@ updateBlogDisplay();
     let id = blogToDelete._id;
     const token = localStorage.getItem("token");
 
+    showLoader();
     fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}`,{
       method: "DELETE",
       headers: {
@@ -140,6 +146,7 @@ updateBlogDisplay();
     })
     .then(async(res)=>{
       const data = await res.json();
+      hideLoader();
       console.log(data.message);
       if(data.message === "Blog deleted successfully"){
         alert("Blog Have Been Deleted");
@@ -182,6 +189,7 @@ updateBlogDisplay();
   
                     updatedBlogData.bImage = blogImageBase;
                     
+                    showLoader();
                     fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogToEdit._id}`, {
                             method: "PUT",
                             headers: {
@@ -191,6 +199,7 @@ updateBlogDisplay();
                             body: JSON.stringify(updatedBlogData)
                         }).then(async (res) => {
                           const data = await res.json();
+                          hideLoader();
                           console.log(data);
 
                           updateBlogDisplay();
@@ -207,6 +216,7 @@ updateBlogDisplay();
                 reader.readAsDataURL(newBlogImageFile);
             } 
             else {
+              showLoader()
                     fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogToEdit._id}`, {
                         method: "PUT",
                         headers: {
@@ -216,6 +226,7 @@ updateBlogDisplay();
                         body: JSON.stringify(updatedBlogData)
                     }).then(async(res)=>{
                         const data = await res.json();
+                        hideLoader();
                         updateBlogDisplay();
                         editBlogs.style.display = 'none';
                         rightElement.style.filter = 'grayscale(0%)';

@@ -2,14 +2,70 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const submitButton = document.querySelector(".submitBut");
 
-    submitButton.addEventListener("click", function (event) {
-        // Prevent the reload functionality
+    submitButton.addEventListener("click", async function (event) {
+        // Prevent the default form submission
         event.preventDefault();
+
+        const senderName = document.querySelector('.js-sender-name');
+        const senderEmailInput = document.querySelector('.js-sender-email');
+        const senderLocationInput = document.querySelector('.js-sender-location');
+        const senderMessageInput = document.querySelector('.js-sender-message');
+
+        const noName = document.querySelector('.noName');
+        const badEmail = document.querySelector('.badEmail');
+        const badMessage = document.querySelector('.badMessage');
+        const messageSent = document.querySelector('.messageSent');
+
+        let nameCheck = isNameEntered(senderName.value);
+        let checkEmail = isValidEmail(senderEmailInput.value);
+        let checkMessage = hasAtLeastTenWords(senderMessageInput.value);
+
+        noName.style.display = nameCheck ? 'none' : 'inline-block';
+        badEmail.style.display = checkEmail ? 'none' : 'inline-block';
+        badMessage.style.display = checkMessage ? 'none' : 'inline-block';
+
+        if (nameCheck && checkEmail && checkMessage) {
+            try {
+                let newMessage;
+                if (senderLocationInput && senderLocationInput.value.trim() !== '') {
+                    newMessage = {
+                        sName: senderName.value,
+                        sEmail: senderEmailInput.value,
+                        sLocation: senderLocationInput.value,
+                        message: senderMessageInput.value
+                    };
+                } else {
+                    newMessage = {
+                        sName: senderName.value,
+                        sEmail: senderEmailInput.value,
+                        message: senderMessageInput.value
+                    };
+                }
+
+                const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/message", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newMessage)
+                });
+
+                const data = await response.json();
+                console.log(data.message);
+
+                if (data.message === "Message sent successfully") {
+                    messageSent.style.display = 'flex';
+                    setTimeout(() => {
+                        messageSent.style.display = 'none';
+                        form.reset();
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
     });
 });
-
-
-
 
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -22,57 +78,6 @@ function hasAtLeastTenWords(text) {
 }
 
 function isNameEntered(name) {
-    const names = name.value.trim();
-    return names !== '';
+    const trimmedName = name.trim();
+    return trimmedName !== '';
 }
-
-const submitButton = document.querySelector('.submitBut');
-
-submitButton.addEventListener('click', () => {
-    const senderName = document.querySelector('.js-sender-name');
-    const senderEmailInput = document.querySelector('.js-sender-email');
-    const senderLocationInput = document.querySelector('.js-sender-location');
-    const senderMessageInput = document.querySelector('.js-sender-message');
-
-    const noName = document.querySelector('.noName');
-    const badEmail = document.querySelector('.badEmail');
-    const badMessage = document.querySelector('.badMessage');
-    const messageSent = document.querySelector('.messageSent');
-
-    let nameCheck = isNameEntered(senderName);
-    let checkEmail = isValidEmail(senderEmailInput.value);
-    let checkMessage = hasAtLeastTenWords(senderMessageInput.value);
-
-    if (!nameCheck) {
-        noName.style.display = 'inline-block';
-    } else {
-        noName.style.display = 'none';
-    }
-
-    if (!checkEmail) {
-        badEmail.style.display = 'inline-block';
-    } else {
-        badEmail.style.display = 'none';
-    }
-
-    if (!checkMessage) {
-        badMessage.style.display = 'inline-block';
-    } else {
-        badMessage.style.display = 'none';
-    }
-
-    if (nameCheck && checkEmail && checkMessage) {
-        messageSent.style.display = 'flex';
-        
-        setTimeout(() => {
-            messageSent.style.display = 'none';
-            senderName.value = "";
-            senderEmailInput.value = "";
-            senderLocationInput.value = "";
-            senderMessageInput.value = "";
-        }, 2000);
-    } else {
-        messageSent.style.display = 'none';
-    }
-});
-
