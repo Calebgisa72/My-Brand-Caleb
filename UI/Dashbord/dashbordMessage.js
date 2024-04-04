@@ -1,6 +1,5 @@
 let allMess;
-
-let loader = document.querySelector('.loaderContainer');
+let totalMessages = 0;
 
 function showLoader(){
   loader.style.display = "flex";
@@ -33,6 +32,10 @@ async function updateMessageDisplay() {
         hideLoader();
         let allMessages = '';
 
+        for(let i=0; i<allMess.length; i++){
+          totalMessages +=1;
+         }
+
         allMess.forEach((message, index) => {
           const dateString = message.dateSent;
           const dateObject = new Date(dateString);
@@ -51,7 +54,7 @@ async function updateMessageDisplay() {
             
             <div class="leff">
             <div class="messDate">${formated}</div>
-            <button class="imgDelete" onclick="deleteBlog(${index})">
+            <button class="imgDelete" onclick="deleteMessage(${index})">
                 <img class="delImage" src="dImage/Bin.svg" alt="">
             </button>
             </div>
@@ -62,6 +65,7 @@ async function updateMessageDisplay() {
         document.querySelector('.js-all-messages').innerHTML = `<div class="messages">${allMessages}</div>`;
         
   
+        localStorage.setItem('totalMessages', totalMessages);
     } catch (error) {
         console.error('Error:', error);
     }
@@ -69,7 +73,7 @@ async function updateMessageDisplay() {
   
   updateMessageDisplay();
 
-  function deleteBlog(index) {
+  function deleteMessage(index) {
     let messageToDelete = allMess[index];
     let id = messageToDelete._id;
     const token = localStorage.getItem("token");
@@ -85,7 +89,7 @@ async function updateMessageDisplay() {
       const data = await res.json();
       hideLoader();
       if(data.message === "Message deleted successfully"){
-        alert("Message Have Been Deleted");
+        showToast("Message Have Been Deleted","success");
       }
       updateMessageDisplay();
     })

@@ -32,6 +32,7 @@ document.getElementById("addBlogForm").addEventListener("submit", async function
                 const token = localStorage.getItem("token");
                 
                 try {
+                    showLoader();
                     const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
                         method: "POST",
                         headers: {
@@ -40,7 +41,7 @@ document.getElementById("addBlogForm").addEventListener("submit", async function
                         body: formData
                     });
                     const data = await response.json();
-                    console.log(data.message);
+                    hideLoader();
 
                     if(data.message === "Created blog Successfully"){
                         blogAdded.style.display = 'flex';

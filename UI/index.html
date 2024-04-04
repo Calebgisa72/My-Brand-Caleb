@@ -25,6 +25,11 @@
 />
 
     <link rel="stylesheet" href="Portfolio.css">
+
+    <link rel="stylesheet" href="../UI/General/CSS.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <title>My Portfolio</title>
 </head>
 <body>
@@ -63,6 +68,10 @@
     </div>
 
     <div class="menus">
+
+        <div class="loaderContainer">
+            <span class="loader"></span>
+            </div>
 
     <div class="home" id="home">
         <div class="welcome">
@@ -232,7 +241,9 @@
 
         <div class="slide-container swiper">
         <div class="slide-content js-blogs">
-        
+            <div class="loaderContainer">
+                <span class="loader"></span>
+            </div>
         </div>
                 <div class="next-but swiper-button-next"></div>
                 <div class="prev-but swiper-button-prev"></div>
@@ -282,7 +293,6 @@
                     <a href=""><div class="lin">in</div></a>
                 </div>
             </div>
-
             <div class="visitorInfo">
                 <div class="visiTitle">Your Information & Message</div>
                 <form id="form" action="">
@@ -317,7 +327,7 @@
     </div>
 
         <div class="messageSent">
-            <img src="Images/Checked.svg" class="check-img" alt=""> <div>Message Sent Succefully !</div>
+            
         </div>
 
 
@@ -337,7 +347,10 @@
             <a href="#contact" class="menu-link">Contact Us</a>
         </div>
     </div>
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../UI/General/JS.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="Dashbord/dashbordBlog.js"></script>
     <script src="Portfolio.js"></script>

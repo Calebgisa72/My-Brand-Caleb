@@ -1,16 +1,6 @@
 let allBlogs;
 let totalBlogs = 0;
 
-let loader = document.querySelector('.loaderContainer');
-
-function showLoader(){
-  loader.style.display = "flex";
-}
-
-function hideLoader(){
-  loader.style.display = "none";
-}
-
   const editBlogs = document.querySelector('.editBlog');
   const rightElement = document.querySelector('.rightSide');
   const leftElement = document.querySelector('.leftSide');
@@ -91,8 +81,10 @@ async function updateBlogDisplay() {
       document.querySelector('.js-all-blogs').innerHTML = `<div class="allBlogs">${blogs}</div>`;
       attachEditButtonListeners();
 
+      localStorage.setItem('totalBlogs', totalBlogs);
+
   } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
   }
 }
 
@@ -101,34 +93,64 @@ updateBlogDisplay();
 
   function seeComments(index){
     let blogSeeComments = allBlogs[index];
+    let blogId = blogSeeComments._id;
     let allComs = '';
-    blogComms = blogSeeComments.bComments;
-    blogComms.forEach((comment, commentIndex) => {
-      allComs += `<div class="oneComment">
-      <div class="commentData">
-        <div class="comSender">${comment.sender}</div>
-        <div class="comWord">${comment.comment}</div>
-       </div>
-      <button class="delComBut js-del-com" onclick="deleteComment(${index}, ${commentIndex})">
-
-          <img class="delImg" src="dImage/Bin.svg" alt="">
-      </button>
-  </div>`
-
+    showLoader();
+    fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/comments`, {
+        method: "GET",
     })
-    document.querySelector('.coms').innerHTML= `${allComs}`
+    .then(async (res) => {
+        const data = await res.json();
+        hideLoader();
+        allComments = data;
+        allComments.forEach((comment, commentIndex) => {
+            allComs += `<div class="oneComment">
+            <div class="commentData">
+                <div class="comSender">${comment.sender}</div>
+                <div class="comWord">${comment.comment}</div>
+            </div>
+            <button class="delComBut js-del-com" onclick="deleteComment(${index}, ${commentIndex})">
 
-    adminCommentView.style.display = 'flex'
+                <img class="delImg" src="dImage/Bin.svg" alt="">
+            </button>
+        </div>`
+        })
+
+        document.querySelector('.coms').innerHTML= `${allComs}`
+
+        adminCommentView.style.display = 'flex'
+    })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
   }
 
   function deleteComment(blogIndex, commentIndex) {
     let blogToUpdate = allBlogs[blogIndex];
+    let blogId = blogToUpdate._id;
+
+    const token = localStorage.getItem("token");
+
+    showLoader();
+    fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/comments/${commentIndex}`,{
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    .then(async(res)=>{
+      const data = await res.json();
+      hideLoader();
+      if(data.message === "Comment deleted successfully"){
+        showToast("Comment deleted","success");
+      }
+      seeComments(blogIndex);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+  });
     
-    blogToUpdate.bComments.splice(commentIndex, 1);
-    
-    localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
-    seeComments(blogIndex);
 }
 
   
@@ -147,9 +169,8 @@ updateBlogDisplay();
     .then(async(res)=>{
       const data = await res.json();
       hideLoader();
-      console.log(data.message);
       if(data.message === "Blog deleted successfully"){
-        alert("Blog Have Been Deleted");
+        showToast("Blog Deleted","success");
       }
     updateBlogDisplay();
     })
@@ -200,7 +221,6 @@ updateBlogDisplay();
                         }).then(async (res) => {
                           const data = await res.json();
                           hideLoader();
-                          console.log(data);
 
                           updateBlogDisplay();
                           editBlogs.style.display = 'none';

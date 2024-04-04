@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     };
                 }
 
+                showLoader();
                 const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/message", {
                     method: "POST",
                     headers: {
@@ -51,17 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 const data = await response.json();
-                console.log(data.message);
+                hideLoader();
 
                 if (data.message === "Message sent successfully") {
-                    messageSent.style.display = 'flex';
-                    setTimeout(() => {
-                        messageSent.style.display = 'none';
-                        form.reset();
-                    }, 2000);
+                    showToast("Message sent successfully","success");
                 }
             } catch (error) {
-                console.error('Error:', error);
+                showToast(error,error);
             }
         }
     });

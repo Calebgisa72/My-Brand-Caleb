@@ -1,14 +1,16 @@
 let blogButton;
 
 function BlogDisplay() {
+    showLoader();
     fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
         method: "GET",
     })
     .then(async (res) => {
         const data = await res.json();
+        hideLoader();
         allBlogs = data;
 
-        let landingBlogs = '';
+        let landingBlogs = ``;
         allBlogs.forEach((aBlog, index) => {
 
             const dateString = aBlog.bDate;
@@ -22,8 +24,8 @@ function BlogDisplay() {
                     <div class="bloggTitle">${aBlog.bTitle}</div>
                     <div class="blogDesc">${aBlog.bShortDesc}</div>
                     <div class="blogFeedback">
-                        <button class="like-but js-like-but lik-but-${index}" onclick="likingBlog(${index})">
-                            <div><img class="thumb" src="Images/Lik.svg" alt=""></div>
+                        <button class="like-but js-like-but lik-but-${index}" onclick="handleLikeButtonClick(${index}, '${aBlog._id}')">
+                            <div><img class="thumb" src="${isBlogLiked(aBlog._id) ? 'Images/Liked.svg' : 'Images/Lik.svg'}" alt=""></div>
                         </button>
                         <div class="numOfLiks js-num-likes-${index}">${aBlog.bNumOfLike}</div>
                         <button class="like-but js-comment-button" onclick="viewAndScroll(${index})"><img class="thumbs" src="Images/Comment.svg" alt=""></button>
@@ -81,28 +83,66 @@ function BlogDisplay() {
     });
 }
 
+function isBlogLiked(blogId) {
+    const likedBlogs = JSON.parse(localStorage.getItem('likedBlogs')) || [];
+    return likedBlogs.includes(blogId);
+}
+
+// Function to toggle like/dislike status
+async function toggleLike(index, blogId) {
+    const likedBlogs = JSON.parse(localStorage.getItem('likedBlogs')) || [];
+    const likeButton = document.querySelector(`.lik-but-${index}`);
+    const thumbImage = likeButton.querySelector('.thumb');
+
+    if (isBlogLiked(blogId)) {
+        try {
+            showLoader();
+            const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/disLike`, {
+                method: 'POST',
+            });
+            const data = await response.json();
+            hideLoader();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) - 1;
+        likeButton.nextElementSibling.textContent = updatedLikes;
+        thumbImage.src = 'Images/Lik.svg';
+        // Remove blogId from likedBlogs
+        const updatedLikedBlogs = likedBlogs.filter(id => id !== blogId);
+        localStorage.setItem('likedBlogs', JSON.stringify(updatedLikedBlogs));
+    } else {
+        // Like blog
+        try {
+            showLoader();
+            const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/like`, {
+                method: 'POST',
+                // Add headers and body if required
+            });
+            const data = await response.json();
+            hideLoader();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) + 1;
+        likeButton.nextElementSibling.textContent = updatedLikes;
+        thumbImage.src = 'Images/Liked.svg';
+        // Add blogId to likedBlogs
+        likedBlogs.push(blogId);
+        localStorage.setItem('likedBlogs', JSON.stringify(likedBlogs));
+    }
+}
+
+// Function to handle like button click
+async function handleLikeButtonClick(index, blogId) {
+    await toggleLike(index, blogId);
+}
+
 BlogDisplay();
 
 const viewBlog = document.querySelector('.viewBlog');
-
-function likingBlog(index) {
-    let blogToLike = allBlogs[index];
-    let likeButApp = document.querySelector(`.lik-but-${index}`).querySelector('.thumb');
-
-    if (blogToLike.bLike === "unliked") {
-        blogToLike.bNumOfLike += 1;
-        blogToLike.bLike = "liked";
-        likeButApp.src = "Images/Liked.svg";
-
-    } else {
-        blogToLike.bNumOfLike -= 1;
-        blogToLike.bLike = "unliked";
-        likeButApp.src = "Images/Lik.svg";
-    }
-
-    localStorage.setItem('allTheBlogs', JSON.stringify(allBlogs));
-    document.querySelector(`.js-num-likes-${index}`).textContent = blogToLike.bNumOfLike;
-}
 
 async function sendComment(event, index) {
     event.preventDefault();
@@ -117,7 +157,7 @@ async function sendComment(event, index) {
                 sender: nameWritten,
                 comment: commentWritten
             }
-
+            showLoader();
             const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`, {
                 method: "POST",
                 headers: {
@@ -127,10 +167,10 @@ async function sendComment(event, index) {
             });
 
             const data = await response.json();
-            console.log(data.message);
+            hideLoader();
 
             if (data.message === "Comment added successfully") {
-                alert("Comment Sent");
+                showToast("Comment added", "success");
                 document.querySelector('.js-write-comment').value = "";
                 document.querySelector('.js-write-name').value = "";
                 viewBlogDetails(index);
@@ -140,7 +180,7 @@ async function sendComment(event, index) {
         }
         
     } else {
-        alert("Please fill in both the comment and your name.");
+        showToast("Please fill in both the comment and your name.", "error");
     }
 }
 
@@ -167,11 +207,13 @@ function viewBlogDetails(index) {
     const dateObject = new Date(dateString);
     let formatted = formatDate(dateObject);
 
+    showLoader();
     fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`, {
         method: "GET",
     })
     .then(async (res) => {
         const data = await res.json();
+        hideLoader();
         allComments = data;
         console.log(allComments);
         allComments.forEach(comment => {
@@ -182,7 +224,6 @@ function viewBlogDetails(index) {
                         <div class="comSender">${comment.sender}</div>
                         <div>${comment.comment}</div>
                     </div>
-                    <button class="someButs"><img style="width: 70%;" src="Images/Like.svg" alt=""></button>
                 </div>
             `;
         });
@@ -196,8 +237,8 @@ function viewBlogDetails(index) {
                     <div class="blDesc">${blogToView.bShortDesc}</div>
                     <div class="blDate">${formatted}</div>
                     <div class="blIcon">
-                        <button class="like-but js-like-but lik-but-${index}" onclick="likingBlog(${index})">
-                            <div><img class="thumb" src="${blogToView.bLike === 'liked' ? 'Images/Liked.svg' : 'Images/Lik.svg'}" alt=""></div>
+                        <button class="like-but js-like-but lik-but-${index}" onclick="handleLikeButtonClick(${index}, '${blogToView._id}')">
+                            <div><img class="thumb" src="${isBlogLiked(blogToView._id) ? 'Images/Liked.svg' : 'Images/Lik.svg'}" alt=""></div>
                         </button>
                         <div class="numOfLiks js-num-likes-${index}">${blogToView.bNumOfLike}</div>
                         <button class="like-but js-comment-button" onclick="scrollToComments(${index})"><img class="com-but" src="Images/Comment.svg" alt=""></button>
@@ -253,7 +294,6 @@ function viewBlogDetails(index) {
     });
 }
 
-
 function viewAndScroll(index){
     viewBlogDetails(index)
     scrollToComments(index)
@@ -271,6 +311,25 @@ function scrollToComments(index) {
 function cancleViewBlog() {
     viewBlog.style.display = 'none';
 }
+
+
+// Listen for beforeunload event to handle browser back button
+window.addEventListener('popstate', function(event) {
+    console.log("popstate event triggered");
+    alert("Debug: popstate event triggered");
+
+    let isLoggedIn = localStorage.getItem('isLoggedIn');
+    console.log("isLoggedIn:", isLoggedIn);
+
+    if (isLoggedIn !== "true") {
+        console.log("User not logged in. Redirecting to login page.");
+        event.preventDefault();
+        window.location.href = './login.html';
+    } else {
+        console.log("User logged in. Allowing navigation.");
+    }
+});
+
 
 document.querySelectorAll('.menu-link').forEach(anchor => {
     anchor.addEventListener('click', function(e) {

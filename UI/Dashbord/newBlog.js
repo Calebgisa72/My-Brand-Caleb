@@ -1,1 +1,0 @@
-document.getElementById('numOfBlogs').innerHTML=4;
