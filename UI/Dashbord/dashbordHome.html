@@ -35,6 +35,11 @@
 
     </div>
     <div class="rightSide">
+
+        <div class="loaderContainer">
+            <span class="loader"></span>
+        </div>
+
         <div style="display: flex; gap: 0px;">
             <div class="top">
                 <a class="activeOne" href="dashbordHome.html">Home</a>
@@ -65,6 +70,9 @@
             <div class="column1 js-all-blog">
                 <p>Total Likes : </p> <div id="numOfLikes"></div>
             </div>
+            <div class="column2 js-all-proj">
+                <p>Total Comments : </p> <div id="numOfcoms"></div>
+            </div>
         </div>
 
     </div>
@@ -76,51 +84,7 @@
     <script src="../General/JS.js"></script>
     <script src="dashbordBlog.js"></script>
     <script src="dashbord.js"></script>
-    <script>
-
-let totalBlogs = 0;
-let totalLikes = 0;
-
-document.addEventListener("DOMContentLoaded", function () {
-    let numLikeDiv = document.getElementById('numOfLikes');
-    
-    async function updateBlogDisplay() {
-        try {
-            showLoader();
-            const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
-                method: "GET",
-            });
-            const data = await response.json();
-            hideLoader();
-            let allBlogs = data;
-    
-            let totalBlogs = allBlogs.length;
-            localStorage.setItem('totalBlogs', totalBlogs);
-    
-            let totalLikes = 0;
-            allBlogs.forEach((blog) => {
-                totalLikes += blog.bNumOfLike;
-            });
-    
-            if (numLikeDiv) {
-                numLikeDiv.innerHTML = totalLikes;
-            }
-    
-        } catch (error) {
-            console.log('Error:', error);
-        }
-    }
-
-    updateBlogDisplay();
-});
-
-
-        const totalB = localStorage.getItem('totalBlogs');
-    document.getElementById('numOfBlogs').innerHTML = totalB;
-
-    const totalM = localStorage.getItem('totalMessages');
-    document.getElementById('numOfMess').innerHTML = totalM;
-    </script>
+    <script src="homeDash.js"> </script>
     <script src="newBlog.js"></script>
 </body>
 </html>

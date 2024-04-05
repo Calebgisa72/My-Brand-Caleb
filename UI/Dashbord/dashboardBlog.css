@@ -314,6 +314,10 @@
     .blogImage{
         width: 100%;
     }
+    .commentView {
+        left: 10%;
+        width: 320px;
+    }
 }
 @media(max-width: 1050px){
     .blogImage{
@@ -377,7 +381,7 @@
         gap: 20px;
     }
     .editBlog{
-        width: 90%;
+        width: 80%;
         padding-left: 30px;
     }
     .editBForm{
@@ -400,7 +404,17 @@
 
 }
 @media(max-width: 470px){
-
+    .commentView {
+        left: 1%;
+        width: 270px;
+        font-size: 14px;
+    }
 }
-
+@media(max-width: 330px){
+    .commentView {
+        left: 5%;
+        width: 200px;
+        font-size: 12px;
+    }
+}
 

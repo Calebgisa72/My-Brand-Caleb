@@ -95,7 +95,11 @@ updateBlogDisplay();
         const data = await res.json();
         hideLoader();
         allComments = data;
-        allComments.forEach((comment, commentIndex) => {
+        
+        if (allComments.length === 0) {
+          document.querySelector('.coms').innerHTML= `There are no comments now.`
+        } else {
+          allComments.forEach((comment, commentIndex) => {
             allComs += `<div class="oneComment">
             <div class="commentData">
                 <div class="comSender">${comment.sender}</div>
@@ -109,6 +113,8 @@ updateBlogDisplay();
         })
 
         document.querySelector('.coms').innerHTML= `${allComs}`
+        }
+        
 
         adminCommentView.style.display = 'flex'
     })

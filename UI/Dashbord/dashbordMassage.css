@@ -136,4 +136,12 @@
     .mText{
         font-size: 12px;
     }
+    .messDate{
+        font-size: 8px;
+    }
+}
+@media(max-width: 330px){
+    .messDate{
+        font-size: 6px;
+    }
 }
