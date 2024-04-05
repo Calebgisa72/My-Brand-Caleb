@@ -312,25 +312,6 @@ function cancleViewBlog() {
     viewBlog.style.display = 'none';
 }
 
-
-// Listen for beforeunload event to handle browser back button
-window.addEventListener('popstate', function(event) {
-    console.log("popstate event triggered");
-    alert("Debug: popstate event triggered");
-
-    let isLoggedIn = localStorage.getItem('isLoggedIn');
-    console.log("isLoggedIn:", isLoggedIn);
-
-    if (isLoggedIn !== "true") {
-        console.log("User not logged in. Redirecting to login page.");
-        event.preventDefault();
-        window.location.href = './login.html';
-    } else {
-        console.log("User logged in. Allowing navigation.");
-    }
-});
-
-
 document.querySelectorAll('.menu-link').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();

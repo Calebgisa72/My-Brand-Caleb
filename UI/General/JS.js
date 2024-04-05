@@ -33,7 +33,7 @@ function showToast(message, type) {
 
 document.querySelectorAll('.logout-btn').forEach(button => {
   button.addEventListener('click', function() {
-      localStorage.setItem('isLoggedIn', false);
+      localStorage.removeItem('token');
       window.location.href = '../index.html';
   });
 });

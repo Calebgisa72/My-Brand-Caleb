@@ -102,3 +102,24 @@
     .check-img{
         width: 10%;
     }
+    @media(max-width: 545px){
+      .messageSent{
+        left: 10%;
+      }
+    }
+
+    @media(max-width: 395px){
+      .messageSent{
+        left: 1%;
+      }
+    }
+
+    @media(max-width: 350px){
+      .messageSent{
+        width: 260px;
+        height: 60px;
+        font-size: 15px;
+        gap: 10px;
+        padding-left: 10px;
+      }
+    }

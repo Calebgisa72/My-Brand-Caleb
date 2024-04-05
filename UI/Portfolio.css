@@ -821,6 +821,7 @@ h3{
     padding-left: 12px;
     padding-right: 8px;
     font-size: 15px;
+    height: auto;
 }
 .submitBut{
     background-color: #000000;
@@ -1105,10 +1106,9 @@ h3{
     }
     .textInput{
         width: 230px;
-        width: 230px;
+        height: 30px;
     }
     .messageText{
-        width: 230px;
         width: 230px;
     }
     .topDesc{

@@ -1,5 +1,4 @@
 let allBlogs;
-let totalBlogs = 0;
 
   const editBlogs = document.querySelector('.editBlog');
   const rightElement = document.querySelector('.rightSide');
@@ -42,11 +41,6 @@ async function updateBlogDisplay() {
       hideLoader();
       allBlogs = data;
 
-      
-    for(let i=0; i<allBlogs.length; i++){
-     totalBlogs +=1;
-    }
-
       let blogs = '';
       allBlogs.forEach((blog, index) => {
 
@@ -80,8 +74,6 @@ async function updateBlogDisplay() {
 
       document.querySelector('.js-all-blogs').innerHTML = `<div class="allBlogs">${blogs}</div>`;
       attachEditButtonListeners();
-
-      localStorage.setItem('totalBlogs', totalBlogs);
 
   } catch (error) {
       console.log('Error:', error);

@@ -29,6 +29,9 @@
 .messDate{
     font-size: 12px;
     color: rgb(45, 44, 44);
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 .newMassage{
     position: absolute;

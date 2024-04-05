@@ -27,10 +27,10 @@
         <div class="image"><a href="dashbordMassage.html">
             <img class="icon" src="dImage/Vector.svg" alt=""></a></div>
         <div class="word"><a href="dashbordMassage.html">Messages</a></div>
-        <button class="logout-btn">
+        <button class="logout-btn logIcon">
             <img class="icon" src="dImage/uiw_logout.svg" alt="">
         </button>
-        <button class="logout-btn">Logout</button>
+        <button class="logout-btn logWord">Logout</button>
         
 
     </div>
@@ -62,16 +62,59 @@
             <div class="column2 js-all-proj">
                 <p>Total Messages : </p> <div id="numOfMess"></div>
             </div>
+            <div class="column1 js-all-blog">
+                <p>Total Likes : </p> <div id="numOfLikes"></div>
+            </div>
         </div>
 
     </div>
 
+    
+    <script src="dashbordHome.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../General/JS.js"></script>
     <script src="dashbordBlog.js"></script>
     <script src="dashbord.js"></script>
     <script>
+
+let totalBlogs = 0;
+let totalLikes = 0;
+
+document.addEventListener("DOMContentLoaded", function () {
+    let numLikeDiv = document.getElementById('numOfLikes');
+    
+    async function updateBlogDisplay() {
+        try {
+            showLoader();
+            const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
+                method: "GET",
+            });
+            const data = await response.json();
+            hideLoader();
+            let allBlogs = data;
+    
+            let totalBlogs = allBlogs.length;
+            localStorage.setItem('totalBlogs', totalBlogs);
+    
+            let totalLikes = 0;
+            allBlogs.forEach((blog) => {
+                totalLikes += blog.bNumOfLike;
+            });
+    
+            if (numLikeDiv) {
+                numLikeDiv.innerHTML = totalLikes;
+            }
+    
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    }
+
+    updateBlogDisplay();
+});
+
+
         const totalB = localStorage.getItem('totalBlogs');
     document.getElementById('numOfBlogs').innerHTML = totalB;
 

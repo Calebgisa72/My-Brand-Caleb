@@ -38,8 +38,6 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         if(data.message === "Signed in successfully"){
             authToken = data.token;
             localStorage.setItem('token', authToken);
-            localStorage.setItem('isLoggedIn', true);
-            console.log()
             window.location.href = "Dashbord/dashbordHome.html";
         }
         else if(data.message === "Invalid username or password"){
