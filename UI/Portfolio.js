@@ -109,16 +109,13 @@ async function toggleLike(index, blogId) {
         const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) - 1;
         likeButton.nextElementSibling.textContent = updatedLikes;
         thumbImage.src = 'Images/Lik.svg';
-        // Remove blogId from likedBlogs
         const updatedLikedBlogs = likedBlogs.filter(id => id !== blogId);
         localStorage.setItem('likedBlogs', JSON.stringify(updatedLikedBlogs));
     } else {
-        // Like blog
         try {
             showLoader();
             const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/like`, {
                 method: 'POST',
-                // Add headers and body if required
             });
             const data = await response.json();
             hideLoader();
@@ -129,13 +126,11 @@ async function toggleLike(index, blogId) {
         const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) + 1;
         likeButton.nextElementSibling.textContent = updatedLikes;
         thumbImage.src = 'Images/Liked.svg';
-        // Add blogId to likedBlogs
         likedBlogs.push(blogId);
         localStorage.setItem('likedBlogs', JSON.stringify(likedBlogs));
     }
 }
 
-// Function to handle like button click
 async function handleLikeButtonClick(index, blogId) {
     await toggleLike(index, blogId);
 }
@@ -310,6 +305,19 @@ function scrollToComments(index) {
 
 function cancleViewBlog() {
     viewBlog.style.display = 'none';
+}
+
+//function to download cv
+function downloadFile() {
+    const fileUrl = 'https://res.cloudinary.com/da4rqn95a/image/upload/v1715461146/ndstcdq4kmf8ohnlvdao.pdf';
+    const fileName = "Caleb's CV";
+
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 document.querySelectorAll('.menu-link').forEach(anchor => {
