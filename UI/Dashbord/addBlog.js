@@ -1,75 +1,70 @@
-document.getElementById("addBlogForm").addEventListener("submit", async function(event) {
+document
+  .getElementById("addBlogForm")
+  .addEventListener("submit", async function (event) {
     event.preventDefault();
 
     try {
-        const blogImageInput = document.querySelector('.js-blog-img');
-        const blogTitle = document.querySelector('.js-blog-title').value;
-        const blogShortDesc = document.querySelector('.js-blog-shortDesc').value;
-        const blogLongDesc = document.querySelector('.js-blog-longDesc').value;
-        const blogAdded = document.querySelector('.messageSent');
+      const blogImageInput = document.querySelector(".js-blog-img");
+      const blogTitle = document.querySelector(".js-blog-title").value;
+      const blogShortDesc = document.querySelector(".js-blog-shortDesc").value;
+      const blogLongDesc = document.querySelector(".js-blog-longDesc").value;
+      const blogAdded = document.querySelector(".messageSent");
 
-        if (blogImageInput.files.length > 0) {
-            const blogImageFile = blogImageInput.files[0];
-            const reader = new FileReader();
+      if (blogImageInput.files.length > 0) {
+        const blogImageFile = blogImageInput.files[0];
+        const reader = new FileReader();
 
-            reader.onload = async function(e) {
-                const blogImageBase = e.target.result;
+        reader.onload = async function (e) {
+          const formData = new FormData();
 
-                let aNewBlog = {
-                    bImage: blogImageBase,
-                    bTitle: blogTitle,
-                    bShortDesc: blogShortDesc,
-                    bLongDesc: blogLongDesc
-                };
+          formData.append("bTitle", blogTitle);
+          formData.append("bShortDesc", blogShortDesc);
+          formData.append("bLongDesc", blogLongDesc);
+          formData.append("bImage", blogImageInput.files[0]);
 
-                const formData = new FormData();
+          const token = localStorage.getItem("token");
 
-                formData.append("bTitle", blogTitle);
-                formData.append("bShortDesc", blogShortDesc);
-                formData.append("bLongDesc", blogLongDesc);
-                formData.append("bImage", blogImageInput.files[0]);
+          try {
+            showLoader();
+            const response = await fetch(
+              "https://my-brand-backend-iyxk.onrender.com/api/blogs",
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+                body: formData,
+              }
+            );
+            const data = await response.json();
+            hideLoader();
 
-                const token = localStorage.getItem("token");
-                
-                try {
-                    const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
-                        method: "POST",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                        body: formData
-                    });
-                    const data = await response.json();
-                    console.log(data.message);
+            if (data.message === "Created blog Successfully") {
+              blogAdded.style.display = "flex";
+              setTimeout(() => {
+                blogAdded.style.display = "none";
+              }, 2000);
 
-                    if(data.message === "Created blog Successfully"){
-                        blogAdded.style.display = 'flex';
-                        setTimeout(() => {
-                            blogAdded.style.display = 'none';
-                        }, 2000);
+              blogImageInput.value = "";
+              document.querySelector(".js-blog-title").value = "";
+              document.querySelector(".js-blog-shortDesc").value = "";
+              document.querySelector(".js-blog-longDesc").value = "";
 
-                        blogImageInput.value = "";
-                        document.querySelector('.js-blog-title').value = "";
-                        document.querySelector('.js-blog-shortDesc').value = "";
-                        document.querySelector('.js-blog-longDesc').value = "";
-                        
-                        setTimeout(() => {
-                            window.location.href = "dashbordBlog.html";
-                        }, 3000);
-                }
+              setTimeout(() => {
+                window.location.href = "dashbordBlog.html";
+              }, 3000);
+            }
 
-                
-
-                    updateBlogDisplay();
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            };
-            reader.readAsDataURL(blogImageFile);
-        } else {
-            alert("Please select an image.");
-        }
+            updateBlogDisplay();
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        };
+        reader.readAsDataURL(blogImageFile);
+      } else {
+        alert("Please select an image.");
+      }
     } catch (error) {
-        console.error('Error:', error);
+      console.error("Error:", error);
     }
-});
+  });
