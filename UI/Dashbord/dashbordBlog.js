@@ -1,8 +1,6 @@
 let allBlogs;
 let totalBlogs = 0;
 
-let loader = document.querySelector('.loaderContainer');
-
 function showLoader(){
   loader.style.display = "flex";
 }
@@ -92,7 +90,7 @@ async function updateBlogDisplay() {
       attachEditButtonListeners();
 
   } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
   }
 }
 

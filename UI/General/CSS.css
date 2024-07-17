@@ -1,80 +1,123 @@
+.loaderContainer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 15000;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  transform: rotateZ(45deg);
+  perspective: 1000px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  animation: 1s spin linear infinite;
+}
+.loader:after {
+  color: #ff3d00;
+  transform: rotateY(70deg);
+  animation-delay: 0.4s;
+}
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+@keyframes rotateccw {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+@keyframes spin {
+  0%,
+  100% {
+    box-shadow: 0.2em 0px 0 0px currentcolor;
+  }
+  12% {
+    box-shadow: 0.2em 0.2em 0 0 currentcolor;
+  }
+  25% {
+    box-shadow: 0 0.2em 0 0px currentcolor;
+  }
+  37% {
+    box-shadow: -0.2em 0.2em 0 0 currentcolor;
+  }
+  50% {
+    box-shadow: -0.2em 0 0 0 currentcolor;
+  }
+  62% {
+    box-shadow: -0.2em -0.2em 0 0 currentcolor;
+  }
+  75% {
+    box-shadow: 0px -0.2em 0 0 currentcolor;
+  }
+  87% {
+    box-shadow: 0.2em -0.2em 0 0 currentcolor;
+  }
+}
 
-.loaderContainer{
-    display: none;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    z-index: 15000;
-    justify-content: center;
-    align-items: center;
-    }
-    .loader {
-        transform: rotateZ(45deg);
-        perspective: 1000px;
-        border-radius: 50%;
-        width: 48px;
-        height: 48px;
-        color: #fff;
-      }
-        .loader:before,
-        .loader:after {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: inherit;
-          height: inherit;
-          border-radius: 50%;
-          transform: rotateX(70deg);
-          animation: 1s spin linear infinite;
-        }
-        .loader:after {
-          color: #FF3D00;
-          transform: rotateY(70deg);
-          animation-delay: .4s;
-        }
-      @keyframes rotate {
-        0% {
-          transform: translate(-50%, -50%) rotateZ(0deg);
-        }
-        100% {
-          transform: translate(-50%, -50%) rotateZ(360deg);
-        }
-      }
-      @keyframes rotateccw {
-        0% {
-          transform: translate(-50%, -50%) rotate(0deg);
-        }
-        100% {
-          transform: translate(-50%, -50%) rotate(-360deg);
-        }
-      }
-      @keyframes spin {
-        0%,
-        100% {
-          box-shadow: .2em 0px 0 0px currentcolor;
-        }
-        12% {
-          box-shadow: .2em .2em 0 0 currentcolor;
-        }
-        25% {
-          box-shadow: 0 .2em 0 0px currentcolor;
-        }
-        37% {
-          box-shadow: -.2em .2em 0 0 currentcolor;
-        }
-        50% {
-          box-shadow: -.2em 0 0 0 currentcolor;
-        }
-        62% {
-          box-shadow: -.2em -.2em 0 0 currentcolor;
-        }
-        75% {
-          box-shadow: 0px -.2em 0 0 currentcolor;
-        }
-        87% {
-          box-shadow: .2em -.2em 0 0 currentcolor;
-        }
-      }
+.messageSent {
+  position: fixed;
+  top: 30px;
+  left: 30%;
+  z-index: 10004;
+  width: 320px;
+  height: 80px;
+  background-color: #dbff87;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px rgba(39, 39, 39, 0.6);
+  border: 3px solid rgb(32, 19, 18);
+  color: #081702;
+  font-size: 22px;
+  display: none;
+  align-items: center;
+  gap: 15px;
+  padding-left: 15px;
+  justify-content: center;
+}
+.check-img {
+  width: 10%;
+}
+@media (max-width: 545px) {
+  .messageSent {
+    left: 10%;
+  }
+}
+
+@media (max-width: 395px) {
+  .messageSent {
+    left: 1%;
+  }
+}
+
+@media (max-width: 350px) {
+  .messageSent {
+    width: 260px;
+    height: 60px;
+    font-size: 15px;
+    gap: 10px;
+    padding-left: 10px;
+  }
+}
