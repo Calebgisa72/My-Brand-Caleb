@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.querySelector(".submitBut");
 
     submitButton.addEventListener("click", async function (event) {
-        // Prevent the default form submission
         event.preventDefault();
 
         const senderName = document.querySelector('.js-sender-name');
@@ -41,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         message: senderMessageInput.value
                     };
                 }
-
+                showLoader();
                 const response = await fetch("https://my-brand-backend-iyxk.onrender.com/api/message", {
                     method: "POST",
                     headers: {
@@ -49,14 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     },
                     body: JSON.stringify(newMessage)
                 });
-
+                hideLoader();
                 const data = await response.json();
-                console.log(data.message);
 
                 if (data.message === "Message sent successfully") {
-                    messageSent.style.display = 'flex';
+                    showToast("Message sent successfully", "success");
                     setTimeout(() => {
-                        messageSent.style.display = 'none';
                         form.reset();
                     }, 2000);
                 }
