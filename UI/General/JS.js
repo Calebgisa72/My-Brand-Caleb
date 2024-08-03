@@ -42,7 +42,7 @@ const themeIcon = document.querySelector(".js-theme-icon");
 const body = document.body;
 const logoDiv = document.querySelector(".js-logo");
 
-let theme = localStorage.getItem("theme") || "light";
+let theme = localStorage.getItem("theme") || "dark";
 
 function applyTheme(theme) {
   if (theme === "dark") {
