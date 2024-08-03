@@ -1,3 +1,38 @@
+:root {
+  --background: #fffdfd;
+  --sub-background: #f4f6f3;
+  --primary: #e17714;
+  --secondary: #ccf8db;
+  --secondary-muted: #173558;
+  --fore-ground: #0d0d0d;
+  --description: #434141;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --sub-background: #2d2d2d;
+  --primary: #e17714;
+  --secondary: #ccf8db;
+  --secondary-muted: #a7cadb;
+  --fore-ground: #e6e6e6;
+  --description: #b8b8b8;
+  --black-white: #060606;
+}
+
+.theme-links{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.theme-icon{
+  color: var(--fore-ground);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 22px;
+}
+
 .loaderContainer {
   display: none;
   width: 100%;
@@ -100,9 +135,12 @@
 .check-img {
   width: 10%;
 }
-@media (max-width: 545px) {
+@media (max-width: 550px) {
   .messageSent {
     left: 10%;
+  }
+  .loaderContainer {
+    top: 65px;
   }
 }
 

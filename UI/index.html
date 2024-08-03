@@ -43,10 +43,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <link rel="stylesheet" href="../UI/General/CSS.css" />
 
     <link rel="stylesheet" href="Portfolio.css" />
-
-    <link rel="stylesheet" href="../UI/General/CSS.css" />
 
     <link
       rel="stylesheet"
@@ -61,33 +60,36 @@
       <a href="index.html"
         ><div class="logo">
           <img class="logo-img" src="Images/Ellipse 1.svg" alt="" />
-          <img class="logo-name" src="Images/Caleb’s Brand.svg" alt="" /></div
+          <div class="js-logo"></div></div
       ></a>
 
-      <div class="links">
-        <a href="#home" class="menu-link">Home</a>
-        <a href="#about" class="menu-link">About</a>
-        <a href="#skills" class="menu-link">Skills</a>
-        <a href="#portfolio" class="menu-link">Portfolio</a>
-        <a href="#blog" class="menu-link">Blog</a>
-        <a href="login.html">Login</a>
-        <a href="#contact" class="menu-link">Contact Us</a>
-      </div>
+      <div class="theme-links">
+        <div class="theme-icon js-theme-icon"></div>
 
-      <button class="hamburger-btn" id="hamburgerBtn">&#9776;</button>
+        <div class="links">
+          <a href="#home" class="menu-link js-menu-link">Home</a>
+          <a href="#about" class="menu-link js-menu-link">About</a>
+          <a href="#skills" class="menu-link js-menu-link">Skills</a>
+          <a href="#portfolio" class="menu-link js-menu-link">Portfolio</a>
+          <a href="#blog" class="menu-link js-menu-link">Blog</a>
+          <a href="#contact" class="menu-link js-menu-link">Contact Us</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">&#9776;</button>
+      </div>
     </div>
 
     <div class="mobile-layer" id="mobile-layer">
       <div class="mobile-navbar">
         <button class="close-btn" id="closeBtn">&times;</button>
         <div class="mobile-navbar-links">
-          <a href="#home" class="menu-link mobile-menu-link">Home</a>
-          <a href="#about" class="menu-link">About</a>
-          <a href="#skills" class="menu-link">Skills</a>
-          <a href="#portfolio" class="menu-link">Portfolio</a>
-          <a href="#blog" class="menu-link">Blog</a>
-          <a href="login.html">Login</a>
-          <a href="#contact" class="menu-link">Contact Us</a>
+          <a href="#home" class="menu-link js-menu-link mobile-menu-link"
+            >Home</a
+          >
+          <a href="#about" class="menu-link js-menu-link">About</a>
+          <a href="#skills" class="menu-link js-menu-link">Skills</a>
+          <a href="#portfolio" class="menu-link js-menu-link">Portfolio</a>
+          <a href="#blog" class="menu-link js-menu-link">Blog</a>
+          <a href="#contact" class="menu-link js-menu-link">Contact Us</a>
         </div>
       </div>
     </div>
@@ -97,30 +99,33 @@
         <span class="loader"></span>
       </div>
 
-      <div class="home" id="home">
-        <div class="welcome">
-          <div>
-            <div class="name">Hello, I’m</div>
-            <div class="name">Gisa M. Caleb</div>
-          </div>
+      <div class="homeDiv">
+        <div class="home" id="home">
+          <div class="welcome">
+            <div>
+              <div class="name">Hello, I’m</div>
+              <div class="name">Gisa M. Caleb</div>
+            </div>
 
-          <div class="descri">
-            Based in <span class="boold">Kigali, Rwanda</span>, I'm a
-            <span class="boold">software engineer and UI/UX designer</span> who
-            Crafts exceptional <span class="boold">Websites</span> and
-            <span class="boold">Mobile apps</span> with technical expertise and
-            creative vision. Let's create something extraordinary together.
+            <div class="descri">
+              Based in <span class="boold">Kigali, Rwanda</span>, I'm a
+              <span class="boold">software engineer and UI/UX designer</span>
+              who Crafts exceptional <span class="boold">Websites</span> and
+              <span class="boold">Mobile apps</span> with technical expertise
+              and creative vision. Let's create something extraordinary
+              together.
+            </div>
+            <div class="buttons">
+              <a href="#contact" class="engageBut"
+                ><button class="engage">Engage my services</button></a
+              >
+              <a href="./public/Caleb's CV 1.7.pdf" download class="cv">
+                <i class="fa-solid fa-download"></i> Download CV
+              </a>
+            </div>
           </div>
-          <div class="buttons">
-            <a href="#contact" class="engageBut"
-              ><button class="engage">Engage my services</button></a
-            >
-            <a href="./public/Caleb's CV 1.7.pdf" download class="cv">
-              <img src="Images/download.svg" alt="" /> Download CV
-            </a>
-          </div>
+          <img class="profile" src="Images/Rectangle 1.svg" alt="" />
         </div>
-        <img class="profile" src="Images/Rectangle 1.svg" alt="" />
       </div>
 
       <div class="about" id="about">
@@ -275,7 +280,7 @@
                 applications.
               </div>
             </div>
-            <div class="certification">Express js</div>
+            <div class="certification">Express js, RestAPI</div>
           </div>
 
           <div class="skillCard" style="background-color: rgb(20, 80, 113)">
@@ -295,255 +300,228 @@
             </div>
             <div class="certification">TypeOrm, PrismaOrm</div>
           </div>
-
-          <!-- <div class="skil">
-
-          <div class="skil">
-
-          <div class="skil">
-            <div class="skiil-icon">
-              <img class="html" src="Images/Java.svg" alt="" />
-              <span class="ht">Java</span>
-            </div>
-            <div class="texxt">
-              Java is a versatile and powerful programming language widely used
-              for building robust backend systems, mobile applications, and
-              enterprise solutions.
-            </div>
-          </div>
-
-          <div class="skil">
-            <div class="skiil-icon">
-              <img class="html" src="Images/Php.svg" alt="" />
-              <span class="ht">PHP</span>
-            </div>
-            <div class="texxt">
-              PHP (Hypertext Preprocessor) is a server-side scripting language
-              commonly used for web development.
-            </div>
-          </div>
-
-          <div class="skil">
-            <div class="skiil-icon">
-              <img class="html" src="Images/Figma.svg" alt="" />
-              <span class="ht">Figma</span>
-            </div>
-            <div class="texxt">
-              I'm adept at using Figma, a versatile design tool for creating
-              stunning user interfaces and prototypes.
-            </div>
-          </div> -->
         </div>
       </div>
 
-      <div class="port" id="portfolio">
-        <div class="portText">
-          <h3>Portfolio</h3>
-          <div style="font-weight: 500">
-            Presentation of My Wide Range of Digital Projects
-          </div>
-        </div>
-        <div class="my-proj">
-          <div class="proj">
-            <div class="projImage">
-              <img
-                class="projImg"
-                src="Images/unsplash_9anj7QWy-2g.svg"
-                alt=""
-              />
-            </div>
-            <div class="projTitle">Whatsapp-Clone</div>
-            <div class="projDesc">
-              A replica of the popular messaging app, allowing users to send
-              messages, images, and videos in real-time, with features like
-              group chats and media sharing.
+      <div class="sub-container">
+        <div class="port" id="portfolio">
+          <div class="portText">
+            <h3>Portfolio</h3>
+            <div style="font-weight: 500">
+              Presentation of My Wide Range of Digital Projects
             </div>
           </div>
-          <div class="proj">
-            <div class="projImage">
-              <img
-                class="projImg"
-                src="Images/unsplash_C5DLhUkEWfM.svg"
-                alt=""
-              />
-            </div>
-            <div class="projTitle">Kigali Online Shop</div>
-            <div class="projDesc">
-              An online shopping platform tailored for Kigali residents ,
-              offering a wide range of products with easy navigation and secure
-              checkout.
-            </div>
-          </div>
-          <div class="proj">
-            <div class="projImage">
-              <img
-                class="projImg"
-                src="Images/unsplash_9anj7QWy-2g (1).svg"
-                alt=""
-              />
-            </div>
-            <div class="projTitle">Rock-Paper-Scissors Game</div>
-            <div class="projDesc">
-              A digital version of the classic hand game, allowing users to play
-              against the computer or with friends online.
-            </div>
-          </div>
-        </div>
-        <button class="morePoj">More Projects</button>
-      </div>
-
-      <div class="viewBlog js-view-blog-Detailed"></div>
-
-      <div class="blog" id="blog">
-        <div class="blogTitle">Blog</div>
-
-        <div class="slide-container swiper">
-          <div class="slide-content js-blogs">
-            <div class="loaderContainer">
-              <span class="loader"></span>
-            </div>
-          </div>
-          <div class="next-but swiper-button-next"></div>
-          <div class="prev-but swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-
-      <div class="contact" id="contact">
-        <div class="contTitle">
-          <div class="contactTitle">Connect With Us.</div>
-          <div class="contDet">
-            Let's Discuss Your Project and Dive Into It !
-          </div>
-        </div>
-        <div class="info">
-          <div class="myInfo">
-            <div class="infoMine">
-              <div class="myAddresss">
-                <img class="addImage" src="Images/Frame 50.svg" alt="" />
-                <div class="detail">
-                  <div class="firstDet">Address:</div>
-                  <div class="secondDet">Kigali-Rwanda</div>
-                </div>
+          <div class="my-proj">
+            <div class="proj">
+              <div class="projImage">
+                <img
+                  class="projImg"
+                  src="Images/unsplash_9anj7QWy-2g.svg"
+                  alt=""
+                />
               </div>
-
-              <div class="myAddres">
-                <img class="addImage" src="Images/Frame 51.svg" alt="" />
-                <div class="detail">
-                  <div class="firstDet">My Email:</div>
-                  <div class="secondDet">gisacaleb72@gmail.com</div>
-                </div>
-              </div>
-
-              <div class="myAddress">
-                <img class="addImage" src="Images/Frame 52.svg" alt="" />
-                <div class="detail">
-                  <div class="firstDet">Call Me Now:</div>
-                  <div class="secondDet">0780288454</div>
-                </div>
+              <div class="projTitle">Whatsapp-Clone</div>
+              <div class="projDesc">
+                A replica of the popular messaging app, allowing users to send
+                messages, images, and videos in real-time, with features like
+                group chats and media sharing.
               </div>
             </div>
-            <div class="social">
-              <a
-                title="Facebook"
-                href="https://web.facebook.com/gisa.ccaleb.31/"
-                ><div class="lin">f</div></a
-              >
-              <a href="https://github.com/Calebgisa72"
-                ><i title="Github" class="fa-brands fa-github lin"></i
-              ></a>
-              <a href="https://www.instagram.com/calbeats_official/"
-                ><div class="lin">
-                  <img src="Images/Social (1).svg" alt="" /></div
-              ></a>
-              <a href="https://twitter.com/GisaCcaleb"
-                ><div class="lin">
-                  <i class="fa-brands fa-x-twitter"></i></div
-              ></a>
-              <a
-                href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-04ab21236/"
-                ><div class="lin">in</div></a
-              >
+            <div class="proj">
+              <div class="projImage">
+                <img
+                  class="projImg"
+                  src="Images/unsplash_C5DLhUkEWfM.svg"
+                  alt=""
+                />
+              </div>
+              <div class="projTitle">Kigali Online Shop</div>
+              <div class="projDesc">
+                An online shopping platform tailored for Kigali residents ,
+                offering a wide range of products with easy navigation and
+                secure checkout.
+              </div>
+            </div>
+            <div class="proj">
+              <div class="projImage">
+                <img
+                  class="projImg"
+                  src="Images/unsplash_9anj7QWy-2g (1).svg"
+                  alt=""
+                />
+              </div>
+              <div class="projTitle">Rock-Paper-Scissors Game</div>
+              <div class="projDesc">
+                A digital version of the classic hand game, allowing users to
+                play against the computer or with friends online.
+              </div>
             </div>
           </div>
-          <div class="visitorInfo">
-            <div class="visiTitle">Your Information & Message</div>
-            <form class="visitForm" id="form" action="">
-              <div class="visiForm">
-                <div class="tte">Name:<span style="color: red">*</span> :</div>
-                <div class="nameInputDiv">
-                  <input
-                    class="textInput js-sender-name"
-                    type="text"
-                    name="sName"
-                    placeholder="Enter your name"
-                    required
-                  />
-                  <div class="noName">Failed. Enter Your Name.</div>
-                </div>
+          <button class="morePoj">More Projects</button>
+        </div>
 
-                <div class="tte">Email:<span style="color: red">*</span> :</div>
-                <div class="emailInputDiv">
-                  <input
-                    class="textInput em-ail js-sender-email"
-                    type="text"
-                    name="sEmail"
-                    placeholder="Enter your email"
-                    required
-                  />
-                  <div class="badEmail">Failed. Enter a Valid Email</div>
-                </div>
+        <div class="viewBlog js-view-blog-Detailed"></div>
 
-                <div class="tte">Location :</div>
-                <div class="inputDiv">
-                  <input
-                    class="textInput js-sender-location"
-                    name="sLocation"
-                    placeholder="Enter your location"
-                    type="text"
-                  />
-                </div>
-                <div class="tte">
-                  Message<span style="color: red">*</span> :
-                </div>
-                <div class="messageInputContainer">
-                  <div class="messageInputDiv inputDiv">
-                    <textarea
-                      class="messageText messageInput em-ail js-sender-message"
-                      name="message"
-                      id=""
-                      cols="35"
-                      rows="7.5"
-                      placeholder="Type in your message!!"
-                      required
-                    ></textarea>
+        <div class="blog" id="blog">
+          <div class="blogTitle">Blog</div>
+
+          <div class="slide-container swiper">
+            <div class="slide-content js-blogs">
+              <div class="loaderContainer">
+                <span class="loader"></span>
+              </div>
+            </div>
+            <div class="next-but swiper-button-next"></div>
+            <div class="prev-but swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <div class="contact" id="contact">
+          <div class="contTitle">
+            <div class="contactTitle">Connect With Us.</div>
+            <div class="contDet">
+              Let's Discuss Your Project and Dive Into It !
+            </div>
+          </div>
+          <div class="info">
+            <div class="myInfo">
+              <div class="infoMine">
+                <div class="myAddresss">
+                  <img class="addImage" src="Images/Frame 50.svg" alt="" />
+                  <div class="detail">
+                    <div class="firstDet">Address:</div>
+                    <div class="secondDet">Kigali-Rwanda</div>
                   </div>
-                  <div class="badMessage">Failed. Write more than 10 words</div>
+                </div>
+
+                <div class="myAddres">
+                  <img class="addImage" src="Images/Frame 51.svg" alt="" />
+                  <div class="detail">
+                    <div class="firstDet">My Email:</div>
+                    <div class="secondDet">gisacaleb72@gmail.com</div>
+                  </div>
+                </div>
+
+                <div class="myAddress">
+                  <img class="addImage" src="Images/Frame 52.svg" alt="" />
+                  <div class="detail">
+                    <div class="firstDet">Call Me Now:</div>
+                    <div class="secondDet">0780288454</div>
+                  </div>
                 </div>
               </div>
-              <div class="js-messageSubmit"></div>
-            </form>
+              <div class="social">
+                <a
+                  title="Facebook"
+                  href="https://web.facebook.com/gisa.ccaleb.31/"
+                  ><div class="lin">f</div></a
+                >
+                <a href="https://github.com/Calebgisa72"
+                  ><i title="Github" class="fa-brands fa-github lin"></i
+                ></a>
+                <a href="https://www.instagram.com/calbeats_official/"
+                  ><div class="lin">
+                    <img src="Images/Social (1).svg" alt="" /></div
+                ></a>
+                <a href="https://twitter.com/GisaCcaleb"
+                  ><div class="lin">
+                    <i class="fa-brands fa-x-twitter"></i></div
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-04ab21236/"
+                  ><div class="lin">in</div></a
+                >
+              </div>
+            </div>
+            <div class="visitorInfo">
+              <div class="visiTitle">Your Information & Message</div>
+              <form class="visitForm" id="form" action="">
+                <div class="visiForm">
+                  <div class="tte">
+                    Name:<span style="color: red">*</span> :
+                  </div>
+                  <div class="nameInputDiv">
+                    <input
+                      class="textInput js-sender-name"
+                      type="text"
+                      name="sName"
+                      placeholder="Enter your name"
+                      required
+                    />
+                    <div class="noName">Failed. Enter Your Name.</div>
+                  </div>
+
+                  <div class="tte">
+                    Email:<span style="color: red">*</span> :
+                  </div>
+                  <div class="emailInputDiv">
+                    <input
+                      class="textInput em-ail js-sender-email"
+                      type="text"
+                      name="sEmail"
+                      placeholder="Enter your email"
+                      required
+                    />
+                    <div class="badEmail">Failed. Enter a Valid Email</div>
+                  </div>
+
+                  <div class="tte">Location :</div>
+                  <div class="inputDiv">
+                    <input
+                      class="textInput js-sender-location"
+                      name="sLocation"
+                      placeholder="Enter your location"
+                      type="text"
+                    />
+                  </div>
+                  <div class="tte">
+                    Message<span style="color: red">*</span> :
+                  </div>
+                  <div class="messageInputContainer">
+                    <div class="messageInputDiv inputDiv">
+                      <textarea
+                        class="messageText messageInput em-ail js-sender-message"
+                        name="message"
+                        id=""
+                        cols="35"
+                        rows="7.5"
+                        placeholder="Type in your message!!"
+                        required
+                      ></textarea>
+                    </div>
+                    <div class="badMessage">
+                      Failed. Write more than 10 words
+                    </div>
+                  </div>
+                </div>
+                <div class="js-messageSubmit"></div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="messageSent"></div>
+        <div class="messageSent"></div>
 
-      <div class="footter">
-        <a href="index.html"
-          ><div class="logo">
-            <img class="logo-img" src="Images/Ellipse 1.svg" alt="" />
-            <img class="logo-name" src="Images/Caleb’s Brand.svg" alt="" /></div
-        ></a>
+        <div class="footter">
+          <a href="index.html"
+            ><div class="logo">
+              <img class="logo-img" src="Images/Ellipse 1.svg" alt="" />
+              <div class="js-logo"><img class="logo-name" src="Images/Caleb’s Brand (1).svg" alt="" /></div></div
+          ></a>
 
-        <div class="links">
-          <a href="#home" class="menu-link">Home</a>
-          <a href="#about" class="menu-link">About</a>
-          <a href="#skills" class="menu-link">Skills</a>
-          <a href="#portfolio" class="menu-link">Portfolio</a>
-          <a href="#blog" class="menu-link">Blog</a>
-          <a href="login.html">Login</a>
-          <a href="#contact" class="menu-link">Contact Us</a>
+          <div class="links">
+            <a href="#home" class="footer-menu-link js-menu-link">Home</a>
+            <a href="#about" class="footer-menu-link js-menu-link">About</a>
+            <a href="#skills" class="footer-menu-link js-menu-link">Skills</a>
+            <a href="#portfolio" class="footer-menu-link js-menu-link"
+              >Portfolio</a
+            >
+            <a href="#blog" class="footer-menu-link js-menu-link">Blog</a>
+            <a href="#contact" class="footer-menu-link js-menu-link"
+              >Contact Us</a
+            >
+          </div>
         </div>
       </div>
     </div>
