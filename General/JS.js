@@ -14,7 +14,7 @@ let messageSent = document.querySelector(".messageSent");
 function showToast(message, type) {
   let toastDiv;
   if (type === "success") {
-    toastDiv = `<img src="../UI/Images/Checked.svg" class="check-img js-toast" alt=""> <div>${message}</div>`;
+    toastDiv = `<img src="../Images/Checked.svg" class="check-img js-toast" alt=""> <div>${message}</div>`;
     messageSent.innerHTML = toastDiv;
     messageSent.style.display = "flex";
     setTimeout(() => {
@@ -45,14 +45,16 @@ const logoDiv = document.querySelector(".js-logo");
 let theme = localStorage.getItem("theme") || "dark";
 
 function applyTheme(theme) {
-  if (theme === "dark") {
-    themeIcon.innerHTML = "<i title='Light Mode' class='fa-solid fa-star'></i>";
-    body.classList.add("dark");
-    logoDiv.innerHTML='<img class="logo-name" src="Images/Caleb’s Brand (1).svg" alt="" />'
-  } else {
+  if (theme === "light") {
     themeIcon.innerHTML = "<i title='Night Mode' class='fa-solid fa-moon'></i>";
-    body.classList.remove("dark");
-    logoDiv.innerHTML='<img class="logo-name" src="Images/Caleb’s Brand (2).svg" alt="" />'
+    body.classList.add("light");
+    logoDiv.innerHTML =
+      '<img class="logo-name" src="Images/Caleb’s Brand (2).svg" alt="" />';
+  } else {
+    themeIcon.innerHTML = "<i title='Light Mode' class='fa-solid fa-star'></i>";
+    body.classList.remove("light");
+    logoDiv.innerHTML =
+      '<img class="logo-name" src="Images/Caleb’s Brand (1).svg" alt="" />';
   }
 }
 

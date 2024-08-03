@@ -1769,6 +1769,9 @@ h3 {
   .hamburger-btn {
     display: block;
   }
+  .menu-link {
+    color: var(--background);
+  }
   .skiil-icon {
     flex-direction: column;
   }
