@@ -5,14 +5,7 @@ function BlogDisplay() {
   fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
     method: "GET",
   })
-  showLoader();
-  fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
-    method: "GET",
-  })
     .then(async (res) => {
-      const data = await res.json();
-      hideLoader();
-      allBlogs = data;
       const data = await res.json();
       hideLoader();
       allBlogs = data;
@@ -162,60 +155,6 @@ async function handleLikeButtonClick(index, blogId) {
 BlogDisplay();
 
 const viewBlog = document.querySelector(".viewBlog");
-function isBlogLiked(blogId) {
-  const likedBlogs = JSON.parse(localStorage.getItem("likedBlogs")) || [];
-  return likedBlogs.includes(blogId);
-}
-
-async function toggleLike(index, blogId) {
-  const likedBlogs = JSON.parse(localStorage.getItem("likedBlogs")) || [];
-  const likeButton = document.querySelector(`.lik-but-${index}`);
-  const thumbImage = likeButton.querySelector(".thumb");
-
-  try {
-    showLoader();
-    const url = isBlogLiked(blogId)
-      ? `https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/disLike`
-      : `https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/like`;
-
-    const response = await fetch(url, {
-      method: "POST",
-    });
-
-    const data = await response.json();
-    hideLoader();
-
-    updateLikeStatus(isBlogLiked(blogId), likeButton, thumbImage, index, blogId);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-function updateLikeStatus(isLiked, likeButton, thumbImage, index, blogId) {
-  const likedBlogs = JSON.parse(localStorage.getItem("likedBlogs")) || [];
-
-  if (isLiked) {
-    const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) - 1;
-    likeButton.nextElementSibling.textContent = updatedLikes;
-    thumbImage.src = "Images/Lik.svg";
-    const updatedLikedBlogs = likedBlogs.filter((id) => id !== blogId);
-    localStorage.setItem("likedBlogs", JSON.stringify(updatedLikedBlogs));
-  } else {
-    const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) + 1;
-    likeButton.nextElementSibling.textContent = updatedLikes;
-    thumbImage.src = "Images/Liked.svg";
-    likedBlogs.push(blogId);
-    localStorage.setItem("likedBlogs", JSON.stringify(likedBlogs));
-  }
-}
-
-async function handleLikeButtonClick(index, blogId) {
-  await toggleLike(index, blogId);
-}
-
-BlogDisplay();
-
-const viewBlog = document.querySelector(".viewBlog");
 
 async function sendComment(event, index) {
   event.preventDefault();
@@ -223,29 +162,7 @@ async function sendComment(event, index) {
   let id = blogCommentedOn._id;
   const commentWritten = document.querySelector(".js-write-comment").value;
   const nameWritten = document.querySelector(".js-write-name").value;
-  event.preventDefault();
-  const blogCommentedOn = allBlogs[index];
-  let id = blogCommentedOn._id;
-  const commentWritten = document.querySelector(".js-write-comment").value;
-  const nameWritten = document.querySelector(".js-write-name").value;
 
-  if (commentWritten.trim() !== "" && nameWritten.trim() !== "") {
-    try {
-      let newComment = {
-        sender: nameWritten,
-        comment: commentWritten,
-      };
-      showLoader();
-      const response = await fetch(
-        `https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newComment),
-        }
-      );
   if (commentWritten.trim() !== "" && nameWritten.trim() !== "") {
     try {
       let newComment = {
@@ -266,21 +183,7 @@ async function sendComment(event, index) {
 
       const data = await response.json();
       hideLoader();
-      const data = await response.json();
-      hideLoader();
 
-      if (data.message === "Comment added successfully") {
-        showToast("Comment added", "success");
-        document.querySelector(".js-write-comment").value = "";
-        document.querySelector(".js-write-name").value = "";
-        viewBlogDetails(index);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  } else {
-    showToast("Please fill in both the comment and your name.", "error");
-  }
       if (data.message === "Comment added successfully") {
         showToast("Comment added", "success");
         document.querySelector(".js-write-comment").value = "";
@@ -298,16 +201,9 @@ async function sendComment(event, index) {
 function showNameInput() {
   const nameInput = document.querySelector(".js-write-name");
   nameInput.style.display = "block";
-  const nameInput = document.querySelector(".js-write-name");
-  nameInput.style.display = "block";
 }
 
 function hideNameInput() {
-  const commentInput = document.querySelector(".js-write-comment");
-  const nameInput = document.querySelector(".js-write-name");
-  if (!commentInput.value.trim()) {
-    nameInput.style.display = "none";
-  }
   const commentInput = document.querySelector(".js-write-comment");
   const nameInput = document.querySelector(".js-write-name");
   if (!commentInput.value.trim()) {
@@ -329,16 +225,7 @@ function viewBlogDetails(index, shouldScroll = false) {
   fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`, {
     method: "GET",
   })
-  showLoader();
-  fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`, {
-    method: "GET",
-  })
     .then(async (res) => {
-      const data = await res.json();
-      hideLoader();
-      allComments = data;
-      allComments.forEach((comment) => {
-        commentsHTML += `
       const data = await res.json();
       hideLoader();
       allComments = data;
@@ -351,7 +238,6 @@ function viewBlogDetails(index, shouldScroll = false) {
               </div>
           </div>
         `;
-      });
       });
 
       const blogDetails = `
@@ -437,11 +323,7 @@ function viewBlogDetails(index, shouldScroll = false) {
 
       document.querySelector(".js-view-blog-Detailed").innerHTML = blogDetails;
       viewBlog.style.display = "flex";
-      document.querySelector(".js-view-blog-Detailed").innerHTML = blogDetails;
-      viewBlog.style.display = "flex";
 
-      const commentInput = document.querySelector(".js-write-comment");
-      if (commentInput) {
       const commentInput = document.querySelector(".js-write-comment");
       if (commentInput) {
         commentInput.addEventListener("focus", () => {
@@ -449,16 +331,9 @@ function viewBlogDetails(index, shouldScroll = false) {
           if (!commentInput.value.trim()) {
             nameInput.style.display = "block";
           }
-          const nameInput = document.querySelector(".js-write-name");
-          if (!commentInput.value.trim()) {
-            nameInput.style.display = "block";
-          }
         });
       }
-      }
 
-      const nameInput = document.querySelector(".js-write-name");
-      if (nameInput) {
       const nameInput = document.querySelector(".js-write-name");
       if (nameInput) {
         nameInput.addEventListener("focus", showNameInput);
@@ -471,8 +346,6 @@ function viewBlogDetails(index, shouldScroll = false) {
     })
     .catch((error) => {
       console.error("Error:", error);
-    .catch((error) => {
-      console.error("Error:", error);
     });
 }
 
@@ -481,12 +354,6 @@ function viewAndScroll(index) {
 }
 
 function scrollToComments(index) {
-  const commentsSection = document.getElementById(`comments-${index}`);
-  if (commentsSection) {
-    commentsSection.scrollIntoView({
-      behavior: "smooth",
-    });
-  }
   const commentsSection = document.getElementById(`comments-${index}`);
   if (commentsSection) {
     commentsSection.scrollIntoView({
@@ -511,23 +378,7 @@ document.querySelectorAll(".js-menu-link").forEach((anchor) => {
 
     const targetId = this.getAttribute("href");
     const targetSection = document.querySelector(targetId);
-    const targetId = this.getAttribute("href");
-    const targetSection = document.querySelector(targetId);
 
-    if (targetSection) {
-      const offset = 90;
-      const elementPosition = targetSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-
-    mobileLayer.style.display = "none";
-    showMobileBar = false;
-  });
     if (targetSection) {
       const offset = 90;
       const elementPosition = targetSection.getBoundingClientRect().top;
@@ -547,12 +398,7 @@ document.querySelectorAll(".js-menu-link").forEach((anchor) => {
 document.querySelectorAll(".engageBut").forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
-document.querySelectorAll(".engageBut").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
 
-    const targetId = this.getAttribute("href");
-    const targetSection = document.querySelector(targetId);
     const targetId = this.getAttribute("href");
     const targetSection = document.querySelector(targetId);
 
@@ -567,41 +413,8 @@ document.querySelectorAll(".engageBut").forEach((anchor) => {
       });
     }
   });
-    if (targetSection) {
-      const offset = 90;
-      const elementPosition = targetSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  });
 });
 
-hamburgerBtn.addEventListener("click", () => {
-  handleViewMobileBar();
-});
-
-closeBtn.addEventListener("click", () => {
-  handleViewMobileBar();
-});
-
-const handleViewMobileBar = () => {
-  showMobileBar = !showMobileBar;
-  if (showMobileBar) {
-    mobileLayer.style.display = "flex";
-    requestAnimationFrame(() => {
-      mobileLayer.classList.add("open");
-    });
-  } else {
-    mobileLayer.classList.remove("open");
-    setTimeout(() => {
-      mobileLayer.style.display = "none";
-    }, 300);
-  }
-};
 hamburgerBtn.addEventListener("click", () => {
   handleViewMobileBar();
 });
