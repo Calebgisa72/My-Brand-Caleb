@@ -1,14 +1,4 @@
 :root {
-  --background: #fffdfd;
-  --sub-background: #f4f6f3;
-  --primary: #e17714;
-  --secondary: #ccf8db;
-  --secondary-muted: #173558;
-  --fore-ground: #0d0d0d;
-  --description: #434141;
-}
-
-.dark {
   --background: #1a1a1a;
   --sub-background: #2d2d2d;
   --primary: #e17714;
@@ -19,13 +9,24 @@
   --black-white: #060606;
 }
 
-.theme-links{
+.light {
+  --background: #fffdfd;
+  --sub-background: #f4f6f3;
+  --primary: #e17714;
+  --secondary: #ccf8db;
+  --secondary-muted: #173558;
+  --fore-ground: #0d0d0d;
+  --description: #434141;
+  --black-white: #ffffff;
+}
+
+.theme-links {
   display: flex;
   gap: 20px;
   align-items: center;
 }
 
-.theme-icon{
+.theme-icon {
   color: var(--fore-ground);
   display: flex;
   align-items: center;
