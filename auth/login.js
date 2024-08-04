@@ -38,7 +38,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         if(data.message === "Signed in successfully"){
             authToken = data.token;
             localStorage.setItem('token', authToken);
-            window.location.href = "Dashbord/dashbordHome.html";
+            window.location.href = "../UI/Dashbord/dashbordHome.html";
         }
         else if(data.message === "Invalid username or password"){
             invalid.style.display = 'inline-block';
