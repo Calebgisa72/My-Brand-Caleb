@@ -7,10 +7,10 @@ const Router = () => {
   return (
     <Routes>
       <Route
-        path="/register"
+        path="/"
         element={
           <>
-            <PageTitle title="Caleb's Brand | Login" />
+            <PageTitle title="Caleb's Brand" />
             <NotFound />
           </>
         }
