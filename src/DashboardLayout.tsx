@@ -1,6 +1,7 @@
 import "../UI/Dashbord/General.css";
 import { Link, Outlet } from "react-router-dom";
 import React, { useState } from "react";
+import { User, User2Icon, MessageSquareText } from "lucide-react";
 
 function DashboardLayout() {
   const [showMobileBar, setShowMobileBar] = useState(false);
@@ -26,11 +27,7 @@ function DashboardLayout() {
 
             <div className="profileImage">
               <div className="image">
-                <img
-                  className="profileIcon"
-                  src="../UI/Dashbord/dImage/Ellipse 5.svg"
-                  alt=""
-                />
+                <User />
               </div>
               <div className="myInfo">
                 <div>Gisa M. Caleb</div>
@@ -42,11 +39,7 @@ function DashboardLayout() {
               <div className="linkElementLayout">
                 <div className="image">
                   <Link to={"/profile"}>
-                    <img
-                      className="icon"
-                      src="../UI/Dashbord/dImage/healthicons_ui-user-profile.svg"
-                      alt=""
-                    />
+                  <User2Icon />
                   </Link>
                 </div>
                 <div className="myInfo">
@@ -59,11 +52,7 @@ function DashboardLayout() {
               <div className="linkElementLayout">
                 <div className="image">
                   <Link to={"/messages"}>
-                    <img
-                      className="icon"
-                      src="../UI/Dashbord/dImage/Vector.svg"
-                      alt=""
-                    />
+                    <MessageSquareText/>
                   </Link>
                 </div>
                 <div className="myInfo">
