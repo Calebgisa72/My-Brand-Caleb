@@ -1,15 +1,25 @@
-import '../UI/Dashbord/General.css'
-import { Outlet } from "react-router-dom";
-import React from "react";
+import "../UI/Dashbord/General.css";
+import { Link, Outlet } from "react-router-dom";
+import React, { useState } from "react";
 
 function DashboardLayout() {
+  const [showMobileBar, setShowMobileBar] = useState(false);
+
+  const handleViewMobileBar = () => {
+    setShowMobileBar((prevState) => !prevState);
+  };
+
   return (
     <div className="dashbordLayout">
       <div className="leftSide">
         <div className="linksDiv">
           <div className="componentsWrapper">
             <div className="elementLayout hamburger-btn">
-              <button className="hamburger-btn" id="hamburgerBtn">
+              <button
+                className="hamburger-btn"
+                id="hamburgerBtn"
+                onClick={handleViewMobileBar}
+              >
                 &#9776;
               </button>
             </div>
@@ -28,46 +38,52 @@ function DashboardLayout() {
               </div>
             </div>
 
-            <div className="linkElementLayout">
-              <div className="image">
-                <a href="../UI/Dashbord/dashbordProfile.html">
-                  <img
-                    className="icon"
-                    src="../UI/Dashbord/dImage/healthicons_ui-user-profile.svg"
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="myInfo">
-                <div className="word">
-                  <a className="word" href="../UI/Dashbord/dashbordProfile.html">
-                    Profile
-                  </a>
+            <div className="flex smd:flex-col justify-between w-[80%] smd:justify-normal gap-14">
+              <div className="linkElementLayout">
+                <div className="image">
+                  <Link to={"/profile"}>
+                    <img
+                      className="icon"
+                      src="../UI/Dashbord/dImage/healthicons_ui-user-profile.svg"
+                      alt=""
+                    />
+                  </Link>
+                </div>
+                <div className="myInfo">
+                  <div className="word">
+                    <Link to={"/profile"}>Profile</Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="linkElementLayout">
-              <div className="image">
-                <a href="../UI/Dashbord/dashbordMassage.html">
-                  <img className="icon" src="../UI/Dashbord/dImage/Vector.svg" alt="" />
-                </a>
-              </div>
-              <div className="myInfo">
-                <div className="word">
-                  <a href="../UI/Dashbord/dashbordMassage.html">Messages</a>
+              <div className="linkElementLayout">
+                <div className="image">
+                  <Link to={"/messages"}>
+                    <img
+                      className="icon"
+                      src="../UI/Dashbord/dImage/Vector.svg"
+                      alt=""
+                    />
+                  </Link>
+                </div>
+                <div className="myInfo">
+                  <div className="word">
+                    <Link to={"/messages"}>Messages</Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="linkElementLayout">
-              <div className="logoutIcon logout-btn">
-                <i
-                  style={{ fontSize: "25px" }}
-                  className="fa-solid fa-arrow-right-from-bracket"
-                ></i>
+              <div className="linkElementLayout">
+                <Link to={"/login"} className="flex items-center gap-5">
+                  <div className="logoutIcon logout-btn hidden xmd:flex items-center ">
+                    <i
+                      style={{ fontSize: "20px" }}
+                      className="fa-solid fa-arrow-right-from-bracket"
+                    ></i>
+                  </div>
+                  <button className="logout-btn logWord">Logout</button>
+                </Link>
               </div>
-              <button className="logout-btn logWord">Logout</button>
             </div>
           </div>
         </div>
@@ -80,12 +96,12 @@ function DashboardLayout() {
           </div>
 
           <div className="top">
-            <a href="#/dashboard/home">Home</a>
-            <a href="#/dashboard/portfolio">Portfolio</a>
-            <a href="#/dashboard/skills">Skills</a>
-            <a className="activeOne" href="/blog">
+            <Link to={"/"}>Home</Link>
+            <Link to={"/projects"}>Projects</Link>
+            <Link to={"/skills"}>Skills</Link>
+            <Link className="activeOne" to={"/blogs"}>
               Blog
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -95,6 +111,38 @@ function DashboardLayout() {
           </div>
         </div>
       </div>
+
+      {showMobileBar && (
+        <div id="mobile-layer" className="mobile-layer open">
+          <div className="mobile-navbar">
+            <button
+              className="close-btn"
+              id="closeBtn"
+              onClick={handleViewMobileBar}
+            >
+              &times;
+            </button>
+            <div className="mobile-navbar-links">
+              <Link onClick={handleViewMobileBar} to={"/"}>
+                Home
+              </Link>
+              <Link onClick={handleViewMobileBar} to={"/projects"}>
+                Projects
+              </Link>
+              <Link onClick={handleViewMobileBar} to={"/skills"}>
+                Skills
+              </Link>
+              <Link
+                onClick={handleViewMobileBar}
+                className="activeOne"
+                to={"/blogs"}
+              >
+                Blog
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

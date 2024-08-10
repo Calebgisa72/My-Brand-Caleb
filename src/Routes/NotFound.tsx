@@ -8,7 +8,7 @@ const NotFound = () => {
     navigate(-1);
   };
   return (
-    <div className=" h-full w-full flex flex-col items-center justify-center py-10 px-4 bg-white">
+    <div className=" h-full w-full flex flex-col items-center justify-center py-10 px-4">
       <h1 className="text-4xl md:text-6xl font-bold mb-4">404</h1>
       <p className="text-lg md:text-2xl font-medium text-center mb-6">Page Not Found</p>
       <button onClick={handleGoBack} className=" text-sm md:text-lg font-medium underline cursor-pointer">

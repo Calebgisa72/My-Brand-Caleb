@@ -52,15 +52,6 @@ button {
   display: flex;
   justify-content: center;
 }
-a {
-  color: #ffffff;
-  font-size: 17px;
-  font-family: Inter, sans-serif;
-  align-self: flex-start;
-}
-a:hover {
-  color: #cdcdd0;
-}
 .question {
   color: #b8e6ea;
   font-size: 30px;
@@ -173,7 +164,7 @@ a:hover {
     align-self: flex-start;
     padding-left: 10px;
   }
-  .log{
+  .log {
     width: 100%;
   }
   .loginTab {
