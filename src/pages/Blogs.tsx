@@ -10,7 +10,7 @@ const Blog = () => {
           Add New Blog
         </button>
       </div>
-      <div className="flex flex-col xsm:flex-row xmd:flex-col gap-3 xmd:gap-0 xmd:space-y-5 gap-x-2 xsm:flex-wrap xmd:flex-nowrap pace-y-10 shadow-sm overflow-y-auto h-[calc(100vh-186px)] ">
+      <div className="flex flex-col xsm:flex-row xmd:flex-col gap-3 xmd:gap-0 xmd:space-y-5 gap-x-2 xsm:flex-wrap xmd:flex-nowrap shadow-sm overflow-y-auto h-[calc(100vh-186px)] ">
         <SingleBlog />
         <SingleBlog />
         <SingleBlog />

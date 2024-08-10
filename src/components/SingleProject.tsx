@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const SingleProject = () => {
   return (
-    <div className="px-2 py-2 gap-5 w-full xsm:w-[48%] lg:gap-10 justify-between items-center flex flex-col xmd:flex-row xmd:w-full border-[1px] border-neutral-400 rounded-2xl shadow-sm">
+    <div className="px-2 bg-card py-2 gap-5 w-full xsm:w-[48%] lg:gap-10 justify-between items-center flex flex-col xmd:flex-row xmd:w-full border-[1px] border-neutral-400 rounded-2xl shadow-sm">
       <div className="flex flex-col items-center m-0 p-0 gap-1 w-full xmd:w-[200px]">
         <div className="overflow-hidden rounded-xl w-full smd:w-48 xmd:w-32 lg:w-48 h-28 ">
           <img
@@ -40,7 +40,7 @@ const SingleProject = () => {
         <button className="px-6 py-2 bg-primary hover:bg-blue-400 rounded-[8px]">
           Edit
         </button>
-        <button className="px-6 py-2 bg-card hover:bg-destructive rounded-[8px]">
+        <button className="px-6 py-2 bg-[#e6ca6d] hover:bg-destructive rounded-[8px]">
           Delete
         </button>
       </div>

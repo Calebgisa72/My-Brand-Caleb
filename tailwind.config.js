@@ -22,7 +22,7 @@ export default {
         destructive: "#f33b3b",
         muted: "#ffffff",
         description: "#434141",
-        card: "#b2d2de",
+        card: "#f0f1f5",
       },
       borderRadius: {
         lg: "var(--radius)",
