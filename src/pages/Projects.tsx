@@ -1,13 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SingleProject from "../components/SingleProject";
 
 const Projects = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-full gap-2">
       <div className="flex w-full items-center justify-between shadow-sm pb-3">
         <p className="text-xl ">My Projects</p>
-        <button className="bg-foreground hover:bg-primary hover:text-foreground text-background px-4 py-2 rounded-xl">
+        <button onClick={() => navigate("add")} className="bg-foreground hover:bg-primary hover:text-foreground text-background px-4 py-2 rounded-xl">
           Add New Project
         </button>
       </div>
