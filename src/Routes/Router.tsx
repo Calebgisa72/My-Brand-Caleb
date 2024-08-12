@@ -1,5 +1,5 @@
-import React from "react";
-import { Navigate, Route, Routes, To } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import PageTitle from "../components/PageTitle";
 import NotFound from "./NotFound";
 import DashboardLayout from "../DashboardLayout";
@@ -17,8 +17,44 @@ import AddProject from "../pages/AddProject";
 import EditProject from "../pages/EditProject";
 import AddBlog from "../pages/AddBlog";
 import EditBlog from "../pages/EditBlog";
+import { useDispatch } from "react-redux";
+import { setTab, tabs } from "../Redux/Reducers/currentTabReducer";
 
 const Router = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        dispatch(setTab(tabs.home));
+        break;
+      case "/blogs":
+      case "/blogs/add":
+      case "/blogs/edit/:id":
+        dispatch(setTab(tabs.blog));
+        break;
+      case "/projects":
+      case "/projects/add":
+      case "/projects/edit/:id":
+        dispatch(setTab(tabs.projects));
+        break;
+      case "/skills":
+      case "/skills/add":
+      case "/skills/edit/:id":
+        dispatch(setTab(tabs.skills));
+        break;
+      case "/messages":
+        dispatch(setTab(tabs.message));
+        break;
+      case "/profile":
+        dispatch(setTab(tabs.profile));
+        break;
+      default:
+        break;
+    }
+  }, [location.pathname, dispatch]);
+
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
@@ -50,65 +86,23 @@ const Router = () => {
             </>
           }
         >
-          <Route
-            path=""
-            element={
-              <>
-                <Blog />
-              </>
-            }
-          />
-          <Route
-            path="add"
-            element={
-              <>
-                <AddBlog />
-              </>
-            }
-          />
-          <Route
-            path="edit/:id"
-            element={
-              <>
-                <EditBlog />
-              </>
-            }
-          />
+          <Route path="" element={<Blog />} />
+          <Route path="add" element={<AddBlog />} />
+          <Route path="edit/:id" element={<EditBlog />} />
         </Route>
 
         <Route
           path="projects"
           element={
             <>
-              <PageTitle title="Caleb's Brand | projects" />
+              <PageTitle title="Caleb's Brand | Projects" />
               <DashboarInnerLayout />
             </>
           }
         >
-          <Route
-            path=""
-            element={
-              <>
-                <Projects />
-              </>
-            }
-          />
-          <Route
-            path="add"
-            element={
-              <>
-                <AddProject />
-              </>
-            }
-          />
-          <Route
-            path="edit/:id"
-            element={
-              <>
-                <EditProject />
-              </>
-            }
-          />
+          <Route path="" element={<Projects />} />
+          <Route path="add" element={<AddProject />} />
+          <Route path="edit/:id" element={<EditProject />} />
         </Route>
 
         <Route
@@ -120,30 +114,9 @@ const Router = () => {
             </>
           }
         >
-          <Route
-            path=""
-            element={
-              <>
-                <Skills />
-              </>
-            }
-          />
-          <Route
-            path="add"
-            element={
-              <>
-                <AddSkill />
-              </>
-            }
-          />
-          <Route
-            path="edit/:id"
-            element={
-              <>
-                <EditSkill />
-              </>
-            }
-          />
+          <Route path="" element={<Skills />} />
+          <Route path="add" element={<AddSkill />} />
+          <Route path="edit/:id" element={<EditSkill />} />
         </Route>
 
         <Route
@@ -157,15 +130,6 @@ const Router = () => {
         />
         <Route
           path="profile"
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Profile" />
-              <Profile />
-            </>
-          }
-        />
-        <Route
-          path=""
           element={
             <>
               <PageTitle title="Caleb's Brand | Profile" />

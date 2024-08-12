@@ -2,6 +2,9 @@ import "../UI/Dashbord/General.css";
 import { Link, Outlet } from "react-router-dom";
 import React, { useState } from "react";
 import { User, User2Icon, MessageSquareText } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "./Redux/store";
+import { tabs } from "./Redux/Reducers/currentTabReducer";
 
 function DashboardLayout() {
   const [showMobileBar, setShowMobileBar] = useState(false);
@@ -9,6 +12,8 @@ function DashboardLayout() {
   const handleViewMobileBar = () => {
     setShowMobileBar((prevState) => !prevState);
   };
+
+  const { currentTab } = useSelector((state: RootState) => state.tab);
 
   return (
     <div className="dashbordLayout">
@@ -35,35 +40,50 @@ function DashboardLayout() {
               </div>
             </div>
 
-            <div className="flex smd:flex-col justify-between w-[80%] smd:justify-normal gap-14">
+            <div className="pl-5 w-full xsm:pl-0 flex smd:flex-col justify-between smd:justify-normal sm:gap-14">
               <div className="linkElementLayout">
-                <div className="image">
-                  <Link to={"/profile"}>
-                  <User2Icon />
-                  </Link>
-                </div>
-                <div className="myInfo">
-                  <div className="word">
-                    <Link to={"/profile"}>Profile</Link>
+                <Link to={"/profile"}>
+                  <div
+                    className={`flex gap-4 px-3 py-2 ${
+                      currentTab === tabs.profile ? "activeOne" : ""
+                    }`}
+                  >
+                    <div className="image">
+                      <User2Icon />
+                    </div>
+                    <div className="myInfo">
+                      <div className="word">
+                        <div>Profile</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <div className="linkElementLayout">
-                <div className="image">
-                  <Link to={"/messages"}>
-                    <MessageSquareText/>
-                  </Link>
-                </div>
-                <div className="myInfo">
-                  <div className="word">
-                    <Link to={"/messages"}>Messages</Link>
+                <Link className="m-0 p-0" to={"/messages"}>
+                  <div
+                    className={`flex gap-4 px-3 py-2 ${
+                      currentTab === tabs.message ? "activeOne" : ""
+                    }`}
+                  >
+                    <div className="image">
+                      <MessageSquareText />
+                    </div>
+                    <div className="myInfo">
+                      <div className="word">
+                        <div>Messages</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
 
-              <div className="linkElementLayout">
-                <Link to={"/login"} className="flex items-center gap-5">
+              <div className="linkElementLayout ">
+                <Link
+                  to={"/login"}
+                  className="flex px-3 py-2 items-center gap-5"
+                >
                   <div className="logoutIcon logout-btn hidden xmd:flex items-center ">
                     <i
                       style={{ fontSize: "20px" }}
@@ -85,10 +105,36 @@ function DashboardLayout() {
           </div>
 
           <div className="top">
-            <Link to={"/"}>Home</Link>
-            <Link to={"/projects"}>Projects</Link>
-            <Link to={"/skills"}>Skills</Link>
-            <Link className="activeOne" to={"/blogs"}>
+            <Link
+              className={`px-3 py-2 ${
+                currentTab === tabs.home ? "activeOne" : ""
+              }`}
+              to={"/"}
+            >
+              Home
+            </Link>
+            <Link
+              className={`px-3 py-2 ${
+                currentTab === tabs.projects ? "activeOne" : ""
+              }`}
+              to={"/projects"}
+            >
+              Projects
+            </Link>
+            <Link
+              className={`px-3 py-2 ${
+                currentTab === tabs.skills ? "activeOne" : ""
+              }`}
+              to={"/skills"}
+            >
+              Skills
+            </Link>
+            <Link
+              className={`px-3 py-2 ${
+                currentTab === tabs.blog ? "activeOne" : ""
+              }`}
+              to={"/blogs"}
+            >
               Blog
             </Link>
           </div>
@@ -112,18 +158,38 @@ function DashboardLayout() {
               &times;
             </button>
             <div className="mobile-navbar-links">
-              <Link onClick={handleViewMobileBar} to={"/"}>
+              <Link
+                className={`px-3 py-2 ${
+                  currentTab === tabs.home ? "activeOne" : ""
+                }`}
+                onClick={handleViewMobileBar}
+                to={"/"}
+              >
                 Home
               </Link>
-              <Link onClick={handleViewMobileBar} to={"/projects"}>
+              <Link
+                className={`px-3 py-2 ${
+                  currentTab === tabs.projects ? "activeOne" : ""
+                }`}
+                onClick={handleViewMobileBar}
+                to={"/projects"}
+              >
                 Projects
               </Link>
-              <Link onClick={handleViewMobileBar} to={"/skills"}>
+              <Link
+                className={`px-3 py-2 ${
+                  currentTab === tabs.skills ? "activeOne" : ""
+                }`}
+                onClick={handleViewMobileBar}
+                to={"/skills"}
+              >
                 Skills
               </Link>
               <Link
+                className={`px-3 py-2 ${
+                  currentTab === tabs.blog ? "activeOne" : ""
+                }`}
                 onClick={handleViewMobileBar}
-                className="activeOne"
                 to={"/blogs"}
               >
                 Blog

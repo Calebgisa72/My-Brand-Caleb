@@ -1,8 +1,12 @@
 import React from "react";
 import projectImage from "../../Images/unsplash_9anj7QWy-2g2.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SingleProject = () => {
+  const navigate = useNavigate();
+  function handleEdit(id: string | number) {
+    navigate(`edit/${id}`);
+  }
   return (
     <div className="px-2 bg-card py-2 gap-5 w-full xsm:w-[48%] lg:gap-10 justify-between items-center flex flex-col xmd:flex-row xmd:w-full border-[1px] border-neutral-400 rounded-2xl shadow-sm">
       <div className="flex flex-col items-center m-0 p-0 gap-1 w-full xmd:w-[200px]">
@@ -37,7 +41,7 @@ const SingleProject = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <button className="px-6 py-2 bg-primary hover:bg-blue-400 rounded-[8px]">
+        <button onClick={() => handleEdit(2)} className="px-6 py-2 bg-primary hover:bg-blue-400 rounded-[8px]">
           Edit
         </button>
         <button className="px-6 py-2 bg-[#e6ca6d] hover:bg-destructive rounded-[8px]">

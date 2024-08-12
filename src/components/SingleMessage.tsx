@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Trash } from "lucide-react";
+import ConfirmDeletePopup from "../popups/ConfirmDeletePopup";
 
 const SingleMessage = () => {
   const message =
@@ -33,7 +34,14 @@ const SingleMessage = () => {
 
       <div className="flex flex-col gap-5 items-center">
         <div className="text-[12px] text-[#4c4b4b]">23-43-2023</div>
-        <Trash className="hover:text-destructive bg-red-50 " />
+        <ConfirmDeletePopup
+          trigger={
+            <Trash className="hover:text-destructive bg-red-50 cursor-pointer" />
+          }
+          title={`Confirm deleting this message`}
+          body={`Are you sure deleting this message?`}
+          onSubmit={() => console.log("deleted")}
+        />
         {message.length > 240 && (
           <p
             onClick={() => setShowMore((prev) => !prev)}
