@@ -17,12 +17,14 @@ import AddProject from "../pages/AddProject";
 import EditProject from "../pages/EditProject";
 import AddBlog from "../pages/AddBlog";
 import EditBlog from "../pages/EditBlog";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTab, tabs } from "../Redux/Reducers/currentTabReducer";
+import { AppDispatch, RootState } from "../Redux/store";
 
 const Router = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
+  const { userToken } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -57,89 +59,98 @@ const Router = () => {
 
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
       <Route
-        path="/"
-        element={
-          <>
-            <PageTitle title="Caleb's Brand | Dashboard" />
-            <DashboardLayout />
-          </>
-        }
-      >
-        <Route
-          path=""
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Dashboard" />
-              <Home />
-            </>
-          }
-        />
+        path="/login"
+        element={!userToken ? <Login /> : <Navigate to="/" replace />}
+      />
+      {!userToken ? (
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      ) : (
+        <>
+          <Route
+            path="/"
+            element={
+              <>
+                <PageTitle title="Caleb's Brand | Dashboard" />
+                <DashboardLayout />
+              </>
+            }
+          >
+            <Route
+              path=""
+              element={
+                <>
+                  <PageTitle title="Caleb's Brand | Dashboard" />
+                  <Home />
+                </>
+              }
+            />
 
-        <Route
-          path="blogs"
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Blogs" />
-              <DashboarInnerLayout />
-            </>
-          }
-        >
-          <Route path="" element={<Blog />} />
-          <Route path="add" element={<AddBlog />} />
-          <Route path="edit/:id" element={<EditBlog />} />
-        </Route>
+            <Route
+              path="blogs"
+              element={
+                <>
+                  <PageTitle title="Caleb's Brand | Blogs" />
+                  <DashboarInnerLayout />
+                </>
+              }
+            >
+              <Route path="" element={<Blog />} />
+              <Route path="add" element={<AddBlog />} />
+              <Route path="edit/:id" element={<EditBlog />} />
+            </Route>
 
-        <Route
-          path="projects"
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Projects" />
-              <DashboarInnerLayout />
-            </>
-          }
-        >
-          <Route path="" element={<Projects />} />
-          <Route path="add" element={<AddProject />} />
-          <Route path="edit/:id" element={<EditProject />} />
-        </Route>
+            <Route
+              path="projects"
+              element={
+                <>
+                  <PageTitle title="Caleb's Brand | Projects" />
+                  <DashboarInnerLayout />
+                </>
+              }
+            >
+              <Route path="" element={<Projects />} />
+              <Route path="add" element={<AddProject />} />
+              <Route path="edit/:id" element={<EditProject />} />
+            </Route>
 
-        <Route
-          path="skills"
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Skills" />
-              <DashboarInnerLayout />
-            </>
-          }
-        >
-          <Route path="" element={<Skills />} />
-          <Route path="add" element={<AddSkill />} />
-          <Route path="edit/:id" element={<EditSkill />} />
-        </Route>
+            <Route
+              path="skills"
+              element={
+                <>
+                  <PageTitle title="Caleb's Brand | Skills" />
+                  <DashboarInnerLayout />
+                </>
+              }
+            >
+              <Route path="" element={<Skills />} />
+              <Route path="add" element={<AddSkill />} />
+              <Route path="edit/:id" element={<EditSkill />} />
+            </Route>
 
-        <Route
-          path="messages"
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Messages" />
-              <Messages />
-            </>
-          }
-        />
-        <Route
-          path="profile"
-          element={
-            <>
-              <PageTitle title="Caleb's Brand | Profile" />
-              <Profile />
-            </>
-          }
-        />
-      </Route>
+            <Route
+              path="messages"
+              element={
+                <>
+                  <PageTitle title="Caleb's Brand | Messages" />
+                  <Messages />
+                </>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <>
+                  <PageTitle title="Caleb's Brand | Profile" />
+                  <Profile />
+                </>
+              }
+            />
+          </Route>
 
-      <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
+        </>
+      )}
     </Routes>
   );
 };

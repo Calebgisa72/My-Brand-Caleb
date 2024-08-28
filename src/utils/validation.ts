@@ -7,47 +7,139 @@ export enum Proficiency {
   Expert = "Expert",
 }
 
-const requiredString = z.string().trim().min(1, "Required");
-const finishingDateSchema = z.union([z.date(), z.literal("present")]);
+const requiredString = z.string().trim().min(5, "Required");
 
 export const blogSchema = z.object({
-  blogImage: requiredString,
-  blogTitle: requiredString,
-  blogShortDesc: requiredString,
-  blogLongDesc: requiredString,
+  bImage: z.union([
+    z.any().refine((files) => files instanceof FileList && files.length === 1, {
+      message: "You must upload exactly one image file.",
+    }),
+    z.string().trim().min(2, "Required"),
+  ]),
+  bTitle: requiredString,
+  bShortDesc: requiredString.max(
+    200,
+    "Description is too long. Maximum length is 200 characters."
+  ),
+  bLongDesc: requiredString.refine((val) => val !== "<div></div>", {
+    message: "This field cannot be empty.",
+  }),
 });
 
 export interface comment {
   sender: string;
   comment: string;
+  _id: string;
 }
 
 export type blogSchemaProps = z.infer<typeof blogSchema>;
 export type blogProps = blogSchemaProps & {
-  createdAt: Date;
-  comments: comment[];
-  likes: number;
+  _id: string;
+  bDate: string;
+  bComments: comment[];
+  bNumOfLike: number;
 };
 
-export const projectSchema = z.object({
-  pImage: requiredString,
-  pTitle: requiredString,
-  pTechnologies: z
-    .array(z.string())
-    .min(3, "You must add at least 3 technologies."),
-  pShortDesc: requiredString,
-  pLongDesc: requiredString,
-  pStartDate: z.date(),
-  pEndDate: finishingDateSchema,
-  pLink: z.string().url().optional(),
-});
+const atLeastThreeSkills = z.string().refine(
+  (val) => {
+    const commaCount = (val.match(/,/g) || []).length;
+    return commaCount >= 3;
+  },
+  {
+    message: "Minimum of 3 techs (comma-separated) are required",
+  }
+);
+
+export const projectSchema = z
+  .object({
+    pImage: z.union([
+      z
+        .any()
+        .refine((files) => files instanceof FileList && files.length === 1, {
+          message: "You must upload exactly one image file.",
+        }),
+      z.string().trim().min(2, "Required"),
+    ]),
+    pTitle: requiredString,
+    pTechnologies: atLeastThreeSkills,
+    pShortDesc: requiredString,
+    pLongDesc: requiredString.max(150, "Maximum 150 characters"),
+    pStartDate: z
+      .string()
+      .transform((str) => new Date(str))
+      .refine((date) => !isNaN(date.getTime()), {
+        message: "Invalid start date.",
+      }),
+    pEndDate: z
+      .union([
+        z
+          .string()
+          .nonempty("End date is required")
+          .transform((str) => {
+            if (str === "present") return str;
+            const date = new Date(str);
+            if (isNaN(date.getTime())) {
+              throw new Error("Invalid end date.");
+            }
+            return date;
+          }),
+        z.date(),
+        z.literal("present"),
+      ])
+      .refine((val) => val !== undefined, {
+        message: "End date is required",
+      }),
+    pLink: z
+      .string()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine(
+        (val) => val === undefined || z.string().url().safeParse(val).success,
+        {
+          message: "Invalid URL format",
+        }
+      ),
+  })
+  .superRefine((data, ctx) => {
+    const startDate = data.pStartDate;
+    const endDate = data.pEndDate;
+
+    if (
+      endDate !== "present" &&
+      endDate instanceof Date &&
+      startDate instanceof Date
+    ) {
+      if (startDate > endDate) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["pEndDate"],
+          message: "End date cannot be before the start date.",
+        });
+      }
+    }
+  });
 
 export type projectProps = z.infer<typeof projectSchema>;
+export type projectExtendedProps = projectProps & {
+  _id: string;
+  pTechnologies: string[];
+  createdAt: string;
+};
 
 export const skillSchema = z.object({
   title: z.string().nonempty("Title is required"),
-  icon: z.string().nonempty("Icon URL is required").optional(),
-  learntDate: z.date(),
+  icon: z.union([
+    z.any().refine((files) => files instanceof FileList && files.length === 1, {
+      message: "You must upload exactly one image file.",
+    }),
+    z.string().trim().min(2, "Required"),
+  ]),
+  learntDate: z
+    .string()
+    .transform((str) => new Date(str))
+    .refine((date) => !isNaN(date.getTime()), {
+      message: "Invalid start date.",
+    }),
   proficiency: z.nativeEnum(Proficiency, {
     errorMap: (issue, _ctx) => {
       if (issue.code === "invalid_enum_value") {
@@ -60,19 +152,30 @@ export const skillSchema = z.object({
       return { message: "Invalid value" };
     },
   }),
-  shortDescription: z.string().nonempty("Short description is required"),
+  shortDescription: z
+    .string()
+    .min(80, "Minimum 80 characters")
+    .max(135, "Maximum 135 characters"),
   relatedLibraries: z.string().optional(),
-  color: requiredString,
+  color: z.string().trim().min(2, "Required"),
 });
 
-export type skillsProps = z.infer<typeof skillSchema>;
+export type SkillsProps = z.infer<typeof skillSchema>;
+export type SkillsExtendedProps = SkillsProps & {
+  _id: string;
+  createdAt: string;
+};
 
 export const profileSchema = z.object({
+  profileImage: requiredString.optional(),
   welcomeText: requiredString,
   name: requiredString,
   frontDescription: requiredString,
   aboutTitle: requiredString,
   aboutDescription: requiredString,
+  school: requiredString,
+  currentCourse: requiredString,
+  experience: requiredString,
 });
 
 export type profileProps = z.infer<typeof profileSchema>;
