@@ -1,16 +1,24 @@
 import "../UI/Dashbord/General.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { User, User2Icon, MessageSquareText } from "lucide-react";
-import { useSelector } from "react-redux";
-import { RootState } from "./Redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./Redux/store";
 import { tabs } from "./Redux/Reducers/currentTabReducer";
+import { clearCredentials } from "./Redux/Reducers/authReducer";
 
 function DashboardLayout() {
   const [showMobileBar, setShowMobileBar] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const handleViewMobileBar = () => {
     setShowMobileBar((prevState) => !prevState);
+  };
+
+  const handleLogout = () => {
+    dispatch(clearCredentials());
+    navigate("/login");
   };
 
   const { currentTab } = useSelector((state: RootState) => state.tab);
@@ -80,8 +88,8 @@ function DashboardLayout() {
               </div>
 
               <div className="linkElementLayout ">
-                <Link
-                  to={"/login"}
+                <div
+                  onClick={handleLogout}
                   className="flex px-3 py-2 items-center gap-5"
                 >
                   <div className="logoutIcon logout-btn hidden xmd:flex items-center ">
@@ -91,7 +99,7 @@ function DashboardLayout() {
                     ></i>
                   </div>
                   <button className="logout-btn logWord">Logout</button>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
