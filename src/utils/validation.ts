@@ -167,7 +167,12 @@ export type SkillsExtendedProps = SkillsProps & {
 };
 
 export const profileSchema = z.object({
-  profileImage: requiredString.optional(),
+  profileImage: z.union([
+    z.any().refine((files) => files instanceof FileList && files.length === 1, {
+      message: "You must upload exactly one image file.",
+    }),
+    z.string().trim().min(2, "Required"),
+  ]),
   welcomeText: requiredString,
   name: requiredString,
   frontDescription: requiredString,

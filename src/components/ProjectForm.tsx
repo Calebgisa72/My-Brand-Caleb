@@ -25,7 +25,6 @@ interface project {
 }
 
 const ProjectForm = ({ project }: project) => {
-  console.log(project);
   const [loading, setLoading] = useState(false);
   const { userToken } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();

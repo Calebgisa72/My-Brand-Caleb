@@ -29,7 +29,15 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        bounceLong: 'bounce 3s infinite',
+      },
       keyframes: {
+        bounce: {
+          '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(-25%)' },
+          '40%': { transform: 'translateY(0)' },
+          '60%': { transform: 'translateY(-10%)' },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
