@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
+import uploadImage from "../utils/uploadImage";
 
 interface Skill {
   skill?: Partial<SkillsExtendedProps>;
@@ -75,6 +76,10 @@ const SkillForm = ({ skill }: Skill) => {
       );
       if (data.icon && data.icon[0]) {
         formData.append("icon", data.icon[0]);
+      }
+      if (skill && data.icon instanceof FileList) {
+        const iconUrl = await uploadImage(data.icon);
+        data = { ...data, icon: iconUrl };
       }
       const response = skill
         ? await axios.put(

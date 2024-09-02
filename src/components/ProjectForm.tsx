@@ -19,6 +19,7 @@ import "froala-editor/js/plugins/font_size.min.js";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import uploadImage from "../utils/uploadImage";
 
 interface project {
   project?: projectExtendedProps;
@@ -124,6 +125,11 @@ const ProjectForm = ({ project }: project) => {
 
       if (data.pLink) {
         formData.append("pLink", data.pLink);
+      }
+
+      if (project && data.pImage instanceof FileList) {
+        const pImageUrl = await uploadImage(data.pImage);
+        data = {...data, pImage: pImageUrl}
       }
 
       const response = project
