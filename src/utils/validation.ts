@@ -62,8 +62,10 @@ export const projectSchema = z
     ]),
     pTitle: requiredString,
     pTechnologies: atLeastThreeSkills,
-    pShortDesc: requiredString,
-    pLongDesc: requiredString.max(150, "Maximum 150 characters"),
+    pShortDesc: requiredString.max(150, "Maximum 150 characters"),
+    pLongDesc: requiredString.refine((val) => val !== "<div></div>", {
+      message: "This field cannot be empty.",
+    }),
     pStartDate: z
       .string()
       .transform((str) => new Date(str))
@@ -175,9 +177,13 @@ export const profileSchema = z.object({
   ]),
   welcomeText: requiredString,
   name: requiredString,
-  frontDescription: requiredString,
+  frontDescription: requiredString.refine((val) => val !== "<div></div>", {
+    message: "This field cannot be empty.",
+  }),
   aboutTitle: requiredString,
-  aboutDescription: requiredString,
+  aboutDescription: requiredString.refine((val) => val !== "<div></div>", {
+    message: "This field cannot be empty.",
+  }),
   school: requiredString,
   currentCourse: requiredString,
   experience: requiredString,
