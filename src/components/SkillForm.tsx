@@ -23,6 +23,7 @@ interface Skill {
 const SkillForm = ({ skill }: Skill) => {
   const { userToken } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -114,8 +115,6 @@ const SkillForm = ({ skill }: Skill) => {
       setLoading(false);
     }
   };
-
-  const [loading, setLoading] = useState(false);
   return (
     <div className="bg-card rounded-xl shadow-sm w-full flex justify-center max-w-[900px] p-2">
       <form
