@@ -14,6 +14,7 @@ import "froala-editor/js/plugins/lists.min.js";
 import "froala-editor/js/plugins/align.min.js";
 import "froala-editor/js/plugins/font_family.min.js";
 import "froala-editor/js/plugins/font_size.min.js";
+import uploadImage from "../utils/uploadImage";
 
 interface Profile {
   profile: profileProps;
@@ -60,8 +61,11 @@ const ProfileForm = ({ profile, edit, setEdit }: Profile) => {
   }, [profile, setValue]);
 
   const onSubmit: SubmitHandler<profileProps> = async (data) => {
-    console.log(data);
     setLoading(true);
+    if (profile.profileImage && data.profileImage instanceof FileList) {
+      const profileImageUrl = await uploadImage(data.profileImage);
+      data = { ...data, profileImage: profileImageUrl };
+    }
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_APP_API_URL}/api/profile`,

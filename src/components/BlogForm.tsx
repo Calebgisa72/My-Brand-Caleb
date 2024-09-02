@@ -14,6 +14,7 @@ import { RootState } from "../Redux/store";
 import { Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import uploadImage from "../utils/uploadImage";
 
 interface Blog {
   blog?: Partial<blogProps>;
@@ -67,6 +68,11 @@ const BlogForm = ({ blog }: Blog) => {
 
       if (data.bImage && data.bImage[0]) {
         formData.append("bImage", data.bImage[0]);
+      }
+
+      if (blog && data.bImage instanceof FileList) {
+        const bImageUrl = await uploadImage(data.bImage);
+        data = { ...data, bImage: bImageUrl };
       }
 
       const response = blog
