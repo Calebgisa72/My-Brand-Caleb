@@ -62,7 +62,7 @@ export const projectSchema = z
     ]),
     pTitle: requiredString,
     pTechnologies: atLeastThreeSkills,
-    pShortDesc: requiredString.max(150, "Maximum 150 characters"),
+    pShortDesc: requiredString.max(300, "Maximum 300 characters"),
     pLongDesc: requiredString.refine((val) => val !== "<div></div>", {
       message: "This field cannot be empty.",
     }),

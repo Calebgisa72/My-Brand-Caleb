@@ -19,7 +19,7 @@ const SingleComment = ({
   const { blogs } = useSelector((state: RootState) => state.blogs);
   const { userToken } = useSelector((state: RootState) => state.auth);
   return (
-    <div className="px-2 bg-white py-2 gap-5 w-full lg:gap-10 justify-between items-center flex flex-col xmd:flex-row xmd:w-full border-[1px] border-neutral-400 rounded-[8px] shadow-sm">
+    <div className="px-2 bg-white py-2 gap-5 w-full lg:gap-10 justify-between items-center flex xmd:w-full border-[1px] border-neutral-400 rounded-[8px] shadow-sm">
       <div className="w-full px-2 py-1 text-wrap">
         <p className="text-description text-[12px]">{comment.sender}</p>
         <p className="text-description text-[15px]">{comment.comment}</p>
@@ -39,9 +39,9 @@ const SingleComment = ({
             setLoading(true);
             console.log(comment._id);
             const response = await axios.delete(
-              `${import.meta.env.VITE_APP_API_URL}/api/blogs/comments/${
-                comment._id
-              }`,
+              `${
+                import.meta.env.VITE_APP_API_URL
+              }/api/blogs/${blogId}/comments/${comment._id}`,
               {
                 headers: {
                   Authorization: `Bearer ${userToken}`,
