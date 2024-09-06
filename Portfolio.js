@@ -1,32 +1,14 @@
-let blogButton;
+function initializePortfolio() {
+  function BlogDisplay() {
+    renderBlogs(blogs);
+  }
 
-function BlogDisplay() {
-  showLoader();
-  fetch("https://my-brand-backend-iyxk.onrender.com/api/blogs", {
-    method: "GET",
-  })
-    .then(async (res) => {
-      const data = await res.json();
-      hideLoader();
-      allBlogs = data;
+  function renderBlogs(blogs) {
+    let landingBlogs = ``;
+    blogs.forEach((aBlog) => {
+      let formatted = formatDate(aBlog.bDate);
 
-      renderBlogs(allBlogs);
-
-      blogButton = document.querySelectorAll(".js-blog-but");
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-function renderBlogs(blogs) {
-  let landingBlogs = ``;
-  blogs.forEach((aBlog, index) => {
-    const dateString = aBlog.bDate;
-    const dateObject = new Date(dateString);
-    let formatted = formatDate(dateObject);
-
-    landingBlogs += `
+      landingBlogs += `
       <div class="swiper-slide">
         <div class="blogImage">
           <img class="blogImg" src="${aBlog.bImage}" alt="">
@@ -37,68 +19,83 @@ function renderBlogs(blogs) {
           <div class="blogDesc">${aBlog.bShortDesc}</div>
           <div class="blogInteractions">
             <div class="blogFeedback">
-              <button class="like-but js-like-but lik-but-${index}" onclick="handleLikeButtonClick(${index}, '${aBlog._id}')">
-                <div>
-                  <img class="thumb" src="${isBlogLiked(aBlog._id) ? "Images/Liked.svg" : "Images/Lik.svg"}" alt="">
+              <button class="like-but js-like-but lik-but-${
+                aBlog._id
+              }" onclick="handleLikeButtonClick('${aBlog._id}')">
+                <div class='thumbDiv'>
+                  <img class="thumb" src="${
+                    isBlogLiked(aBlog._id)
+                      ? "Images/Liked.svg"
+                      : "Images/Lik.svg"
+                  }" alt="">
                 </div>
               </button>
-              <div class="numOfLiks js-num-likes-${index}">${aBlog.bNumOfLike}</div>
-              <button class="like-but js-comment-button" title='Comments' onclick="viewAndScroll(${index})">
+              <div class="numOfLiks js-num-likes-${aBlog._id}">${
+        aBlog.bNumOfLike
+      }</div>
+              <button class="like-but js-comment-button" title='Comments' onclick="viewAndScroll('${
+                aBlog._id
+              }')">
                 <i class="fa-solid fa-comment thumb-comment"></i>
               </button>
             </div>
-            <button onclick="viewBlogDetails(${index})" class="blogBut js-blog-but">
+            <button onclick="viewBlogDetails('${
+              aBlog._id
+            }')" class="blogBut js-blog-but">
               View More <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
         </div>
       </div>
     `;
-  });
-
-  const blogsWrapper = document.querySelector(".js-blogs");
-  if (blogsWrapper) {
-    blogsWrapper.innerHTML = `<div class="card-wrapper swiper-wrapper">${landingBlogs}</div>`;
-    initializeSwiper(blogs.length);
-  }
-}
-
-function initializeSwiper(blogCount) {
-  if (blogCount > 1) {
-    var swiper = new Swiper(".slide-content", {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      loop: true,
-      fade: true,
-      grabCursor: true,
-      keyboard: {
-        enabled: true,
-      },
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-        },
-        550: {
-          slidesPerView: 2,
-        },
-        920: {
-          slidesPerView: 3,
-        },
-      },
     });
+
+    const blogsWrapper = document.querySelector(".js-blogs");
+    if (blogsWrapper) {
+      blogsWrapper.innerHTML = `<div class="card-wrapper swiper-wrapper">${landingBlogs}</div>`;
+      initializeSwiper(blogs.length);
+    }
   }
+
+  function initializeSwiper(blogCount) {
+    if (blogCount > 1) {
+      var swiper = new Swiper(".slide-content", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        loop: true,
+        fade: true,
+        grabCursor: true,
+        keyboard: {
+          enabled: true,
+        },
+        scrollbar: {
+          el: ".swiper-scrollbar",
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          550: {
+            slidesPerView: 2,
+          },
+          920: {
+            slidesPerView: 3,
+          },
+        },
+      });
+    }
+  }
+
+  BlogDisplay();
 }
 
 function isBlogLiked(blogId) {
@@ -106,60 +103,59 @@ function isBlogLiked(blogId) {
   return likedBlogs.includes(blogId);
 }
 
-async function toggleLike(index, blogId) {
-  const likedBlogs = JSON.parse(localStorage.getItem("likedBlogs")) || [];
-  const likeButton = document.querySelector(`.lik-but-${index}`);
+async function toggleLike(blogId) {
+  const likeButton = document.querySelector(`.lik-but-${blogId}`);
   const thumbImage = likeButton.querySelector(".thumb");
+  const isLiked = isBlogLiked(blogId);
+  const url = `http://localhost:4300/api/blogs/${blogId}/${
+    isLiked ? "disLike" : "like"
+  }`;
 
   try {
-    showLoader();
-    const url = isBlogLiked(blogId)
-      ? `https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/disLike`
-      : `https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/like`;
-
-    const response = await fetch(url, {
-      method: "POST",
-    });
-
-    const data = await response.json();
-    hideLoader();
-
-    updateLikeStatus(isBlogLiked(blogId), likeButton, thumbImage, index, blogId);
+    updateBlogLikes(blogId, isLiked ? -1 : 1);
+    updateLikeStatus(!isLiked, likeButton, thumbImage, blogId);
+    const response = await fetch(url, { method: "POST" });
+    await response.json();
   } catch (error) {
     console.error("Error:", error);
   }
 }
 
-function updateLikeStatus(isLiked, likeButton, thumbImage, index, blogId) {
+function updateLikeStatus(isLiked, likeButton, thumbImage, blogId) {
   const likedBlogs = JSON.parse(localStorage.getItem("likedBlogs")) || [];
+  const numOfLikesElement = likeButton.nextElementSibling;
 
   if (isLiked) {
-    const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) - 1;
-    likeButton.nextElementSibling.textContent = updatedLikes;
-    thumbImage.src = "Images/Lik.svg";
-    const updatedLikedBlogs = likedBlogs.filter((id) => id !== blogId);
-    localStorage.setItem("likedBlogs", JSON.stringify(updatedLikedBlogs));
-  } else {
-    const updatedLikes = parseInt(likeButton.nextElementSibling.textContent) + 1;
-    likeButton.nextElementSibling.textContent = updatedLikes;
+    numOfLikesElement.textContent = parseInt(numOfLikesElement.textContent) + 1;
     thumbImage.src = "Images/Liked.svg";
     likedBlogs.push(blogId);
-    localStorage.setItem("likedBlogs", JSON.stringify(likedBlogs));
+  } else {
+    numOfLikesElement.textContent = parseInt(numOfLikesElement.textContent) - 1;
+    thumbImage.src = "Images/Lik.svg";
+    const index = likedBlogs.indexOf(blogId);
+    likedBlogs.splice(index, 1);
   }
+
+  localStorage.setItem("likedBlogs", JSON.stringify(likedBlogs));
 }
 
-async function handleLikeButtonClick(index, blogId) {
-  await toggleLike(index, blogId);
+function updateBlogLikes(blogId, increment) {
+  blogs = blogs.map((blog) => {
+    if (blog._id === blogId) {
+      return { ...blog, bNumOfLike: blog.bNumOfLike + increment };
+    }
+    return blog;
+  });
 }
 
-BlogDisplay();
+async function handleLikeButtonClick(blogId) {
+  await toggleLike(blogId);
+}
 
-const viewBlog = document.querySelector(".viewBlog");
-
-async function sendComment(event, index) {
+async function sendComment(event, id) {
   event.preventDefault();
-  const blogCommentedOn = allBlogs[index];
-  let id = blogCommentedOn._id;
+  const blogCommentedOn = blogs.find((blog) => blog._id === id);
+  if (!blogCommentedOn) return;
   const commentWritten = document.querySelector(".js-write-comment").value;
   const nameWritten = document.querySelector(".js-write-name").value;
 
@@ -169,27 +165,27 @@ async function sendComment(event, index) {
         sender: nameWritten,
         comment: commentWritten,
       };
-      showLoader();
-      const response = await fetch(
-        `https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newComment),
+
+      blogs = blogs.map((blog) => {
+        if (blog._id === id) {
+          const updateComments = [...blog.bComments, newComment];
+          return { ...blog, bComments: updateComments };
+        } else {
+          return blog;
         }
-      );
+      });
 
-      const data = await response.json();
-      hideLoader();
+      viewBlogDetails(id);
+      document.querySelector(".js-write-comment").value = "";
+      document.querySelector(".js-write-name").value = "";
 
-      if (data.message === "Comment added successfully") {
-        showToast("Comment added", "success");
-        document.querySelector(".js-write-comment").value = "";
-        document.querySelector(".js-write-name").value = "";
-        viewBlogDetails(index);
-      }
+      await fetch(`http://localhost:4300/api/blogs/${id}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      });
     } catch (error) {
       console.error("Error:", error);
     }
@@ -210,147 +206,137 @@ function hideNameInput() {
     nameInput.style.display = "none";
   }
 }
+const viewBlog = document.querySelector(".viewBlog");
 
-function viewBlogDetails(index, shouldScroll = false) {
-  index = index || 0;
-  const blogToView = allBlogs[index];
-  let id = blogToView._id;
+function viewBlogDetails(id, shouldScroll = false) {
+  viewBlog.style.display = "none";
+  console.log(id);
+  const blogToView = blogs.find((blog) => blog._id === id);
+  if (!blogToView) return;
   let commentsHTML = "";
 
-  const dateString = blogToView.bDate;
-  const dateObject = new Date(dateString);
-  let formatted = formatDate(dateObject);
+  let formatted = formatDate(blogToView.bDate);
 
-  showLoader();
-  fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`, {
-    method: "GET",
-  })
-    .then(async (res) => {
-      const data = await res.json();
-      hideLoader();
-      allComments = data;
-      allComments.forEach((comment) => {
-        commentsHTML += `
-          <div class="oneCom">
-              <div class="comDetails">
-                  <div class="comSender">${comment.sender}</div>
-                  <div>${comment.comment}</div>
-              </div>
-          </div>
-        `;
-      });
+  allComments = blogToView.bComments;
+  allComments.forEach((comment) => {
+    commentsHTML += `
+        <div class="oneCom">
+            <div class="comDetails">
+                <div class="comSender">${comment.sender}</div>
+                <div>${comment.comment}</div>
+            </div>
+        </div>
+      `;
+  });
 
-      const blogDetails = `
-      <div class="singleBlogDiv">
-        <div class="topContainer">
-          <div class="cancleDiv">
-            <button class="canelBut" onclick="cancleViewBlog()">x</button>
-          </div>
-        </div>
-      
-        <div class="blogLeft">
-          <div class="topDesc">
-            <img class="blImage" src="${blogToView.bImage}" alt="" />
-            <div class="bllDesc">
-              <div class="blTitle">${blogToView.bTitle}</div>
-              <div class="blDesc">${blogToView.bShortDesc}</div>
-              <div class="blDate">${formatted}</div>
-              <div class="blIcon">
-                <button
-                  class="like-but js-like-but lik-but-${index}"
-                  onclick="handleLikeButtonClick(${index}, '${blogToView._id}')"
-                >
-                  <div>
-                    <img class="thumb" src="${
-                      isBlogLiked(blogToView._id)
-                        ? "Images/Liked.svg"
-                        : "Images/Lik.svg"
-                    }" alt="">
-                  </div>
-                </button>
-                <div class="numOfLiks js-num-likes-${index}">
-                  ${blogToView.bNumOfLike}
-                </div>
-                <button
-                title='Comments'
-                  class="like-but js-comment-button"
-                  onclick="scrollToComments(${index})"
-                >
-                <i class="fa-solid fa-comment thumb-comment"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="botDesc">${blogToView.bLongDesc}</div>
-        </div>
-      
-        <div class="blogRight">
-          <div id="comments-${index}" class="botComment">
-            <div class="comHead">Comment Section</div>
-            <div class="comments">
-              <div class="commentHTML">${commentsHTML}</div>
-            </div>
-            <form action="">
-              <div class="writer">
-                <div class="commentSenderinputs">
-                    <input
-                    required
-                    type="text"
-                    name="comment"
-                    class="write js-write-comment"
-                    placeholder="Add Comment ..."
-                    />
-                    <input
-                    required
-                    type="text"
-                    name="sender"
-                    class="write-name js-write-name"
-                    placeholder="Your Name"
-                    />
-                </div>
-                <button
-                  class="someButs js-send-comment"
-                  onclick="sendComment(event, ${index})"
-                >
-                <i title='Send Comment' class="fa-regular fa-paper-plane blSend"></i>
-                </button>
-              </div>
-            </form>
-          </div>
+  const blogDetails = `
+    <div class="singleBlogDiv">
+      <div class="topContainer">
+        <div class="cancleDiv">
+          <button class="canelBut" onclick="cancleViewBlog()">x</button>
         </div>
       </div>
-      `;
+    
+      <div class="blogLeft">
+        <div class="topDesc">
+          <img class="blImage" src="${blogToView.bImage}" alt="" />
+          <div class="bllDesc">
+            <div class="blTitle">${blogToView.bTitle}</div>
+            <div class="blDesc">${blogToView.bShortDesc}</div>
+            <div class="blDate">${formatted}</div>
+            <div class="blIcon">
+              <button
+                class="like-but js-like-but lik-but-${id}"
+                onclick="handleLikeButtonClick('${blogToView._id}')"
+              >
+                <div>
+                  <img class="thumb" src="${
+                    isBlogLiked(blogToView._id)
+                      ? "Images/Liked.svg"
+                      : "Images/Lik.svg"
+                  }" alt="">
+                </div>
+              </button>
+              <div class="numOfLiks js-num-likes-${blogToView._id}">
+                ${blogToView.bNumOfLike}
+              </div>
+              <button
+              title='Comments'
+                class="like-but js-comment-button"
+                onclick="scrollToComments('${blogToView._id}')"
+              >
+              <i class="fa-solid fa-comment thumb-comment"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="botDesc">${blogToView.bLongDesc}</div>
+      </div>
+    
+      <div class="blogRight">
+        <div id="comments-${blogToView._id}" class="botComment">
+          <div class="comHead">Comment Section</div>
+          <div class="comments">
+            <div class="commentHTML">${commentsHTML}</div>
+          </div>
+          <form action="">
+            <div class="writer">
+              <div class="commentSenderinputs">
+                  <input
+                  required
+                  type="text"
+                  name="comment"
+                  class="write js-write-comment"
+                  placeholder="Add Comment ..."
+                  />
+                  <input
+                  required
+                  type="text"
+                  name="sender"
+                  class="write-name js-write-name"
+                  placeholder="Your Name"
+                  />
+              </div>
+              <button
+                class="someButs js-send-comment"
+                onclick="sendComment(event, '${blogToView._id}')"
+              >
+              <i title='Send Comment' class="fa-regular fa-paper-plane blSend"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    `;
 
-      document.querySelector(".js-view-blog-Detailed").innerHTML = blogDetails;
-      viewBlog.style.display = "flex";
+  document.querySelector(".js-view-blog-Detailed").innerHTML = blogDetails;
+  viewBlog.style.display = "flex";
 
-      const commentInput = document.querySelector(".js-write-comment");
-      if (commentInput) {
-        commentInput.addEventListener("focus", () => {
-          const nameInput = document.querySelector(".js-write-name");
-          if (!commentInput.value.trim()) {
-            nameInput.style.display = "block";
-          }
-        });
-      }
-
+  const commentInput = document.querySelector(".js-write-comment");
+  if (commentInput) {
+    commentInput.addEventListener("focus", () => {
       const nameInput = document.querySelector(".js-write-name");
-      if (nameInput) {
-        nameInput.addEventListener("focus", showNameInput);
-        nameInput.addEventListener("blur", hideNameInput);
+      if (!commentInput.value.trim()) {
+        nameInput.style.display = "block";
       }
-
-      if (shouldScroll) {
-        scrollToComments(index);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
     });
+  }
+
+  const nameInput = document.querySelector(".js-write-name");
+  if (nameInput) {
+    nameInput.addEventListener("focus", showNameInput);
+    nameInput.addEventListener("blur", hideNameInput);
+  }
+
+  if (shouldScroll) {
+    scrollToComments(blogToView._id);
+  }
 }
 
-function viewAndScroll(index) {
-  viewBlogDetails(index, true);
+function viewAndScroll(id) {
+  console.log(id);
+  viewBlogDetails(id, true);
 }
 
 function scrollToComments(index) {
@@ -379,8 +365,10 @@ document.querySelectorAll(".js-menu-link").forEach((anchor) => {
     const targetId = this.getAttribute("href");
     const targetSection = document.querySelector(targetId);
 
+    console.log(targetId);
+
     if (targetSection) {
-      const offset = 90;
+      const offset = targetId === "#home" ? 180 : 90;
       const elementPosition = targetSection.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -396,6 +384,26 @@ document.querySelectorAll(".js-menu-link").forEach((anchor) => {
 });
 
 document.querySelectorAll(".engageBut").forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute("href");
+    const targetSection = document.querySelector(targetId);
+
+    if (targetSection) {
+      const offset = 90;
+      const elementPosition = targetSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  });
+});
+
+document.querySelectorAll(".moreProjectsButtongeBut").forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
 

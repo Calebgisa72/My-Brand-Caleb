@@ -20,6 +20,8 @@ element.style {
   flex-direction: column;
   gap: 10px;
   background-color: var(--sub-background);
+  box-shadow: -1px 2px 4px rgba(111, 111, 111, 0.4),
+    1px 3px 4px rgba(111, 111, 111, 0.4);
   padding-bottom: 20px;
   border-radius: 8px;
   overflow: hidden;
@@ -63,7 +65,7 @@ element.style {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1vh;
+  padding: 0.2vh;
   padding-left: 5%;
   padding-right: 5%;
   position: fixed;
@@ -71,8 +73,8 @@ element.style {
   left: 0;
   right: 0;
   height: 90px;
-  background-color: var(--sub-background);
-  border-bottom: solid 1px #2e583c;
+  background-color: var(--background);
+  box-shadow: 0px 1px 12px rgba(111, 111, 111, 0.4);
   z-index: 1008;
 }
 .hamburger-btn {
@@ -149,7 +151,10 @@ a {
   cursor: pointer;
 }
 .logo-name {
-  width: 140px;
+  width: 120px;
+}
+.logo-img {
+  width: 28px;
 }
 .logo {
   display: flex;
@@ -209,16 +214,18 @@ a {
   margin-top: 90px;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
 }
 .sub-container {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 2.5rem;
   background-color: var(--black-white);
 }
 .homeDiv {
+  height: 550px;
   background-color: var(--background);
+  display: flex;
+  align-items: center;
 }
 .home {
   display: flex;
@@ -233,37 +240,42 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.95rem;
-  width: 55%;
+  gap: 0.7rem;
+  width: 57%;
   color: var(--fore-ground);
+}
+.salutation {
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 160%;
+  font-family: Work Sans, Arial, Helvetica, sans-serif;
 }
 .name {
   font-family: Nokora, Arial, sans-serif;
   font-weight: 600;
-  font-size: 35px;
+  font-size: 28px;
   line-height: 160%;
 }
 .descri {
   color: var(--description);
   font-family: Work Sans, Arial, Helvetica, sans-serif;
   width: 80%;
-  font-size: 16px;
+  font-size: 15px;
 }
 .boold {
   font-weight: bold;
 }
 .buttons {
-  margin-top: 2%;
   display: flex;
   flex-direction: column;
-  gap: 2.2rem;
+  gap: 1.5rem;
 }
 .engageBut {
   width: 300px;
 }
 .engage {
   width: 100%;
-  height: 42px;
+  height: 38px;
   background-color: var(--primary);
   font-weight: 500;
   font-family: Work Sans, Arial, Helvetica, sans-serif;
@@ -273,7 +285,7 @@ a {
 }
 .cv {
   width: 300px;
-  height: 42px;
+  height: 38px;
   background-color: var(--primary);
   color: black;
   font-weight: 500;
@@ -294,16 +306,36 @@ a {
   color: var(--background);
 }
 .profile {
-  width: 50%;
-  height: 440px;
+  background-color: var(--sub-background);
+  box-shadow: 0px 3px 4px rgba(111, 111, 111, 0.4);
+}
+.profile {
+  width: 36%;
+  min-width: 280;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 430px;
+  min-height: 380px;
+  border-radius: 15px;
+  box-shadow: -2px 3px 4px rgba(111, 111, 111, 0.4),
+    2px 3px 4px rgba(111, 111, 111, 0.4);
+  overflow: hidden;
+}
+.profileImg {
+  width: 90%;
+  object-fit: contain;
 }
 .about {
   display: flex;
   background-color: var(--background);
+  justify-content: center;
   padding: 1.5rem;
   padding-left: 7%;
   padding-right: 7%;
-  gap: 2rem;
+  gap: 20px;
+  padding-bottom: 2rem;
 }
 .sub-about {
   display: flex;
@@ -311,13 +343,33 @@ a {
   gap: 20px;
   align-items: center;
 }
+.aboutDescriptions {
+  display: flex;
+  flex-direction: column;
+}
 .su-about {
   display: flex;
   justify-content: space-between;
   align-self: flex-start;
   align-items: center;
-  width: 95%;
-  margin-left: 18px;
+  width: 100%;
+}
+.aboutModel {
+  padding: 15px 20px;
+}
+.aboutSchool {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-width: 240px;
+  gap: 10px;
+}
+.about-social {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-left: 40px;
 }
 .pic {
   display: flex;
@@ -336,12 +388,12 @@ a {
   justify-content: center;
 }
 .lin {
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
   background-color: var(--primary);
-  border-radius: 4px;
+  border-radius: 3px;
   color: white;
-  font-size: 1.2rem;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -354,12 +406,12 @@ a {
   background-color: var(--background);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   color: var(--fore-ground);
 }
 h4 {
   font-family: Inter, sans-serif;
-  font-size: 1.7rem;
+  font-size: 22px;
   margin-top: 1rem;
   text-align: center;
   color: var(--fore-ground);
@@ -372,7 +424,7 @@ h3 {
 }
 .f4 {
   font-family: Inter, sans-serif;
-  font-size: 1.7rem;
+  font-size: 22px;
   font-weight: 550;
   margin-bottom: 1.3rem;
   text-align: center;
@@ -380,15 +432,36 @@ h3 {
 }
 .abou {
   display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.aboutModel {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: var(--sub-background);
+  border: 1px solid rgb(99, 99, 99);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.schoolText {
+  display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 .tet {
   font-family: Inter, sans-serif;
-  font-size: 16px;
+  border-radius: 8px;
+  padding: 15px 25px;
+  max-width: 900px;
+  background-color: var(--sub-background);
+  font-size: 15px;
   line-height: 27px;
   font-weight: 400;
-  text-align: center;
   color: var(--fore-ground);
 }
 .skills {
@@ -400,6 +473,7 @@ h3 {
   padding-left: 7%;
   padding-right: 7%;
   gap: 2rem;
+  padding-bottom: 2rem;
 }
 .allSkill {
   display: flex;
@@ -468,23 +542,34 @@ h3 {
   display: flex;
 }
 .my-proj {
-  display: grid;
-  grid-template-columns: 30% 30% 30%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   column-gap: 3.2rem;
+  row-gap: 25px;
 }
 .proj {
+  width: 30%;
+  min-width: 300px;
+  max-width: 400px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  box-shadow: 0px 1px 6px rgba(150, 145, 145, 0.2);
+  font-family: Work Sans, Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  border-radius: 5px;
 }
 .proj:hover {
   border: 1px solid #4f5772;
   cursor: pointer;
   padding: 4px;
-  border-radius: 5px;
 }
 .projImage {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.3rem;
 }
 .projImg {
   width: 100%;
@@ -492,13 +577,15 @@ h3 {
 .projTitle {
   color: #ffffff;
   font-size: 16px;
-  margin-bottom: 0.6rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
 }
 .projDesc {
-  color: #ffffff;
+  color: #eeeeee;
   display: flex;
   flex-wrap: wrap;
   width: 93%;
+  text-align: center;
   font-size: 14px;
   margin-bottom: 0.8rem;
   line-height: 1rem;
@@ -518,12 +605,13 @@ h3 {
   padding-left: 1vw;
 }
 .morePoj {
-  width: 220px;
-  height: 36px;
+  width: 200px;
+  height: 38px;
+  font-size: 15px;
   border-radius: 6px;
   background-color: var(--primary);
   border: solid 1px var(--secondary);
-  color: var(--background);
+  color: var(--fore-ground);
   font-family: Work Sans;
   font-weight: 500;
 }
@@ -538,6 +626,7 @@ h3 {
   padding-left: 5%;
   padding-right: 5%;
   gap: 3rem;
+  margin-bottom: -1rem;
 }
 .blogInteractions {
   display: flex;
@@ -555,7 +644,7 @@ h3 {
 }
 .blogTitle {
   font-family: Wendy One;
-  font-size: 2.5rem;
+  font-size: 30px;
   color: var(--fore-ground);
 }
 .change {
@@ -572,7 +661,8 @@ h3 {
   width: 8%;
   background-color: transparent;
 }
-.viewBlog {
+.viewBlog,
+.viewProject {
   position: fixed;
   top: 0;
   right: 0;
@@ -580,18 +670,88 @@ h3 {
   left: 0;
   background-color: var(--sub-background);
   z-index: 1010;
-  padding: 20px;
   overflow-y: scroll;
   display: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.singleProject {
+  font-family: Work Sans, Arial, Helvetica, sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+.modelTitle {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 50px;
+  z-index: 1011;
+  background-color: var(--sub-background);
+}
+.singleProjTitle {
+  color: var(--fore-ground);
+  font-size: 18px;
+  margin: auto;
+  text-align: center;
+}
+.projectImage {
+  width: 70%;
+  min-height: 450px;
+  border: 1px solid rgb(154, 147, 143);
+  overflow: hidden;
+  margin-top: 60px;
+}
+.projectImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.projectDesciptions {
+  margin: 10px 0px;
+  color: var(--fore-ground);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%;
+  align-items: center;
+}
+.technilogyList {
+  display: flex;
+  gap: 30px;
+}
+.projectLink {
+  color: var(--secondary-muted);
+  text-align: start;
+}
+.timeInt {
+  font-size: 14px;
+}
+.projectLongDesc {
+  width: full;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 25px;
+}
 .viewBlog::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.viewProject::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
 .singleBlogDiv {
   width: 100%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -815,9 +975,10 @@ h3 {
   height: 400px;
 }
 .blogDate {
-  color: #646464;
+  color: #a4a4a4;
   font-size: 11px;
-  margin-top: -5px;
+  margin-top: -4px;
+  font-style: italic;
 }
 .bloggTitle {
   font-size: 16px;
@@ -831,7 +992,7 @@ h3 {
   flex-wrap: wrap;
   color: var(--description);
   font-size: 14px;
-  line-height: 1rem;
+  line-height: 18px;
 }
 .blogBut {
   display: flex;
@@ -845,7 +1006,6 @@ h3 {
   color: #ffffff;
   border-radius: 6px;
   border: none;
-  font-weight: 500;
 }
 .blogBut:hover {
   background-color: var(--secondary-muted);
@@ -853,15 +1013,21 @@ h3 {
 }
 .blogFeedback {
   display: flex;
+  margin: 5px 0px;
   gap: 0.5rem;
   align-items: center;
 }
 .contact {
   font-family: Work Sans, Arial, Helvetica, sans-serif;
-  background-color: var(--sub-background);
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 1.5rem;
   padding-left: 7%;
   padding-right: 7%;
+  padding-bottom: 2rem;
 }
 
 .contTitle {
@@ -871,7 +1037,7 @@ h3 {
   align-items: center;
 }
 .contactTitle {
-  font-size: 1.8rem;
+  font-size: 22px;
   font-weight: bold;
   color: var(--fore-ground);
 }
@@ -899,7 +1065,7 @@ h3 {
 }
 .myAddresss {
   display: flex;
-  background-color: var(--background);
+  background-color: var(--sub-background);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   color: var(--fore-ground);
   width: 270px;
@@ -923,7 +1089,7 @@ h3 {
 }
 .myAddress {
   display: flex;
-  background-color: var(--background);
+  background-color: var(--sub-background);
   width: 270px;
   height: 65px;
   border-radius: 10px;
@@ -945,17 +1111,17 @@ h3 {
   color: var(--description);
 }
 .secondDet {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--fore-ground);
   font-weight: 550;
 }
 .visitorInfo {
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: 2rem;
 }
 .visiTitle {
-  font-size: 1.2rem;
+  font-size: 17px;
   display: flex;
   font-weight: 500;
   justify-content: center;
@@ -982,6 +1148,7 @@ h3 {
 .tte {
   display: flex;
   align-items: center;
+  font-size: 15px;
   color: var(--fore-ground);
 }
 .messageText {
@@ -1000,12 +1167,12 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 15px;
   width: 120px;
-  padding: 8px;
+  padding: 6px 8px;
   border-radius: 4px;
   gap: 0.4rem;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .submitBut:hover {
   background-color: var(--secondary-muted);
@@ -1017,12 +1184,16 @@ h3 {
   border: none;
   background-color: transparent;
 }
+.thumbDiv {
+  display: flex;
+  align-items: center;
+}
 .thumb {
-  width: 21px;
+  width: 19px;
   background-color: transparent;
 }
 .thumb-comment {
-  font-size: 20px;
+  font-size: 19px;
   color: var(--description);
   font-weight: 500;
 }
@@ -1103,7 +1274,7 @@ h3 {
   align-items: center;
   justify-content: center;
   font-family: Work Sans, Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   margin-left: -4px;
   margin-right: 6px;
   color: var(--fore-ground);
@@ -1111,15 +1282,18 @@ h3 {
 .blComment {
   display: none;
 }
+.about2 {
+  gap: 10;
+  flex-direction: column;
+}
 .skillCard {
   position: relative;
   padding: 20px;
-  padding-top: 40px;
-  padding-bottom: 25px;
+  padding-top: 32px;
+  padding-bottom: 18px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
   justify-content: space-between;
   width: 330px;
   font-family: Work Sans, Arial, Helvetica, sans-serif;
@@ -1127,29 +1301,32 @@ h3 {
 .cardDetails {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
+}
+.Htime {
+  font-size: 13px;
 }
 .skillIcon {
-  width: 50px;
+  width: 35px;
   position: absolute;
-  top: -25px;
+  top: -18px;
 }
 .smallDetails {
   display: flex;
   gap: 8px;
   color: #f9f9f9;
-  align-items: center;
 }
-.Htime {
+.skillLevel {
   font-size: 13px;
+  color: rgb(237, 252, 227);
 }
 .skillLevel {
   font-size: 13px;
   color: rgb(237, 252, 227);
 }
 .skillTitle {
-  font-size: 18px;
-  font-weight: 750;
+  font-size: 16px;
+  font-weight: 600;
   color: #f3eaea;
   /* color: var(--secondary-color); */
 }
@@ -1158,12 +1335,19 @@ h3 {
   gap: 8px;
   color: #e6e3e3;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
+}
+.viewMoreSkills {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .certification {
   color: #fbfbfe;
   font-size: 15px;
   font-weight: 400;
+  margin-top: 15px;
   align-self: end;
 }
 .titleLink {
@@ -1220,10 +1404,6 @@ h3 {
   }
 }
 @media (max-width: 1000px) {
-  .viewBlog {
-    flex-direction: column;
-    overflow-y: scroll;
-  }
   .home {
     margin-left: 0px;
   }
@@ -1274,7 +1454,7 @@ h3 {
     justify-content: center;
   }
   .like-but {
-    width: 32px;
+    width: 24px;
   }
 }
 @media (max-width: 800px) {
@@ -1301,12 +1481,32 @@ h3 {
   }
 }
 @media (max-width: 750px) {
+  .homeDiv {
+    height: auto;
+  }
   .home {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 0px;
   }
-  .name {
+  .abou {
+    display: flex;
+    flex-direction: column;
+  }
+  .tet {
+    order: 1;
+  }
+  .about-social {
+    margin-left: 0px;
+  }
+  .aboutSchool {
+    order: 2;
+  }
+  .about2 {
+    flex-direction: row;
+  }
+  .name,
+  .salutation {
     display: flex;
     justify-content: center;
   }
@@ -1329,7 +1529,7 @@ h3 {
   .profile {
     margin-top: 40px;
     width: 100%;
-    height: 350px;
+    max-height: 350px;
   }
 
   .descri {
@@ -1337,6 +1537,12 @@ h3 {
     text-align: center;
     font-size: 14px;
     width: 80%;
+  }
+  .aboutModel {
+    justify-content: space-between;
+  }
+  .schoolText {
+    width: 100%;
   }
   .sub-about {
     flex-wrap: wrap;
@@ -1364,6 +1570,7 @@ h3 {
   }
   .blogDesc {
     text-align: center;
+    font-size: 13px;
     justify-content: center;
   }
   .blogInteractions {
@@ -1394,6 +1601,7 @@ h3 {
     margin-left: 0px;
     width: 100%;
   }
+
   .words {
     align-items: center;
   }
@@ -1409,6 +1617,33 @@ h3 {
 }
 
 @media (max-width: 550px) {
+  .modelTitle {
+    padding: 0px 15px;
+  }
+  .skillDesc {
+    font-size: 14px;
+  }
+  .singleProject {
+    padding: 10px;
+  }
+  .projectLink {
+    font-size: 13px;
+  }
+  .projectImage {
+    min-width: 80%;
+    height: 250px;
+    min-height: 250px;
+  }
+  .technilogyList {
+    font-size: 14px;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  li::marker {
+    background-color: var(--sub-background);
+    color: var(--sub-background);
+  }
   .visiForm {
     grid-template-columns: 100%;
   }
@@ -1500,7 +1735,7 @@ h3 {
 }
 @media (max-width: 480px) {
   .descri {
-    font-size: 14px;
+    font-size: 13px;
     width: 90%;
   }
 }

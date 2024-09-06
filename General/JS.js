@@ -7,8 +7,6 @@ function hideLoader() {
   loader.style.display = "none";
 }
 
-console.log(localStorage.getItem("isLoggedIn"));
-
 let messageSent = document.querySelector(".messageSent");
 
 function showToast(message, type) {
@@ -31,18 +29,13 @@ function showToast(message, type) {
   }
 }
 
-document.querySelectorAll(".logout-btn").forEach((button) => {
-  button.addEventListener("click", function () {
-    localStorage.removeItem("token");
-    window.location.href = "../index.html";
-  });
-});
-
 const themeIcon = document.querySelector(".js-theme-icon");
 const body = document.body;
 const logoDiv = document.querySelector(".js-logo");
 
-let theme = localStorage.getItem("theme") || "dark";
+const defaultTheme = window.innerWidth < 900 ? "dark" : "light";
+
+let theme = localStorage.getItem("theme") || defaultTheme;
 
 function applyTheme(theme) {
   if (theme === "light") {

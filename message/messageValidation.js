@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const senderMessageInput = document.querySelector(".js-sender-message");
 
     if (senderMessageInput.value.toLowerCase() === "open login") {
-      window.location.href = "./auth/login.html";
+      window.location.href = "https://my-brand-caleb.vercel.app/";
       return;
     }
 

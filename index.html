@@ -105,18 +105,11 @@
         <div class="home" id="home">
           <div class="welcome">
             <div>
-              <div class="name">Hello, I’m</div>
-              <div class="name">Gisa M. Caleb</div>
+              <div class="salutation js-salutation"></div>
+              <div class="name js-myName"></div>
             </div>
 
-            <div class="descri">
-              Based in <span class="boold">Kigali, Rwanda</span>, I'm a
-              <span class="boold">software engineer and UI/UX designer</span>
-              who Crafts exceptional <span class="boold">Websites</span> and
-              <span class="boold">Mobile apps</span> with technical expertise
-              and creative vision. Let's create something extraordinary
-              together.
-            </div>
+            <div class="descri js-myDescription"></div>
             <div class="buttons">
               <a href="#contact" class="engageBut"
                 ><button class="engage">Engage my services</button></a
@@ -126,59 +119,72 @@
               </a>
             </div>
           </div>
-          <img class="profile" src="Images/Rectangle 1.svg" alt="" />
+          <div class="profile js-profileImgDiv"></div>
         </div>
       </div>
 
       <div class="about" id="about">
         <div class="sub-about">
           <div class="words">
-            <h4>Know Me Better.</h4>
-            <div class="abou">
-              <div class="tet">
-                Hey there! I'm Gisa Mugisha Caleb, a web developer from Kigali,
-                Rwanda. I got into coding in 2021 and have been soaking up
-                knowledge ever since. Right now, I'm deep into the Andela
-                program, sharpening my skills and know-how in software
-                engineering.
+            <h4 class="js-aboutHeading"></h4>
+            <div class="about-social">
+              <div class="aboutDescriptions">
+                <div class="abou">
+                  <div class="aboutSchool">
+                    <div class="aboutModel">
+                      <img
+                        style="width: 50px"
+                        src="public/icons8-experience-100.png"
+                        alt=""
+                      />
+                      <div class="schoolText">
+                        <p class="js-experience" style="text-align: center"></p>
+                        <p style="text-align: center">of Experince</p>
+                      </div>
+                    </div>
+                    <div class="aboutModel about2">
+                      <img
+                        style="width: 50px"
+                        src="public/icons8-graduation-96.png"
+                        alt=""
+                      />
+                      <div class="schoolText" style="align-items: center">
+                        <p style="text-align: center" class="js-course"></p>
+                        <p style="text-align: center">University of Rwanda</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tet js-aboutText"></div>
+                </div>
               </div>
-              <div class="tet">
-                I've been busy with software projects, crafting cool user
-                interfaces and building strong backend systems. Alongside
-                coding, I spent six months as a custom declarant.
-              </div>
-              <div class="tet">
-                When I'm not coding, you might catch me making music beats—it's
-                my way of unwinding and getting creative. I'm all about bringing
-                ideas to life through code and rhythm. Let's team up and make
-                some magic happen!
+              <div class="su-about">
+                <div class="social">
+                  <a
+                    title="Facebook"
+                    href="https://web.facebook.com/gisa.ccaleb.31/"
+                    ><div class="lin">f</div></a
+                  >
+                  <a href="https://github.com/Calebgisa72"
+                    ><i title="Github" class="fa-brands fa-github lin"></i
+                  ></a>
+                  <a href="https://www.instagram.com/calbeats_official/"
+                    ><div class="lin">
+                      <img src="Images/Social (1).svg" alt="" /></div
+                  ></a>
+                  <a href="https://twitter.com/GisaCcaleb"
+                    ><div class="lin">
+                      <i class="fa-brands fa-x-twitter"></i></div
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-04ab21236/"
+                    ><div class="lin">in</div></a
+                  >
+                </div>
+                <a href="#portfolio" class="js-moreProjectsButton"
+                  ><button class="morePoj">My Projects</button></a
+                >
               </div>
             </div>
-          </div>
-          <div class="su-about">
-            <div class="social">
-              <a
-                title="Facebook"
-                href="https://web.facebook.com/gisa.ccaleb.31/"
-                ><div class="lin">f</div></a
-              >
-              <a href="https://github.com/Calebgisa72"
-                ><i title="Github" class="fa-brands fa-github lin"></i
-              ></a>
-              <a href="https://www.instagram.com/calbeats_official/"
-                ><div class="lin">
-                  <img src="Images/Social (1).svg" alt="" /></div
-              ></a>
-              <a href="https://twitter.com/GisaCcaleb"
-                ><div class="lin">
-                  <i class="fa-brands fa-x-twitter"></i></div
-              ></a>
-              <a
-                href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-04ab21236/"
-                ><div class="lin">in</div></a
-              >
-            </div>
-            <button class="cv">My Projects</button>
           </div>
         </div>
       </div>
@@ -186,186 +192,30 @@
       <div class="skills" id="skills">
         <div class="f4">My Technical Skills.</div>
 
-        <div class="allSkill">
-          <div
-            class="skillCard"
-            style="background: linear-gradient(to right, #522272, #1c42a0)"
-          >
-            <img class="skillIcon" src="Images/Atom.svg" />
-            <div class="cardDetails">
-              <div class="smallDetails">
-                <div class="Htime">3 Years ago</div>
-                <span>&#183;</span>
-                <div class="skillLevel">Proficiency: Advanced</div>
-              </div>
-              <div class="skillTitle">React</div>
-              <div class="skillDesc">
-                React is a popular JavaScript library for building user
-                interfaces, particularly single-page applications. Enabling the
-                creation of dynamic and interactive web applications with ease
-              </div>
-            </div>
-            <div class="certification">Redux, React testing library</div>
-          </div>
-
-          <div class="skillCard" style="background-color: rgb(10, 94, 154)">
-            <img class="skillIcon" src="Images/Css.svg" />
-            <div class="cardDetails">
-              <div class="smallDetails">
-                <div class="Htime">4 Years ago</div>
-                <span>&#183;</span>
-                <div class="skillLevel">Proficiency: Advanced</div>
-              </div>
-              <div class="skillTitle">CSS</div>
-              <div class="skillDesc">
-                CSS (Cascading Style Sheets) brings life to web pages by
-                defining their visual presentation. Proficient in CSS, I can
-                skillfully design and style elements.
-              </div>
-            </div>
-            <div class="certification">Vanilla Css, Tailiwindcss</div>
-          </div>
-
-          <div class="skillCard" style="background-color: rgb(116, 106, 6)">
-            <img class="skillIcon" src="Images//Js.svg" />
-            <div class="cardDetails">
-              <div class="smallDetails">
-                <div class="Htime">4 Years ago</div>
-                <span>&#183;</span>
-                <div class="skillLevel">Proficiency: Advanced</div>
-              </div>
-              <div class="skillTitle">JavaScipt</div>
-              <div class="skillDesc">
-                I'm experienced in JavaScript, using it to make web pages
-                interactive and dynamic.
-              </div>
-            </div>
-            <div class="certification">Javascript, Typescript</div>
-          </div>
-
-          <div class="skillCard" style="background-color: rgb(148, 62, 4)">
-            <img class="skillIcon" src="Images/Html 5.svg" />
-            <div class="cardDetails">
-              <div class="smallDetails">
-                <div class="Htime">4 Years ago</div>
-                <span>&#183;</span>
-                <div class="skillLevel">Proficiency: Advanced</div>
-              </div>
-              <div class="skillTitle">HTML</div>
-              <div class="skillDesc">
-                HTML (Hypertext Markup Language) is the backbone of any web
-                page, providing the structure and organization
-              </div>
-            </div>
-            <div class="certification">Certifications: HTML5 Specialist</div>
-          </div>
-
-          <div
-            class="skillCard"
-            style="
-              background: linear-gradient(to right, rgb(20, 113, 26), #044a3d);
-            "
-          >
-            <img class="skillIcon" src="Images/Nodejs.svg" />
-            <div class="cardDetails">
-              <div class="smallDetails">
-                <div class="Htime">3 Years ago</div>
-                <span>&#183;</span>
-                <div class="skillLevel">Proficiency: Advanced</div>
-              </div>
-              <div class="skillTitle">Node js</div>
-              <div class="skillDesc">
-                Node.js is a powerful, open-source runtime environment that
-                allows you to execute JavaScript on the server side. It is known
-                for its event-driven, non-blocking I/O model, which makes it
-                efficient and scalable for building fast, scalable network
-                applications.
-              </div>
-            </div>
-            <div class="certification">Express js, RestAPI</div>
-          </div>
-
-          <div class="skillCard" style="background-color: rgb(20, 80, 113)">
-            <img class="skillIcon" src="Images/Database.svg" />
-            <div class="cardDetails">
-              <div class="smallDetails">
-                <div class="Htime">4 Years ago</div>
-                <span>&#183;</span>
-                <div class="skillLevel">Proficiency: Advanced</div>
-              </div>
-              <div class="skillTitle">Databases (MongoDB, PostgreSQL)</div>
-              <div class="skillDesc">
-                Proficient in working with both relational and non-relational
-                databases. Capable of designing and optimizing databases for
-                performance and scalability.
-              </div>
-            </div>
-            <div class="certification">TypeOrm, PrismaOrm</div>
-          </div>
+        <div class="allSkill js-skillsDiv"></div>
+        <div class="viewMoreSkills">
+          <button class="morePoj js-moreSkills">View All Skills</button>
         </div>
       </div>
 
       <div class="sub-container">
         <div class="port" id="portfolio">
           <div class="portText">
-            <h3>Portfolio</h3>
-            <div style="font-weight: 500">
+            <h4 style="font-size: 23px; color: #ffffff">Portfolio</h4>
+            <div style="font-weight: 500; font-size: 17px">
               Presentation of My Wide Range of Digital Projects
             </div>
           </div>
-          <div class="my-proj">
-            <div class="proj">
-              <div class="projImage">
-                <img
-                  class="projImg"
-                  src="Images/unsplash_9anj7QWy-2g.svg"
-                  alt=""
-                />
-              </div>
-              <div class="projTitle">Whatsapp-Clone</div>
-              <div class="projDesc">
-                A replica of the popular messaging app, allowing users to send
-                messages, images, and videos in real-time, with features like
-                group chats and media sharing.
-              </div>
-            </div>
-            <div class="proj">
-              <div class="projImage">
-                <img
-                  class="projImg"
-                  src="Images/unsplash_C5DLhUkEWfM.svg"
-                  alt=""
-                />
-              </div>
-              <div class="projTitle">Kigali Online Shop</div>
-              <div class="projDesc">
-                An online shopping platform tailored for Kigali residents ,
-                offering a wide range of products with easy navigation and
-                secure checkout.
-              </div>
-            </div>
-            <div class="proj">
-              <div class="projImage">
-                <img
-                  class="projImg"
-                  src="Images/unsplash_9anj7QWy-2g (1).svg"
-                  alt=""
-                />
-              </div>
-              <div class="projTitle">Rock-Paper-Scissors Game</div>
-              <div class="projDesc">
-                A digital version of the classic hand game, allowing users to
-                play against the computer or with friends online.
-              </div>
-            </div>
-          </div>
-          <button class="morePoj">More Projects</button>
+          <div class="my-proj js-projectsDiv"></div>
+          <button class="morePoj js-moreProjects">More Projects</button>
         </div>
+
+        <div class="viewProject js-projectDetails"></div>
 
         <div class="viewBlog js-view-blog-Detailed"></div>
 
         <div class="blog" id="blog">
-          <div class="blogTitle">Blog</div>
+          <div class="blogTitle">Blogs</div>
 
           <div class="slide-container swiper">
             <div class="slide-content js-blogs">
@@ -381,7 +231,7 @@
 
         <div class="contact" id="contact">
           <div class="contTitle">
-            <div class="contactTitle">Connect With Us.</div>
+            <div class="contactTitle">Connect With Me.</div>
             <div class="contDet">
               Let's Discuss Your Project and Dive Into It !
             </div>
@@ -504,40 +354,58 @@
         </div>
 
         <div class="messageSent"></div>
+      </div>
+      <div class="footter">
+        <a href="index.html"
+          ><div class="logo">
+            <img class="logo-img" src="Images/Ellipse 1.svg" alt="" />
+            <div class="js-logo">
+              <img
+                class="logo-name"
+                src="Images/Caleb’s Brand (1).svg"
+                alt=""
+              />
+            </div></div
+        ></a>
 
-        <div class="footter">
-          <a href="index.html"
-            ><div class="logo">
-              <img class="logo-img" src="Images/Ellipse 1.svg" alt="" />
-              <div class="js-logo">
-                <img
-                  class="logo-name"
-                  src="Images/Caleb’s Brand (1).svg"
-                  alt=""
-                />
-              </div></div
-          ></a>
-
-          <div class="links">
-            <a href="#home" class="footer-menu-link js-menu-link">Home</a>
-            <a href="#about" class="footer-menu-link js-menu-link">About</a>
-            <a href="#skills" class="footer-menu-link js-menu-link">Skills</a>
-            <a href="#portfolio" class="footer-menu-link js-menu-link"
-              >Portfolio</a
-            >
-            <a href="#blog" class="footer-menu-link js-menu-link">Blog</a>
-            <a href="#contact" class="footer-menu-link js-menu-link"
-              >Contact Us</a
-            >
-          </div>
+        <div class="links">
+          <a href="#home" class="footer-menu-link js-menu-link">Home</a>
+          <a href="#about" class="footer-menu-link js-menu-link">About</a>
+          <a href="#skills" class="footer-menu-link js-menu-link">Skills</a>
+          <a href="#portfolio" class="footer-menu-link js-menu-link"
+            >Portfolio</a
+          >
+          <a href="#blog" class="footer-menu-link js-menu-link">Blog</a>
+          <a href="#contact" class="footer-menu-link js-menu-link"
+            >Contact Us</a
+          >
         </div>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./General/JS.js"></script>
-    <script src="UI/Dashbord/dashbordBlog.js"></script>
+    <script src="./javascript/fetchData.js"></script>
+    <script>
+      async function loadDateFns() {
+        const { formatDistanceToNowStrict } = await import(
+          "https://cdn.skypack.dev/date-fns@2.29.3"
+        );
+
+        window.timeAgo = function timeAgo(date) {
+          const formartDate = new Date(date);
+          return formatDistanceToNowStrict(formartDate, { addSuffix: true });
+        };
+
+        fetchSkills();
+      }
+
+      loadDateFns();
+    </script>
+    <script src="./javascript/projects.js"></script>
+    <script src="./javascript/profile.js"></script>
     <script src="Portfolio.js"></script>
     <script src="message/messageValidation.js"></script>
+    <script src="./javascript/skills.js"></script>
   </body>
 </html>

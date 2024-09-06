@@ -1,22 +1,22 @@
 :root {
-  --background: #1a1a1a;
-  --sub-background: #2d2d2d;
+  --background: #24221f;
+  --sub-background: #2c2c2c;
   --primary: #e17714;
   --secondary: #ccf8db;
   --secondary-muted: #a7cadb;
-  --fore-ground: #e6e6e6;
-  --description: #b8b8b8;
+  --fore-ground: #f7f7f7;
+  --description: #dadada;
   --black-white: #060606;
+  font-family: Work Sans, Arial, Helvetica, sans-serif;
 }
 
 .light {
-  --background: #fffdfd;
-  --sub-background: #f4f6f3;
-  --primary: #e17714;
+  --background: #dde6ea;
+  --sub-background: #eaf8f5;
   --secondary: #ccf8db;
   --secondary-muted: #173558;
   --fore-ground: #0d0d0d;
-  --description: #434141;
+  --description: #333234;
   --black-white: #ffffff;
 }
 
