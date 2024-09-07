@@ -1,8 +1,9 @@
-let pageLoading = true;
 let blogs = [];
 let profile = null;
 let projects = [];
 let skills = [];
+
+const portfolioDiv = document.querySelector(".js-portfolioData");
 
 async function callSubFunctions() {
   try {
@@ -10,13 +11,17 @@ async function callSubFunctions() {
       fetchBlogs(),
       fetchProfile(),
       fetchProjects(),
+      fetchSkills(),
     ]);
-    pageLoading = false;
-    console.log(profile);
+    portfolioDiv.innerHTML = "";
+    portfolioDiv.innerHTML = portfolioHtml;
+    initializeProj();
+    initializeSkills();
     renderProjects();
     renderProfile();
     renderSkills();
-    initializePortfolio();
+    blogActivites();
+    initializeMessage();
   } catch (error) {
     console.error("Failed to load data:", error);
   }
@@ -24,7 +29,9 @@ async function callSubFunctions() {
 
 async function fetchBlogs() {
   try {
-    const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/blogs`);
+    const response = await fetch(
+      `https://my-brand-backend-iyxk.onrender.com/api/blogs`
+    );
     const data = await response.json();
     blogs = data;
   } catch (error) {
@@ -34,7 +41,9 @@ async function fetchBlogs() {
 
 async function fetchProfile() {
   try {
-    const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/profile`);
+    const response = await fetch(
+      `https://my-brand-backend-iyxk.onrender.com/api/profile`
+    );
     const data = await response.json();
     profile = data.profile;
   } catch (error) {
@@ -44,7 +53,9 @@ async function fetchProfile() {
 
 async function fetchProjects() {
   try {
-    const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/project`);
+    const response = await fetch(
+      `https://my-brand-backend-iyxk.onrender.com/api/project`
+    );
     const data = await response.json();
     projects = data.data;
   } catch (error) {
@@ -54,7 +65,9 @@ async function fetchProjects() {
 
 async function fetchSkills() {
   try {
-    const response = await fetch(`https://my-brand-backend-iyxk.onrender.com/api/skills`);
+    const response = await fetch(
+      `https://my-brand-backend-iyxk.onrender.com/api/skills`
+    );
     const data = await response.json();
     skills = data;
   } catch (error) {
@@ -85,3 +98,5 @@ function formatDate(dateString) {
 }
 
 callSubFunctions();
+
+function initializeToast() {}

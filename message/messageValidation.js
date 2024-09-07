@@ -1,21 +1,41 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initializeMessage() {
+  let messageSent = document.querySelector(".messageSent");
+  function showToast(message, type) {
+      let toastDiv;
+      if (type === "success") {
+        toastDiv = `<img src="../Images/Checked.svg" class="check-img js-toast" alt=""> <div>${message}</div>`;
+        messageSent.innerHTML = toastDiv;
+        messageSent.style.display = "flex";
+        setTimeout(() => {
+          messageSent.style.display = "none";
+        }, 2000);
+      } else {
+        toastDiv = `<div>${message}</div>`;
+        messageSent.style.backgroundColor = "rgb(253, 114, 114)";
+        messageSent.innerHTML = toastDiv;
+        messageSent.style.display = "flex";
+        setTimeout(() => {
+          messageSent.style.display = "none";
+        }, 2000);
+      }
+    }
   const form = document.querySelector("form");
   const messageSubmit = document.querySelector(".js-messageSubmit");
   let loading = false;
 
   function updateSubmitButton() {
     messageSubmit.innerHTML = `
-        <button ${loading ? "disabled" : ""} type="${
+          <button ${loading ? "disabled" : ""} type="${
       loading ? "button" : "submit"
     }" class="submitBut">
-          ${loading ? "Loading..." : "Submit"}
-          ${
-            !loading
-              ? `<img style="width: 23%" src="Images/Paper Plane.svg" alt="" />`
-              : ""
-          }
-        </button>
-      `;
+            ${loading ? "Loading..." : "Submit"}
+            ${
+              !loading
+                ? `<img style="width: 23%" src="Images/Paper Plane.svg" alt="" />`
+                : ""
+            }
+          </button>
+        `;
 
     const submitButton = document.querySelector(".submitBut");
 
@@ -107,4 +127,4 @@ document.addEventListener("DOMContentLoaded", function () {
     const trimmedName = name.trim();
     return trimmedName !== "";
   }
-});
+}

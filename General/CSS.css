@@ -7,6 +7,7 @@
   --fore-ground: #f7f7f7;
   --description: #dadada;
   --black-white: #060606;
+  --skeleton: rgba(105, 105, 105, 0.3);
   font-family: Work Sans, Arial, Helvetica, sans-serif;
 }
 
@@ -14,7 +15,7 @@
   --background: #dde6ea;
   --sub-background: #eaf8f5;
   --secondary: #ccf8db;
-  --secondary-muted: #173558;
+  --secondary-muted: #081140;
   --fore-ground: #0d0d0d;
   --description: #333234;
   --black-white: #ffffff;

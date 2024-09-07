@@ -1,7 +1,14 @@
-const skillsDiv = document.querySelector(".js-skillsDiv");
-const moreskillsBut = document.querySelector(".js-moreSkills");
 let skillsDisplayNum = 5;
+function initializeSkills() {
+  const moreskillsBut = document.querySelector(".js-moreSkills");
+  moreskillsBut.addEventListener("click", () => {
+    skillsDisplayNum = skills.length;
+    renderSkills();
+  });
+}
 const renderSkills = () => {
+  const skillsDiv = document.querySelector(".js-skillsDiv");
+  const moreskillsBut = document.querySelector(".js-moreSkills");
   let skillsHTML = ``;
   skills.slice(0, skillsDisplayNum).forEach((skill) => {
     skillsHTML += `<div
@@ -28,8 +35,3 @@ const renderSkills = () => {
     moreskillsBut.style.display = "none";
   }
 };
-
-moreskillsBut.addEventListener("click", () => {
-  skillsDisplayNum = skills.length;
-  renderSkills();
-});

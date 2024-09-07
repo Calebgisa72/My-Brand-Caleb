@@ -221,11 +221,15 @@ a {
   gap: 2.5rem;
   background-color: var(--black-white);
 }
-.homeDiv {
+.homeDiv, .homeSketonDiv {
   height: 550px;
   background-color: var(--background);
   display: flex;
   align-items: center;
+}
+.homeSketonDiv{
+  width: 100%;
+  flex-direction: column;
 }
 .home {
   display: flex;
@@ -235,6 +239,14 @@ a {
   padding-right: 7%;
   margin-top: 50px;
   margin-left: 3%;
+}
+.debugHead{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 84.2vw;
+  padding: 20px 100px;
+  gap: 20px;
 }
 .welcome {
   display: flex;
@@ -305,11 +317,7 @@ a {
   background-color: var(--secondary-muted);
   color: var(--background);
 }
-.profile {
-  background-color: var(--sub-background);
-  box-shadow: 0px 3px 4px rgba(111, 111, 111, 0.4);
-}
-.profile {
+.profile, .profileSkeleton {
   width: 36%;
   min-width: 280;
   max-width: 400px;
@@ -319,9 +327,17 @@ a {
   max-height: 430px;
   min-height: 380px;
   border-radius: 15px;
-  box-shadow: -2px 3px 4px rgba(111, 111, 111, 0.4),
-    2px 3px 4px rgba(111, 111, 111, 0.4);
+  background-color: var(--sub-background);
+  box-shadow: -2px 3px 4px rgba(90, 90, 90, 0.4),
+    2px 3px 4px rgba(90, 90, 90, 0.4);
   overflow: hidden;
+}
+.profileSkeleton{
+  animation: pulse 2s infinite;
+  box-shadow: none;
+}
+.arrowButton:hover {
+  color: var(--primary);
 }
 .profileImg {
   width: 90%;
@@ -438,20 +454,23 @@ h3 {
 }
 .aboutModel {
   display: flex;
+  flex-direction: column;
   gap: 25px;
   font-size: 14px;
   padding: 15px;
   border-radius: 4px;
   background-color: var(--sub-background);
-  border: 1px solid rgb(99, 99, 99);
   width: 100%;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 1px 3px rgba(88, 88, 88, 0.4),
+    0px 1px 3px rgba(88, 88, 88, 0.4);
 }
 .schoolText {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-content: space-between;
 }
 .tet {
   font-family: Inter, sans-serif;
@@ -463,6 +482,7 @@ h3 {
   line-height: 27px;
   font-weight: 400;
   color: var(--fore-ground);
+  box-shadow: 0px 2px 4px rgba(88, 88, 88, 0.4);
 }
 .skills {
   font-family: Inter, sans-serif;
@@ -550,14 +570,14 @@ h3 {
   row-gap: 25px;
 }
 .proj {
-  width: 30%;
+  width: 29%;
   min-width: 300px;
   max-width: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-shadow: 0px 1px 6px rgba(150, 145, 145, 0.2);
+  box-shadow: 0px 2px 6px rgba(150, 145, 145, 0.2);
   font-family: Work Sans, Arial, Helvetica, sans-serif;
   overflow: hidden;
   border-radius: 5px;
@@ -575,9 +595,15 @@ h3 {
   width: 100%;
 }
 .projTitle {
+  text-align: center;
+}
+.projectHeadTitle {
   color: #ffffff;
   font-size: 16px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 0.8rem;
 }
 .projDesc {
@@ -678,7 +704,7 @@ h3 {
 .singleProject {
   font-family: Work Sans, Arial, Helvetica, sans-serif;
   width: 100%;
-  padding: 10px 20px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -686,7 +712,6 @@ h3 {
 }
 .modelTitle {
   position: fixed;
-  height: 50px;
   width: 100%;
   top: 0;
   display: flex;
@@ -695,6 +720,7 @@ h3 {
   padding: 15px 50px;
   z-index: 1011;
   background-color: var(--sub-background);
+  border-bottom: 2px solid var(--background);
 }
 .singleProjTitle {
   color: var(--fore-ground);
@@ -724,8 +750,18 @@ h3 {
   align-items: center;
 }
 .technilogyList {
+  margin-left: 20px;
   display: flex;
+  margin-top: -1px;
+  flex-wrap: wrap;
   gap: 30px;
+}
+.techDiv {
+  display: flex;
+  gap: 10px;
+}
+.projCancle {
+  margin-right: 20px;
 }
 .projectLink {
   color: var(--secondary-muted);
@@ -1282,10 +1318,6 @@ h3 {
 .blComment {
   display: none;
 }
-.about2 {
-  gap: 10;
-  flex-direction: column;
-}
 .skillCard {
   position: relative;
   padding: 20px;
@@ -1295,7 +1327,7 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 330px;
+  width: 308px;
   font-family: Work Sans, Arial, Helvetica, sans-serif;
 }
 .cardDetails {
@@ -1328,7 +1360,6 @@ h3 {
   font-size: 16px;
   font-weight: 600;
   color: #f3eaea;
-  /* color: var(--secondary-color); */
 }
 .skillDesc {
   display: flex;
@@ -1352,6 +1383,54 @@ h3 {
 }
 .titleLink {
   text-decoration: none;
+}
+.loaderButton,.loadingHeading, .loaderText {
+  width: 50%;
+  height: 38px;
+  background-color: var(--skeleton);
+  border-radius: 4px;
+  animation: pulse 2s infinite;
+}
+
+.welcomeSkeleton{
+  min-width: 300px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.loadingHeading{
+  width: 40%;
+  height: 70px;
+}
+
+.loaderText{
+  width: 80%;
+  height: 15px;
+}
+
+.infoText{
+  display: flex;
+  gap: 15px;
+  width: 80vw;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+.loadingText{
+  color: var(--fore-ground);
+}
+.infoIcon{
+  font-size: 35px;
+  color:#8f971d;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @media (max-width: 1032px) {
@@ -1502,9 +1581,6 @@ h3 {
   .aboutSchool {
     order: 2;
   }
-  .about2 {
-    flex-direction: row;
-  }
   .name,
   .salutation {
     display: flex;
@@ -1614,17 +1690,47 @@ h3 {
   .write-name {
     width: 80%;
   }
+  .welcomeSkeleton{
+    width: 100%;
+    display: flex;
+  }
+  .skele{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .profileSkeleton{
+    width: 80%;
+    height: 70px;
+  }
+  .textSkeletonDiv{
+    display: flex;
+    align-items: center;
+  }
+  .debugHead{
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    gap: 20px;
+  }
 }
 
 @media (max-width: 550px) {
   .modelTitle {
-    padding: 0px 15px;
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+  .singleProjTitle {
+    margin: 0px;
+    margin-left: 20px;
+    max-width: 280px;
   }
   .skillDesc {
     font-size: 14px;
   }
+
   .singleProject {
-    padding: 10px;
+    padding: 4px 20px;
   }
   .projectLink {
     font-size: 13px;
@@ -1632,17 +1738,29 @@ h3 {
   .projectImage {
     min-width: 80%;
     height: 250px;
+    width: 100%;
     min-height: 250px;
   }
-  .technilogyList {
-    font-size: 14px;
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
+  .projectDesciptions {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
   }
-  li::marker {
-    background-color: var(--sub-background);
-    color: var(--sub-background);
+  .technilogyList {
+    margin-left: -40px;
+    margin-top: -1px;
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .abou {
+    gap: 25px;
+  }
+  .aboutSchool {
+    gap: 20px;
+  }
+  .techItem {
+    margin-left: 20px;
   }
   .visiForm {
     grid-template-columns: 100%;
@@ -1735,7 +1853,6 @@ h3 {
 }
 @media (max-width: 480px) {
   .descri {
-    font-size: 13px;
     width: 90%;
   }
 }

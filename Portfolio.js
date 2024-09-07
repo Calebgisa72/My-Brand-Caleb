@@ -1,4 +1,4 @@
-function initializePortfolio() {
+function blogActivites() {
   function BlogDisplay() {
     renderBlogs(blogs);
   }
@@ -9,45 +9,45 @@ function initializePortfolio() {
       let formatted = formatDate(aBlog.bDate);
 
       landingBlogs += `
-      <div class="swiper-slide">
-        <div class="blogImage">
-          <img class="blogImg" src="${aBlog.bImage}" alt="">
-        </div>
-        <div class="blogDate">${formatted}</div>
-        <div class="bloggTitle">${aBlog.bTitle}</div>
-        <div class="justifyBlog">
-          <div class="blogDesc">${aBlog.bShortDesc}</div>
-          <div class="blogInteractions">
-            <div class="blogFeedback">
-              <button class="like-but js-like-but lik-but-${
-                aBlog._id
-              }" onclick="handleLikeButtonClick('${aBlog._id}')">
-                <div class='thumbDiv'>
-                  <img class="thumb" src="${
-                    isBlogLiked(aBlog._id)
-                      ? "Images/Liked.svg"
-                      : "Images/Lik.svg"
-                  }" alt="">
-                </div>
-              </button>
-              <div class="numOfLiks js-num-likes-${aBlog._id}">${
+        <div class="swiper-slide">
+          <div class="blogImage">
+            <img class="blogImg" src="${aBlog.bImage}" alt="">
+          </div>
+          <div class="blogDate">${formatted}</div>
+          <div class="bloggTitle">${aBlog.bTitle}</div>
+          <div class="justifyBlog">
+            <div class="blogDesc">${aBlog.bShortDesc}</div>
+            <div class="blogInteractions">
+              <div class="blogFeedback">
+                <button class="like-but js-like-but lik-but-${
+                  aBlog._id
+                }" onclick="handleLikeButtonClick('${aBlog._id}')">
+                  <div class='thumbDiv'>
+                    <img class="thumb" src="${
+                      isBlogLiked(aBlog._id)
+                        ? "Images/Liked.svg"
+                        : "Images/Lik.svg"
+                    }" alt="">
+                  </div>
+                </button>
+                <div class="numOfLiks js-num-likes-${aBlog._id}">${
         aBlog.bNumOfLike
       }</div>
-              <button class="like-but js-comment-button" title='Comments' onclick="viewAndScroll('${
+                <button class="like-but js-comment-button" title='Comments' onclick="viewAndScroll('${
+                  aBlog._id
+                }')">
+                  <i class="fa-solid fa-comment thumb-comment"></i>
+                </button>
+              </div>
+              <button onclick="viewBlogDetails('${
                 aBlog._id
-              }')">
-                <i class="fa-solid fa-comment thumb-comment"></i>
+              }')" class="blogBut js-blog-but">
+                View More <i class="fa-solid fa-arrow-right"></i>
               </button>
             </div>
-            <button onclick="viewBlogDetails('${
-              aBlog._id
-            }')" class="blogBut js-blog-but">
-              View More <i class="fa-solid fa-arrow-right"></i>
-            </button>
           </div>
         </div>
-      </div>
-    `;
+      `;
     });
 
     const blogsWrapper = document.querySelector(".js-blogs");
@@ -96,6 +96,98 @@ function initializePortfolio() {
   }
 
   BlogDisplay();
+
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileLayer = document.getElementById("mobile-layer");
+  const closeBtn = document.getElementById("closeBtn");
+
+  let showMobileBar = false;
+
+  document.querySelectorAll(".js-menu-link").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        const offset = targetId === "#home" ? 180 : 90;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+
+      mobileLayer.style.display = "none";
+      showMobileBar = false;
+    });
+  });
+
+  document.querySelectorAll(".engageBut").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        const offset = 90;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  document.querySelectorAll(".moreProjectsButtongeBut").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        const offset = 90;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  hamburgerBtn.addEventListener("click", () => {
+    handleViewMobileBar();
+  });
+
+  closeBtn.addEventListener("click", () => {
+    handleViewMobileBar();
+  });
+
+  const handleViewMobileBar = () => {
+    showMobileBar = !showMobileBar;
+    if (showMobileBar) {
+      mobileLayer.style.display = "flex";
+      requestAnimationFrame(() => {
+        mobileLayer.classList.add("open");
+      });
+    } else {
+      mobileLayer.classList.remove("open");
+      setTimeout(() => {
+        mobileLayer.style.display = "none";
+      }, 300);
+    }
+  };
 }
 
 function isBlogLiked(blogId) {
@@ -107,7 +199,7 @@ async function toggleLike(blogId) {
   const likeButton = document.querySelector(`.lik-but-${blogId}`);
   const thumbImage = likeButton.querySelector(".thumb");
   const isLiked = isBlogLiked(blogId);
-  const url = `http://localhost:4300/api/blogs/${blogId}/${
+  const url = `https://my-brand-backend-iyxk.onrender.com/api/blogs/${blogId}/${
     isLiked ? "disLike" : "like"
   }`;
 
@@ -179,13 +271,16 @@ async function sendComment(event, id) {
       document.querySelector(".js-write-comment").value = "";
       document.querySelector(".js-write-name").value = "";
 
-      await fetch(`http://localhost:4300/api/blogs/${id}/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newComment),
-      });
+      await fetch(
+        `https://my-brand-backend-iyxk.onrender.com/api/blogs/${id}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newComment),
+        }
+      );
     } catch (error) {
       console.error("Error:", error);
     }
@@ -206,11 +301,10 @@ function hideNameInput() {
     nameInput.style.display = "none";
   }
 }
-const viewBlog = document.querySelector(".viewBlog");
 
 function viewBlogDetails(id, shouldScroll = false) {
+  const viewBlog = document.querySelector(".viewBlog");
   viewBlog.style.display = "none";
-  console.log(id);
   const blogToView = blogs.find((blog) => blog._id === id);
   if (!blogToView) return;
   let commentsHTML = "";
@@ -335,7 +429,6 @@ function viewBlogDetails(id, shouldScroll = false) {
 }
 
 function viewAndScroll(id) {
-  console.log(id);
   viewBlogDetails(id, true);
 }
 
@@ -349,99 +442,6 @@ function scrollToComments(index) {
 }
 
 function cancleViewBlog() {
+  const viewBlog = document.querySelector(".viewBlog");
   viewBlog.style.display = "none";
 }
-
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const mobileLayer = document.getElementById("mobile-layer");
-const closeBtn = document.getElementById("closeBtn");
-
-let showMobileBar = false;
-
-document.querySelectorAll(".js-menu-link").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const targetId = this.getAttribute("href");
-    const targetSection = document.querySelector(targetId);
-
-    console.log(targetId);
-
-    if (targetSection) {
-      const offset = targetId === "#home" ? 180 : 90;
-      const elementPosition = targetSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-
-    mobileLayer.style.display = "none";
-    showMobileBar = false;
-  });
-});
-
-document.querySelectorAll(".engageBut").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const targetId = this.getAttribute("href");
-    const targetSection = document.querySelector(targetId);
-
-    if (targetSection) {
-      const offset = 90;
-      const elementPosition = targetSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  });
-});
-
-document.querySelectorAll(".moreProjectsButtongeBut").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const targetId = this.getAttribute("href");
-    const targetSection = document.querySelector(targetId);
-
-    if (targetSection) {
-      const offset = 90;
-      const elementPosition = targetSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  });
-});
-
-hamburgerBtn.addEventListener("click", () => {
-  handleViewMobileBar();
-});
-
-closeBtn.addEventListener("click", () => {
-  handleViewMobileBar();
-});
-
-const handleViewMobileBar = () => {
-  showMobileBar = !showMobileBar;
-  if (showMobileBar) {
-    mobileLayer.style.display = "flex";
-    requestAnimationFrame(() => {
-      mobileLayer.classList.add("open");
-    });
-  } else {
-    mobileLayer.classList.remove("open");
-    setTimeout(() => {
-      mobileLayer.style.display = "none";
-    }, 300);
-  }
-};
