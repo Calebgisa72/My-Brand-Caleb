@@ -327,7 +327,7 @@ function viewBlogDetails(id, shouldScroll = false) {
     <div class="singleBlogDiv">
       <div class="topContainer">
         <div class="cancleDiv">
-          <button class="canelBut" onclick="cancleViewBlog()">x</button>
+          <button class="canelBut blogCancle" onclick="cancleViewBlog()">x</button>
         </div>
       </div>
     

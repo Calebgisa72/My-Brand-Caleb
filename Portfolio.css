@@ -150,16 +150,34 @@ a {
   font-size: 24px;
   cursor: pointer;
 }
-.logo-name {
-  width: 120px;
+.logoName, .logoFooterName {
+  font-size: 17px;
+  color: var(--fore-ground);
+  font-weight: 500;
 }
-.logo-img {
-  width: 28px;
+.logoFooterName{
+  color: #f3efec;
 }
-.logo {
+.dev {
+  font-size: 19px;
+  font-weight: 700;
+}
+.logo,
+.logoFooter {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  height: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 4px rgba(88, 88, 88, 0.4);
+}
+.logoFooter {
+  color: var(--background);
+}
+.logo:hover {
+  transition: 0.5s;
+  background-color: var(--sub-background);
+  box-shadow: 0px 2px 4px rgba(88, 88, 88, 0.4);
 }
 
 .next-but {
@@ -221,13 +239,14 @@ a {
   gap: 2.5rem;
   background-color: var(--black-white);
 }
-.homeDiv, .homeSketonDiv {
+.homeDiv,
+.homeSketonDiv {
   height: 550px;
   background-color: var(--background);
   display: flex;
   align-items: center;
 }
-.homeSketonDiv{
+.homeSketonDiv {
   width: 100%;
   flex-direction: column;
 }
@@ -240,7 +259,7 @@ a {
   margin-top: 50px;
   margin-left: 3%;
 }
-.debugHead{
+.debugHead {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -317,7 +336,8 @@ a {
   background-color: var(--secondary-muted);
   color: var(--background);
 }
-.profile, .profileSkeleton {
+.profile,
+.profileSkeleton {
   width: 36%;
   min-width: 280;
   max-width: 400px;
@@ -332,7 +352,7 @@ a {
     2px 3px 4px rgba(90, 90, 90, 0.4);
   overflow: hidden;
 }
-.profileSkeleton{
+.profileSkeleton {
   animation: pulse 2s infinite;
   box-shadow: none;
 }
@@ -654,6 +674,9 @@ h3 {
   gap: 3rem;
   margin-bottom: -1rem;
 }
+.blogCancle{
+  position: fixed;
+}
 .blogInteractions {
   display: flex;
   flex-direction: column;
@@ -787,7 +810,7 @@ h3 {
 }
 .singleBlogDiv {
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1384,7 +1407,9 @@ h3 {
 .titleLink {
   text-decoration: none;
 }
-.loaderButton,.loadingHeading, .loaderText {
+.loaderButton,
+.loadingHeading,
+.loaderText {
   width: 50%;
   height: 38px;
   background-color: var(--skeleton);
@@ -1392,7 +1417,7 @@ h3 {
   animation: pulse 2s infinite;
 }
 
-.welcomeSkeleton{
+.welcomeSkeleton {
   min-width: 300px;
   width: 60%;
   display: flex;
@@ -1401,17 +1426,17 @@ h3 {
   gap: 0.7rem;
 }
 
-.loadingHeading{
+.loadingHeading {
   width: 40%;
   height: 70px;
 }
 
-.loaderText{
+.loaderText {
   width: 80%;
   height: 15px;
 }
 
-.infoText{
+.infoText {
   display: flex;
   gap: 15px;
   width: 80vw;
@@ -1419,12 +1444,12 @@ h3 {
   align-items: center;
   justify-content: center;
 }
-.loadingText{
+.loadingText {
   color: var(--fore-ground);
 }
-.infoIcon{
+.infoIcon {
   font-size: 35px;
-  color:#8f971d;
+  color: #8f971d;
 }
 
 @keyframes pulse {
@@ -1690,24 +1715,24 @@ h3 {
   .write-name {
     width: 80%;
   }
-  .welcomeSkeleton{
+  .welcomeSkeleton {
     width: 100%;
     display: flex;
   }
-  .skele{
+  .skele {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  .profileSkeleton{
+  .profileSkeleton {
     width: 80%;
     height: 70px;
   }
-  .textSkeletonDiv{
+  .textSkeletonDiv {
     display: flex;
     align-items: center;
   }
-  .debugHead{
+  .debugHead {
     flex-direction: column;
     padding: 20px;
     align-items: center;

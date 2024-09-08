@@ -41,13 +41,9 @@ function applyTheme(theme) {
   if (theme === "light") {
     themeIcon.innerHTML = "<i title='Night Mode' class='fa-solid fa-moon'></i>";
     body.classList.add("light");
-    logoDiv.innerHTML =
-      '<img class="logo-name" src="Images/Caleb’s Brand (2).svg" alt="" />';
   } else {
     themeIcon.innerHTML = "<i title='Light Mode' class='fa-solid fa-star'></i>";
     body.classList.remove("light");
-    logoDiv.innerHTML =
-      '<img class="logo-name" src="Images/Caleb’s Brand (1).svg" alt="" />';
   }
 }
 
@@ -348,17 +344,11 @@ const portfolioHtml = `
         <div class="messageSent"></div>
       </div>
       <div class="footter">
-        <a href="index.html"
-          ><div class="logo">
-            <img class="logo-img" src="Images/Ellipse 1.svg" alt="" />
-            <div class="js-logo">
-              <img
-                class="logo-name"
-                src="Images/Caleb’s Brand (1).svg"
-                alt=""
-              />
-            </div></div
-        ></a>
+      <a href="index.html">
+      <div class="logoFooter">
+        <p class="logoName logoFooterName">&lt;<strong class="dev">Caleb</strong>.dev /&gt;</p>
+      </div>
+      </a>
 
         <div class="links">
           <a href="#home" class="footer-menu-link js-menu-link">Home</a>
@@ -374,4 +364,4 @@ const portfolioHtml = `
         </div>
       </div>
     </div>
-`
+`;
