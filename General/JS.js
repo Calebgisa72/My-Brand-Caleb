@@ -164,7 +164,7 @@ const portfolioHtml = `
                       <i class="fa-brands fa-x-twitter"></i></div
                   ></a>
                   <a
-                    href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-04ab21236/"
+                    href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-7567b9347"
                     ><div class="lin">in</div></a
                   >
                 </div>
@@ -269,7 +269,7 @@ const portfolioHtml = `
                     <i class="fa-brands fa-x-twitter"></i></div
                 ></a>
                 <a
-                  href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-04ab21236/"
+                  href="https://www.linkedin.com/in/caleb-pacifique-gisa-mugisha-7567b9347"
                   ><div class="lin">in</div></a
                 >
               </div>
