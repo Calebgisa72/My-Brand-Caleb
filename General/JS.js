@@ -102,7 +102,7 @@ const portfolioHtml = `
               <a href="#contact" class="engageBut"
                 ><button class="engage">Engage my services</button></a
               >
-              <a href="./public/Caleb's CV 2.4.pdf" download class="cv">
+              <a href="./public/Caleb's CV 2.5.pdf" download class="cv">
                 <i class="fa-solid fa-download"></i> Download CV
               </a>
             </div>
