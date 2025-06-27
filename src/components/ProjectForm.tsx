@@ -155,8 +155,8 @@ const ProjectForm = ({ project }: project) => {
       if (response.status === 201 || response.status === 200) {
         toast.success(
           project
-            ? "project Updated Successfully"
-            : "project Created Successfully"
+            ? "Project Updated Successfully"
+            : "Project Created Successfully"
         );
         setTimeout(() => {
           navigate("/projects");

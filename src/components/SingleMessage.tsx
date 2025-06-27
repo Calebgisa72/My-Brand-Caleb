@@ -72,7 +72,7 @@ const SingleMessage = ({ message }: { message: MessageProps }) => {
                   (messaget) => messaget._id != message._id
                 );
                 dispatch(setmessages(updatedmessages));
-                toast.success(`message successfully deleted`);
+                toast.success(`Message successfully deleted`);
               }
             } catch (error) {
               console.log("Error deleteting message", error);

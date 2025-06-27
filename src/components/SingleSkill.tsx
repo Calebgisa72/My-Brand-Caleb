@@ -78,7 +78,7 @@ const SingleSkill = ({ skill }: { skill: SkillsExtendedProps }) => {
                     (skillt) => skillt._id != skill._id
                   );
                   dispatch(setSkills(updatedSkills));
-                  toast.success(`skill successfully deleted`);
+                  toast.success(`Skill successfully deleted`);
                 }
               } catch (error) {
                 console.log("Error deleteting skill", error);
