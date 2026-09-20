@@ -1,30 +1,72 @@
-# Logs
-logs
+# ── Dependencies ────────────────────────────────────────────────────────────
+node_modules
+.pnp
+.pnp.js
+
+# NOTE: package-lock.json is intentionally NOT ignored.
+# The previous .gitignore excluded it, which makes builds non-reproducible —
+# CI and every developer could resolve different transitive versions.
+
+# ── Environment ─────────────────────────────────────────────────────────────
+# .env.example IS committed — it documents every key with no real values.
+.env
+.env.*
+!.env.example
+
+# ── Build output ────────────────────────────────────────────────────────────
+.next
+out
+dist
+dist-ssr
+build
+*.tsbuildinfo
+next-env.d.ts
+
+# ── Caches ──────────────────────────────────────────────────────────────────
+.vite
+.turbo
+.swc
+.eslintcache
+.cache
+
+# ── Tests & reports ─────────────────────────────────────────────────────────
+coverage
+.nyc_output
+playwright-report
+test-results
+blob-report
+.lighthouseci
+
+# ── Logs ────────────────────────────────────────────────────────────────────
 *.log
+logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-package-lock.json
-dist
-.env
-dist-ssr
-*.local
-yarn.lock
+# ── Deployment ──────────────────────────────────────────────────────────────
+.vercel
 
-# Editor directories and files
+# ── Editors & OS ────────────────────────────────────────────────────────────
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-coverage/
-.env
+# ── Internal working documents — NEVER pushed to GitHub ─────────────────────
+# These are local AI-agent and planning files. They are intentionally private:
+# they contain operating instructions, phase plans and session state that do
+# not belong in the public repository.
+Agent.md
+Guidelines.md
+handoff.md
+roadmap.md
